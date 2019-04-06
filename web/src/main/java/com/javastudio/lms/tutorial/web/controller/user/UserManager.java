@@ -27,7 +27,6 @@ public class UserManager extends ManagerBase<UserDTO> implements Serializable {
 
     public UserManager() {
         super(UserDTO.class);
-        logger.info("UserManager constructor has called.");
     }
 
     @Override
