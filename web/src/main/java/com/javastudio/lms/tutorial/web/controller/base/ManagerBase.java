@@ -20,12 +20,12 @@ public abstract class ManagerBase<T extends DataTransferObject> implements Inter
     @Inject
     private Logger logger;
 
-    private final LocalizedResource resource;
+    private final LocalizedResource localizedResource;
 
     protected List<T> entityList;
 
     public ManagerBase(Class<T> entityBeanType) {
-        resource = new LocalizedResource(this);
+        localizedResource = new LocalizedResource(this);
     }
 
     @PostConstruct
@@ -50,7 +50,7 @@ public abstract class ManagerBase<T extends DataTransferObject> implements Inter
             externalContext.redirect(url);
         } catch (IOException e) {
             e.printStackTrace();
-            resource.printErrorMessage(e);
+            localizedResource.printErrorMessage(e);
         }
 
         // String url = FacesContext.getCurrentInstance().getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";

@@ -22,14 +22,14 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
     @Inject
     private Logger logger;
 
-    private final LocalizedResource resource;
+    private final LocalizedResource localizedResource;
 
     protected T entity;
 
     private Long id;
 
     public ControllerBase() {
-        resource = new LocalizedResource(this);
+        localizedResource = new LocalizedResource(this);
     }
 
     public ControllerBase(Class<T> entityBeanType) {
@@ -78,14 +78,14 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
             prepare();
 
             getGeneralServiceApi().create(entity);
-            context.addMessage(null, new FacesMessage(resource.getMessage("request.success")));
+            context.addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
             externalContext.getFlash().setKeepMessages(true);
             logger.info("entity saved successfully.");
             return afterCreate();
         } catch (Exception e) {
             String message = String.format("Could not save %s in database.", entity.getClass());
             logger.error(message, e);
-            resource.printErrorMessage(e);
+            localizedResource.printErrorMessage(e);
         }
 
         return null;
@@ -103,7 +103,7 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
             url = FacesContext.getCurrentInstance().getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
-            resource.printErrorMessage(e);
+            localizedResource.printErrorMessage(e);
         }
         return url;
     }
@@ -112,7 +112,7 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 
-        context.addMessage(null, new FacesMessage(resource.getMessage("request.cancel")));
+        context.addMessage(null, new FacesMessage(localizedResource.getMessage("request.cancel")));
         externalContext.getFlash().setKeepMessages(true);
         String url = context.getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";
         return url;
@@ -126,7 +126,7 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
         try {
             getGeneralServiceApi().delete(entity);
 
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, resource.getMessage("request.success"), "");
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, localizedResource.getMessage("request.success"), "");
             context.addMessage(null, message);
 
             // externalContext.getFlash().put("message", new FacesMessage(FacesMessage.SEVERITY_INFO, getMessage("request.success"), ""));
@@ -136,7 +136,7 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
         } catch (Exception e) {
             String message = String.format("Could not remove entity %s with id %d", entity.getClass().getName(), entity.getId());
             logger.error(message, e);
-            resource.printErrorMessage(e);
+            localizedResource.printErrorMessage(e);
         }
 
         return url;
@@ -151,7 +151,7 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
         } catch (Exception e) {
             String message = String.format("Could not find entity %s with id %d", entity.getClass(), id);
             logger.error(message, e);
-            resource.printErrorMessage(e);
+            localizedResource.printErrorMessage(e);
         }
         return delete();
     }
