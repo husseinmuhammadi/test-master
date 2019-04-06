@@ -114,8 +114,12 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
 
         context.addMessage(null, new FacesMessage(localizedResource.getMessage("request.cancel")));
         externalContext.getFlash().setKeepMessages(true);
-        String url = context.getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";
-        return url;
+
+        // return context.getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";
+
+        logger.info("Request canceled.");
+
+        return "index.xhtml?faces-redirect=true";
     }
 
     public String delete() {

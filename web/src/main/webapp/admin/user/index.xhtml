@@ -9,6 +9,10 @@
             <h2>Users</h2>
 
             <h:form>
+                <h:commandButton value="#{lbl['button.add']}" action="insert.xhtml?faces-redirect=true" styleClass="btn btn-outline-primary"/>
+
+                <br/>
+
                 <h:dataTable value="#{userManager.users}" var="user"
                              styleClass="table table-striped table-bordered dt-responsive nowrap"
                              headerClass="employeeTableHeader" rowClasses="employeeTableOddRow,employeeTableEvenRow">

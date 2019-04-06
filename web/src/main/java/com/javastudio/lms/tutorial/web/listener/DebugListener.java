@@ -17,12 +17,12 @@ public class DebugListener implements PhaseListener {
 
     @Override
     public void beforePhase(PhaseEvent event) {
-        logger.info("--- beforePhase {}", event.getPhaseId());
+        logger.debug("--- beforePhase {}", event.getPhaseId());
     }
 
     @Override
     public void afterPhase(PhaseEvent event) {
-        logger.info("--- afterPhase {}", event.getPhaseId());
+        logger.debug("--- afterPhase {}", event.getPhaseId());
     }
 
     @Override
