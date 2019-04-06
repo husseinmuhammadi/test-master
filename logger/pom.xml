@@ -23,7 +23,7 @@
     </properties>
 
     <build>
-        <finalName>health-care-service-logger</finalName>
+        <finalName>test-master-logger</finalName>
 
         <plugins>
             <plugin>

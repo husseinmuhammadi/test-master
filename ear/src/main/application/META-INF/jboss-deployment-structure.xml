@@ -15,7 +15,7 @@
         </exclusions>
     </deployment>
 
-    <sub-deployment name="health-care-service-model.jar">
+    <sub-deployment name="test-master-model.jar">
         <exclusions>
             <module name='org.apache.commons.logging'/>
             <module name='org.apache.log4j'/>
@@ -28,7 +28,7 @@
         </exclusions>
     </sub-deployment>
 
-    <sub-deployment name="health-care-service-api.jar">
+    <sub-deployment name="test-master-api.jar">
         <exclusions>
             <module name='org.apache.commons.logging'/>
             <module name='org.apache.log4j'/>
@@ -41,7 +41,7 @@
         </exclusions>
     </sub-deployment>
 
-    <sub-deployment name="health-care-service-service.jar">
+    <sub-deployment name="test-master-service.jar">
         <exclusions>
             <module name='org.apache.commons.logging'/>
             <module name='org.apache.log4j'/>
@@ -54,7 +54,7 @@
         </exclusions>
     </sub-deployment>
 
-    <sub-deployment name="health-care-service-web.war">
+    <sub-deployment name="test-master-web.war">
         <exclusions>
             <module name='org.apache.commons.logging'/>
             <module name='org.apache.log4j'/>
