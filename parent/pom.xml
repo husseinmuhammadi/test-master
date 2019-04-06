@@ -49,7 +49,7 @@
         <utility.archive.name>test-master-utility</utility.archive.name>
         <ear.archive.name>test-master-ear</ear.archive.name>
 
-        <web.contextRoot>hcs</web.contextRoot>
+        <web.contextRoot>test-master</web.contextRoot>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
