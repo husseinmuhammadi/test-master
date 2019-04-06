@@ -36,7 +36,8 @@ public class UserServiceImpl extends GeneralServiceImpl<User, UserDTO> implement
     public UserDTO findByUsername(String username) {
         logger.info("Find user by username ...");
         Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
-        return mapper.map(dao.findByUsername(username), UserDTO.class);
+        User user = dao.findByUsername(username);
+        return user == null ? null : mapper.map(user, UserDTO.class);
     }
 
     public UserDTO findByEmail(String email) {

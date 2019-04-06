@@ -122,48 +122,24 @@ public abstract class ControllerBase<T extends DataTransferObject> implements In
         return "index.xhtml?faces-redirect=true";
     }
 
-    public String delete() {
-        String url = null;
-        FacesContext context = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = context.getExternalContext();
-
+    // @RequiresPermissions("entity:delete")
+    public String delete(Long id) {
         try {
-            getGeneralServiceApi().delete(entity);
-
+            getGeneralServiceApi().delete(getGeneralServiceApi().find(id));
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, localizedResource.getMessage("request.success"), "");
-            context.addMessage(null, message);
-
-            // externalContext.getFlash().put("message", new FacesMessage(FacesMessage.SEVERITY_INFO, getMessage("request.success"), ""));
-
-            externalContext.getFlash().setKeepMessages(true);
-            url = context.getViewRoot().getViewId() + "?faces-redirect=true";
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            logger.info(String.format("Entity %s with id %d is found", entity.getClass(), entity.getId()));
         } catch (Exception e) {
             String message = String.format("Could not remove entity %s with id %d", entity.getClass().getName(), entity.getId());
             logger.error(message, e);
             localizedResource.printErrorMessage(e);
         }
-
-        return url;
-    }
-
-    @RequiresPermissions("entity:delete")
-    public String delete(Long id) {
-        try {
-            entity = getGeneralServiceApi().find(id);
-            String message = String.format("Entity %s with id %d is found", entity.getClass(), entity.getId());
-            logger.info(message);
-        } catch (Exception e) {
-            String message = String.format("Could not find entity %s with id %d", entity.getClass(), id);
-            logger.error(message, e);
-            localizedResource.printErrorMessage(e);
-        }
-        return delete();
+        return "index.xhtml?faces-redirect=true";
     }
 
     public String refresh() {
         FacesContext context = FacesContext.getCurrentInstance();
-        String url = context.getViewRoot().getViewId() + "?faces-redirect=true";
-        return url;
+        return context.getViewRoot().getViewId() + "?faces-redirect=true";
     }
 
     public void onLoad() {
