@@ -1,7 +1,5 @@
 package com.javastudio.tutorial.dao;
 
-import com.javastudio.tutorial.dao.GenericDao;
-import com.javastudio.tutorial.dao.QueryParameterUtil;
 import com.javastudio.tutorial.model.to.User;
 import org.slf4j.Logger;
 
@@ -24,7 +22,7 @@ public class UserDao extends GenericDao<User> {
 
     @Override
     public List<User> findAll() {
-        return createNamedQuery(User.FIND_ALL).getResultList();
+        return createNamedQuery(User.FIND_ALL).setFirstResult(0).setMaxResults(5).getResultList();
     }
 
     public User findByUsername(@NotNull String username) {
