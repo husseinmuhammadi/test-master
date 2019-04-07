@@ -6,8 +6,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "ORGANIZATION_CHART")
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ORGANIZATION_CHART_SEQ")
+@NamedQueries({
+        @NamedQuery(name = OrganizationChart.FIND_ALL, query = "select t from OrganizationChart t")
+})
 public class OrganizationChart extends EntityBase {
+
+    public static final String FIND_ALL = "OrganizationChart.findAll";
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PERSON_ID")

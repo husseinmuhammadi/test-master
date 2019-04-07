@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template/template.xhtml">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{organizationChartController.id}"/>
+            <f:viewAction action="#{organizationChartController.onLoad}"/>
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['label.organizationChart.title']}" for="title"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{organizationChartController.organizationChart.title}"
+                             id="title" label="#{lbl['label.organizationChart.title']}"
+                             styleClass="form-control" p:placeholder="#{lbl['label.organizationChart.title']}"/>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText for="description" value="#{lbl['label.entity.description']}"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{organizationChartController.organizationChart.description}"
+                             id="description" label="#{lbl['label.entity.description']}"
+                             p:placeholder="#{lbl['label.entity.description']}" styleClass="form-control"/>
+            </div>
+
+            <h:commandButton value="#{lbl['button.save']}" action="#{organizationChartController.create}" styleClass="btn btn-outline-primary"
+                             rendered="#{empty organizationChartController.organizationChart.id}"/>
+            <h:commandButton value="#{lbl['button.update']}" action="#{organizationChartController.update}" styleClass="btn btn-outline-primary"
+                             rendered="#{not empty organizationChartController.organizationChart.id}"/>
+            <h:commandButton value="#{lbl['button.cancel']}" action="#{organizationChartController.cancel}" styleClass="btn btn-outline-primary"/>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
