@@ -20,7 +20,7 @@ public class OrganizationChart extends EntityBase {
     private OrganizationChart parent;
 
     @OneToMany(mappedBy = "parent")
-    protected Set<OrganizationChart> children;
+    private Set<OrganizationChart> children;
 
     public Person getPerson() {
         return person;
