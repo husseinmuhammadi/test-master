@@ -39,6 +39,7 @@ public class InsertUser {
             UserDTO admin = new UserDTO();
             admin.setUsername("admin");
             admin.setPassword(passwordService.encryptPassword("admin"));
+            admin.setDescription("Administrator");
             admin.setEnabled(Boolean.TRUE);
 
             /*

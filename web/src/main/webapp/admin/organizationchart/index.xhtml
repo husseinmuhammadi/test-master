@@ -13,47 +13,40 @@
 
                 <br/>
 
-                <h:dataTable value="#{personManager.people}" var="person"
+                <h:dataTable value="#{organizationChartManager.people}" var="organizationChart"
                              styleClass="table table-striped table-bordered dt-responsive nowrap"
                              headerClass="employeeTableHeader" rowClasses="employeeTableOddRow,employeeTableEvenRow">
 
                     <h:column>
                         <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
-                        #{person.id}
+                        #{organizationChart.id}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{lbl['label.person.firstName']}</f:facet>
-                        <h:link value="#{person.firstName}" outcome="profile">
-                            <f:param name="id" value="#{person.id}"/>
-                        </h:link>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">#{lbl['label.person.lastName']}</f:facet>
-                        <h:link value="#{person.lastName}" outcome="profile">
-                            <f:param name="id" value="#{person.id}"/>
+                        <f:facet name="header">#{lbl['label.organizationChart.title']}</f:facet>
+                        <h:link value="#{organizationChart.title}" outcome="profile">
+                            <f:param name="id" value="#{organizationChart.id}"/>
                         </h:link>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
-                        #{person.description}
+                        #{organizationChart.description}
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">#{lbl['label.header.options']}</f:facet>
                         <h:link outcome="insert">
-                            <f:param name="id" value="#{person.id}"/>
+                            <f:param name="id" value="#{organizationChart.id}"/>
                             <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:link>
-                        <h:commandLink action="#{personController.delete(person.id)}">
+                        <h:commandLink action="#{organizationChartController.delete(organizationChart.id)}">
                             <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
                                             styleClass="img-responsive"/>
                             <!--<f:ajax execute="@form" render="@form" />-->
                         </h:commandLink>
-                        <h:commandLink action="#{personController.refresh}">
+                        <h:commandLink action="#{organizationChartController.refresh}">
                             <h:graphicImage alt="reload" library="images" name="reload.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:commandLink>
