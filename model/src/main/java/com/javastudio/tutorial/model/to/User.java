@@ -40,6 +40,10 @@ public class User extends EntityBase {
     )
     private Set<Role> roles;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
+    Person person;
+
     public String getUsername() {
         return username;
     }
