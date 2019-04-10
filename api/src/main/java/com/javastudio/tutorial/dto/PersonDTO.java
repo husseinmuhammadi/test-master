@@ -1,6 +1,6 @@
 package com.javastudio.tutorial.dto;
 
-public class PersonDTO extends DataTransferObject {
+public class PersonDTO extends DTOBase {
 
     private String firstName;
 

@@ -1,47 +1,39 @@
 package com.javastudio.tutorial.model.to;
 
 import com.javastudio.tutorial.model.base.EntityBase;
-import com.javastudio.tutorial.model.converter.EntityIndicatorConverter;
-import com.javastudio.tutorial.type.EntityIndicator;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ENTITY_ACTIVITY_MASTER")
-@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ENTITY_ACTIVITY_MASTER_SEQ")
+@Table(name = "ACTIVITY_MASTER")
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ACTIVITY_MASTER_SEQ")
 @NamedQueries({
-        @NamedQuery(name = EntityActivityMaster.FIND_ALL, query = "select t from EntityActivityMaster t"),
+        @NamedQuery(name = Activity.FIND_ALL, query = "select t from Activity t"),
 })
-public class EntityActivityMaster extends EntityBase {
+public class Activity extends EntityBase {
 
-    public static final String FIND_ALL = "EntityActivityMaster.findAll";
-
-    @Column(name = "ENTITY_INDICATOR")
-    @Convert(converter = EntityIndicatorConverter.class)
-    private EntityIndicator entityIndicator;
+    public static final String FIND_ALL = "Activity.findAll";
 
     @Column(name = "ACTIVITY_NAME")
     private String activityName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CURRENT_STATE_ID")
+    @JoinColumns({
+            @JoinColumn(name = "ENTITY_INDICATOR", referencedColumnName = "ENTITY_INDICATOR", insertable = false, updatable = false),
+            @JoinColumn(name = "CURRENT_STATE", referencedColumnName = "STATE_NAME", insertable = false, updatable = false),
+    })
     private EntityStateMaster currentState;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NEXT_STATE_ID")
+    @JoinColumns({
+            @JoinColumn(name = "ENTITY_INDICATOR", referencedColumnName = "ENTITY_INDICATOR", insertable = false, updatable = false),
+            @JoinColumn(name = "NEXT_STATE", referencedColumnName = "STATE_NAME", insertable = false, updatable = false),
+    })
     private EntityStateMaster nextState;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PERMISSION", referencedColumnName = "PERMISSION")
     private Permission permission;
-
-    public EntityIndicator getEntityIndicator() {
-        return entityIndicator;
-    }
-
-    public void setEntityIndicator(EntityIndicator entityIndicator) {
-        this.entityIndicator = entityIndicator;
-    }
 
     public String getActivityName() {
         return activityName;
@@ -74,4 +66,5 @@ public class EntityActivityMaster extends EntityBase {
     public void setPermission(Permission permission) {
         this.permission = permission;
     }
+
 }

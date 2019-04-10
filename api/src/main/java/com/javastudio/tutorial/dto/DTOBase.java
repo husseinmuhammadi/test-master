@@ -5,14 +5,14 @@ import java.util.Date;
 /**
  * Data Transfer Object
  */
-public abstract class DataTransferObject {
+public abstract class DTOBase {
 
     protected static final String NEW_LINE = System.getProperty("line.separator");
 
-    public DataTransferObject() {
+    public DTOBase() {
     }
 
-    public DataTransferObject(Long id) {
+    public DTOBase(Long id) {
         this.id = id;
     }
 

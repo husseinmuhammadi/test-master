@@ -2,8 +2,7 @@ package com.javastudio.lms.tutorial.web.controller.base;
 
 import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.tutorial.api.GeneralServiceApi;
-import com.javastudio.tutorial.dto.DataTransferObject;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.javastudio.tutorial.dto.DTOBase;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +16,7 @@ import java.util.Locale;
 
 @ShiroSecured
 @Dependent
-public abstract class ControllerBase<T extends DataTransferObject> implements Internationalization {
+public abstract class ControllerBase<T extends DTOBase> implements Internationalization {
 
     @Inject
     private Logger logger;

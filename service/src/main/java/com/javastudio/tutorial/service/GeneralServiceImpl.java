@@ -2,7 +2,7 @@ package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.dao.GenericDao;
-import com.javastudio.tutorial.dto.DataTransferObject;
+import com.javastudio.tutorial.dto.DTOBase;
 import com.javastudio.tutorial.model.base.EntityBase;
 import org.dozer.DozerBeanMapperSingletonWrapper;
 import org.dozer.Mapper;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public abstract class GeneralServiceImpl<T extends EntityBase, V extends DataTransferObject> implements GeneralServiceApi<V> {
+public abstract class GeneralServiceImpl<T extends EntityBase, V extends DTOBase> implements GeneralServiceApi<V> {
 
     @Inject
     private Logger logger;

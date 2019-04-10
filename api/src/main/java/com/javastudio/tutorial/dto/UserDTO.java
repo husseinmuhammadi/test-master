@@ -2,7 +2,7 @@ package com.javastudio.tutorial.dto;
 
 import java.util.Set;
 
-public class UserDTO extends DataTransferObject {
+public class UserDTO extends DTOBase {
 
     private String username;
 

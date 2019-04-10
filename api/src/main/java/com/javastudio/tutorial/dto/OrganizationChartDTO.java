@@ -2,7 +2,7 @@ package com.javastudio.tutorial.dto;
 
 import java.util.Set;
 
-public class OrganizationChartDTO extends DataTransferObject {
+public class OrganizationChartDTO extends DTOBase {
 
     private PersonDTO person;
 

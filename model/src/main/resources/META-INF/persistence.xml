@@ -12,7 +12,7 @@
         <class>com.javastudio.tutorial.model.to.Role</class>
         <class>com.javastudio.tutorial.model.to.Person</class>
         <class>com.javastudio.tutorial.model.to.OrganizationChart</class>
-        <class>com.javastudio.tutorial.model.to.EntityActivityMaster</class>
+        <class>com.javastudio.tutorial.model.to.Activity</class>
         <class>com.javastudio.tutorial.model.to.EntityStateMaster</class>
         <class>com.javastudio.tutorial.model.to.Permission</class>
 

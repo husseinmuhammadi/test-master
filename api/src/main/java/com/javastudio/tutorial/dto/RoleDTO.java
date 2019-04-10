@@ -1,6 +1,6 @@
 package com.javastudio.tutorial.dto;
 
-public class RoleDTO extends DataTransferObject {
+public class RoleDTO extends DTOBase {
 
     private String name;
 
