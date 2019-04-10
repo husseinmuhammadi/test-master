@@ -4,13 +4,13 @@ import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "SECURITY_ROLE")
-@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ROLE_SEQ")
+@Table(name = "SECURITY_ROLE", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"NAME"})
+})
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "SECURITY_ROLE_SEQ")
 @NamedQueries({
         @NamedQuery(name = Role.FIND_ALL, query = "select t from Role t"),
 })
@@ -22,11 +22,13 @@ public class Role extends EntityBase {
     @Column(name = "NAME", length = 50, nullable = false)
     private String name;
 
-//    @NotNull
-//    @Past
-//    @Column(name = "creation", nullable = false, updatable = false, columnDefinition = "DATE")
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date creation;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "ROLE_PERMISSION",
+            joinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PERMISSION_ID", referencedColumnName = "ID", table = "SECURITY_PERMISSION")},
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"ROLE_ID", "PERMISSION_ID"})}
+    )
+    private Set<Permission> permissions;
 
     public String getName() {
         return name;
@@ -36,12 +38,11 @@ public class Role extends EntityBase {
         this.name = name;
     }
 
-//    public Date getCreation() {
-//        return creation;
-//    }
-//
-//    public void setCreation(Date creation) {
-//        this.creation = creation;
-//    }
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
 
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
+    }
 }

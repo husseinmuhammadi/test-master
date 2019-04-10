@@ -1,8 +1,11 @@
 package com.javastudio.tutorial.model.to;
 
+import com.javastudio.tutorial.annotation.Indicator;
 import com.javastudio.tutorial.model.base.EntityBase;
+import com.javastudio.tutorial.type.EntityIndicator;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 @Table(name = "PERSON")
@@ -10,6 +13,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = Person.FIND_ALL, query = "select t from Person t"),
 })
+@Indicator(name = EntityIndicator.Person)
 public class Person extends EntityBase {
 
     public static final String FIND_ALL = "Person.findAll";

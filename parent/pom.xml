@@ -12,6 +12,7 @@
 
     <modules>
         <module>../logger</module>
+        <module>../type</module>
         <module>../utility</module>
 
         <module>../api</module>
@@ -34,6 +35,7 @@
         <web.artifactId>test-master-web</web.artifactId>
         <utility.artifactId>test-master-utility</utility.artifactId>
         <ear.artifactId>test-master-ear</ear.artifactId>
+        <data.type.artifactId>data-type</data.type.artifactId>
 
         <model.version>1.0-SNAPSHOT</model.version>
         <api.version>1.0-SNAPSHOT</api.version>
@@ -41,6 +43,7 @@
         <web.version>1.0.0-SNAPSHOT</web.version>
         <utility.version>1.0-SNAPSHOT</utility.version>
         <ear.version>1.0-SNAPSHOT</ear.version>
+        <data.type.version>1.0.0-SNAPSHOT</data.type.version>
 
         <model.archive.name>test-master-model</model.archive.name>
         <api.archive.name>test-master-api</api.archive.name>
@@ -48,6 +51,7 @@
         <web.archive.name>test-master-web</web.archive.name>
         <utility.archive.name>test-master-utility</utility.archive.name>
         <ear.archive.name>test-master-ear</ear.archive.name>
+        <data.type.archive.name>data-type</data.type.archive.name>
 
         <web.contextRoot>test-master</web.contextRoot>
 

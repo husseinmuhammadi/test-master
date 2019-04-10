@@ -12,8 +12,9 @@
         <class>com.javastudio.tutorial.model.to.Role</class>
         <class>com.javastudio.tutorial.model.to.Person</class>
         <class>com.javastudio.tutorial.model.to.OrganizationChart</class>
-        <class>com.javastudio.tutorial.model.to.BugReport</class>
+        <class>com.javastudio.tutorial.model.to.EntityActivityMaster</class>
         <class>com.javastudio.tutorial.model.to.EntityStateMaster</class>
+        <class>com.javastudio.tutorial.model.to.Permission</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>

@@ -1,5 +1,9 @@
 package com.javastudio.tutorial.model.to;
 
+import com.javastudio.tutorial.model.base.EntityBase;
+import com.javastudio.tutorial.model.converter.EntityIndicatorConverter;
+import com.javastudio.tutorial.type.EntityIndicator;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,12 +12,13 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = EntityActivityMaster.FIND_ALL, query = "select t from EntityActivityMaster t"),
 })
-public class EntityActivityMaster {
+public class EntityActivityMaster extends EntityBase {
 
     public static final String FIND_ALL = "EntityActivityMaster.findAll";
 
-    @Column(name = "ENTITY_NAME")
-    private String entityName;
+    @Column(name = "ENTITY_INDICATOR")
+    @Convert(converter = EntityIndicatorConverter.class)
+    private EntityIndicator entityIndicator;
 
     @Column(name = "ACTIVITY_NAME")
     private String activityName;
@@ -30,12 +35,12 @@ public class EntityActivityMaster {
     @JoinColumn(name = "PERMISSION", referencedColumnName = "PERMISSION")
     private Permission permission;
 
-    public String getEntityName() {
-        return entityName;
+    public EntityIndicator getEntityIndicator() {
+        return entityIndicator;
     }
 
-    public void setEntityName(String entityName) {
-        this.entityName = entityName;
+    public void setEntityIndicator(EntityIndicator entityIndicator) {
+        this.entityIndicator = entityIndicator;
     }
 
     public String getActivityName() {

@@ -3,6 +3,8 @@ package com.javastudio.tutorial.model.base;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -29,8 +31,10 @@ public abstract class EntityBase {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
     private Long id;
 
+    @Past
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATE_ON", columnDefinition = "Date default sysdate", nullable = false)
+    @Column(name = "CREATE_ON", nullable = false, updatable = false, columnDefinition = "Date default sysdate")
     private Date createOn;
 
     @Temporal(TemporalType.TIMESTAMP)
