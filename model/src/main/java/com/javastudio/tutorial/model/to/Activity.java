@@ -14,49 +14,35 @@ public class Activity extends EntityBase {
 
     public static final String FIND_ALL = "Activity.findAll";
 
-    @Column(name = "ACTIVITY_NAME")
-    private String activityName;
+    public static final String ACTIVITY_NAME = "ACTIVITY_NAME";
+
+    @Column(name = ACTIVITY_NAME)
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = "ENTITY_INDICATOR", referencedColumnName = "ENTITY_INDICATOR", insertable = false, updatable = false),
             @JoinColumn(name = "CURRENT_STATE", referencedColumnName = "STATE_NAME", insertable = false, updatable = false),
     })
-    private EntityStateMaster currentState;
+    private State currentState;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = "ENTITY_INDICATOR", referencedColumnName = "ENTITY_INDICATOR", insertable = false, updatable = false),
             @JoinColumn(name = "NEXT_STATE", referencedColumnName = "STATE_NAME", insertable = false, updatable = false),
     })
-    private EntityStateMaster nextState;
+    private State nextState;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PERMISSION", referencedColumnName = "PERMISSION")
+    @JoinColumn(name = "PERMISSION_NAME", referencedColumnName = Permission.DB_COLUMN_NAME)
     private Permission permission;
 
-    public String getActivityName() {
-        return activityName;
+    public String getName() {
+        return name;
     }
 
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
-    }
-
-    public EntityStateMaster getCurrentState() {
-        return currentState;
-    }
-
-    public void setCurrentState(EntityStateMaster currentState) {
-        this.currentState = currentState;
-    }
-
-    public EntityStateMaster getNextState() {
-        return nextState;
-    }
-
-    public void setNextState(EntityStateMaster nextState) {
-        this.nextState = nextState;
+    public void setName(String activityName) {
+        this.name = activityName;
     }
 
     public Permission getPermission() {
@@ -67,4 +53,19 @@ public class Activity extends EntityBase {
         this.permission = permission;
     }
 
+    public State getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(State currentState) {
+        this.currentState = currentState;
+    }
+
+    public State getNextState() {
+        return nextState;
+    }
+
+    public void setNextState(State nextState) {
+        this.nextState = nextState;
+    }
 }

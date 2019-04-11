@@ -4,8 +4,8 @@ import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.lms.tutorial.web.security.BCryptPasswordService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
-import com.javastudio.tutorial.api.PersonService;
-import com.javastudio.tutorial.dto.PersonDTO;
+import com.javastudio.tutorial.api.PermissionService;
+import com.javastudio.tutorial.dto.PermissionDTO;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -17,7 +17,7 @@ import java.io.Serializable;
 @ShiroSecured
 @Named
 @ViewScoped
-public class PersonController extends ControllerBase<PersonDTO> implements Serializable {
+public class PermissionController extends ControllerBase<PermissionDTO> implements Serializable {
 
     private static final long serialVersionUID = -4360806817248079581L;
 
@@ -28,14 +28,14 @@ public class PersonController extends ControllerBase<PersonDTO> implements Seria
     BCryptPasswordService passwordService;
 
     @EJB
-    PersonService service;
+    PermissionService service;
 
-    public PersonController() {
-        super(PersonDTO.class);
+    public PermissionController() {
+        super(PermissionDTO.class);
     }
 
     @Override
-    public GeneralServiceApi<PersonDTO> getGeneralServiceApi() {
+    public GeneralServiceApi<PermissionDTO> getGeneralServiceApi() {
         return service;
     }
 
@@ -49,11 +49,11 @@ public class PersonController extends ControllerBase<PersonDTO> implements Seria
 
     }
 
-    public PersonDTO getPerson() {
+    public PermissionDTO getPermission() {
         return super.entity;
     }
 
-    public void setPerson(PersonDTO person) {
+    public void setPermission(PermissionDTO person) {
         super.entity = person;
     }
 }

@@ -7,16 +7,16 @@ import com.javastudio.tutorial.type.EntityIndicator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ENTITY_STATE_MASTER", uniqueConstraints = {
+@Table(name = "STATE_MASTER", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"ENTITY_INDICATOR", "STATE_NAME"})
 })
-@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ENTITY_STATE_MASTER_SEQ")
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "STATE_MASTER_SEQ")
 @NamedQueries({
-        @NamedQuery(name = EntityStateMaster.FIND_ALL, query = "select t from EntityStateMaster t"),
+        @NamedQuery(name = State.FIND_ALL, query = "select t from State t"),
 })
-public class EntityStateMaster extends EntityBase {
+public class State extends EntityBase {
 
-    public static final String FIND_ALL = "EntityStateMaster.findAll";
+    public static final String FIND_ALL = "State.findAll";
 
     @Column(name = "ENTITY_INDICATOR", length = 100)
     @Convert(converter = EntityIndicatorConverter.class)

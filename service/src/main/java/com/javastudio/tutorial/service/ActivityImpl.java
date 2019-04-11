@@ -14,7 +14,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-@Local(PersonService.class)
+@Local(ActivityService.class)
 public class ActivityImpl extends GeneralServiceImpl<Activity, ActivityDTO> implements ActivityService {
 
     @Inject

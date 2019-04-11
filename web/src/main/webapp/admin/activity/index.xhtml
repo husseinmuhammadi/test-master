@@ -6,47 +6,54 @@
                 template="/template/template.xhtml">
     <ui:define name="content">
         <div class="container">
-            <h2>Permissions</h2>
+            <h2>Activities</h2>
 
             <h:form>
                 <h:commandButton value="#{lbl['button.add']}" action="insert.xhtml?faces-redirect=true" styleClass="btn btn-outline-primary"/>
 
                 <br/>
 
-                <h:dataTable value="#{permissionManager.people}" var="permission"
+                <h:dataTable value="#{activityManager.activities}" var="activity"
                              styleClass="table table-striped table-bordered dt-responsive nowrap"
                              headerClass="employeeTableHeader" rowClasses="employeeTableOddRow,employeeTableEvenRow">
 
                     <h:column>
                         <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
-                        #{permission.id}
+                        #{activity.id}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{lbl['label.permission.name']}</f:facet>
-                        <h:link value="#{permission.name}" outcome="profile">
-                            <f:param name="id" value="#{permission.id}"/>
+                        <f:facet name="header">#{lbl['label.activity.firstName']}</f:facet>
+                        <h:link value="#{activity.name}" outcome="profile">
+                            <f:param name="id" value="#{activity.id}"/>
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{lbl['label.activity.lastName']}</f:facet>
+                        <h:link value="#{activity.lastName}" outcome="profile">
+                            <f:param name="id" value="#{activity.id}"/>
                         </h:link>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
-                        #{permission.description}
+                        #{activity.description}
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">#{lbl['label.header.options']}</f:facet>
                         <h:link outcome="insert">
-                            <f:param name="id" value="#{permission.id}"/>
+                            <f:param name="id" value="#{activity.id}"/>
                             <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:link>
-                        <h:commandLink action="#{permissionController.delete(permission.id)}">
+                        <h:commandLink action="#{activityController.delete(activity.id)}">
                             <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
                                             styleClass="img-responsive"/>
                             <!--<f:ajax execute="@form" render="@form" />-->
                         </h:commandLink>
-                        <h:commandLink action="#{permissionController.refresh}">
+                        <h:commandLink action="#{activityController.refresh}">
                             <h:graphicImage alt="reload" library="images" name="reload.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:commandLink>

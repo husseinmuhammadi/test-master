@@ -6,9 +6,7 @@ public class DashboardGenerator {
 
     EntityIndicator entityIndicator;
 
-    EntityStateMaster entityStateMaster;
+    State state;
 
     OrganizationChart organizationChart;
-
-
 }

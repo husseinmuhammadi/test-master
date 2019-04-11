@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "SECURITY_PERMISSION", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"permission"})
+        @UniqueConstraint(columnNames = {"name"})
 })
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "SECURITY_PERMISSION_SEQ")
 @NamedQueries({
@@ -16,14 +16,16 @@ public class Permission extends EntityBase {
 
     public static final String FIND_ALL = "Permission.findAll";
 
-    @Column(name = "permission", length = 60)
-    String permission;
+    public static final String DB_COLUMN_NAME = "NAME";
 
-    public String getPermission() {
-        return permission;
+    @Column(name = DB_COLUMN_NAME, length = 60)
+    String name;
+
+    public String getName() {
+        return name;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public void setName(String name) {
+        this.name = name;
     }
 }
