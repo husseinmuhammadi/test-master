@@ -13,8 +13,8 @@ import javax.inject.Inject;
 /**
  * Created by nebrass on 25/12/2015.
  */
-@Singleton
 @Startup
+@Singleton
 public class InsertUser {
 
     @EJB

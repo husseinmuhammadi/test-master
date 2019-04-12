@@ -16,7 +16,7 @@ import java.util.Locale;
 
 @ShiroSecured
 @Dependent
-public abstract class ControllerBase<T extends DTOBase> implements Internationalization {
+public abstract class ControllerBase<T extends DTOBase> extends Localization implements Internationalization {
 
     @Inject
     private Logger logger;
@@ -157,10 +157,4 @@ public abstract class ControllerBase<T extends DTOBase> implements International
     }
 
     protected abstract void afterLoad();
-
-    @Override
-    public Locale getLocale() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        return context.getViewRoot().getLocale();
-    }
 }

@@ -15,6 +15,7 @@
         <class>com.javastudio.tutorial.model.to.Activity</class>
         <class>com.javastudio.tutorial.model.to.State</class>
         <class>com.javastudio.tutorial.model.to.Permission</class>
+        <class>com.javastudio.tutorial.model.to.Task</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>

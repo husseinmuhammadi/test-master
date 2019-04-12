@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Dependent
-public abstract class ManagerBase<T extends DTOBase> implements Internationalization {
+public abstract class ManagerBase<T extends DTOBase> extends Localization implements Internationalization {
 
     @Inject
     private Logger logger;
@@ -58,12 +58,6 @@ public abstract class ManagerBase<T extends DTOBase> implements Internationaliza
     }
 
     protected abstract void onLoad();
-
-    @Override
-    public Locale getLocale() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        return context.getViewRoot().getLocale();
-    }
 
     public abstract GeneralServiceApi<T> getGeneralServiceApi();
 

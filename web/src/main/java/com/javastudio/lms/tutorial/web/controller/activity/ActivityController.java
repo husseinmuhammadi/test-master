@@ -6,6 +6,7 @@ import com.javastudio.lms.tutorial.web.security.BCryptPasswordService;
 import com.javastudio.tutorial.api.ActivityService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.dto.ActivityDTO;
+import com.javastudio.tutorial.type.EntityIndicator;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -34,6 +35,12 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
         super(ActivityDTO.class);
     }
 
+    EntityIndicator entityIndicator;
+
+    String currentState;
+
+    String nextState;
+
     @Override
     public GeneralServiceApi<ActivityDTO> getGeneralServiceApi() {
         return service;
@@ -55,5 +62,29 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
 
     public void setActivity(ActivityDTO activity) {
         super.entity = activity;
+    }
+
+    public EntityIndicator getEntityIndicator() {
+        return entityIndicator;
+    }
+
+    public void setEntityIndicator(EntityIndicator entityIndicator) {
+        this.entityIndicator = entityIndicator;
+    }
+
+    public String getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(String currentState) {
+        this.currentState = currentState;
+    }
+
+    public String getNextState() {
+        return nextState;
+    }
+
+    public void setNextState(String nextState) {
+        this.nextState = nextState;
     }
 }
