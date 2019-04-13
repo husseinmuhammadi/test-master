@@ -2,10 +2,12 @@ package com.javastudio.lms.tutorial.web.controller.activity;
 
 import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
-import com.javastudio.lms.tutorial.web.security.BCryptPasswordService;
 import com.javastudio.tutorial.api.ActivityService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
+import com.javastudio.tutorial.api.StateService;
 import com.javastudio.tutorial.dto.ActivityDTO;
+import com.javastudio.tutorial.dto.PermissionDTO;
+import com.javastudio.tutorial.dto.StateDTO;
 import com.javastudio.tutorial.type.EntityIndicator;
 import org.slf4j.Logger;
 
@@ -25,11 +27,11 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
     @Inject
     private Logger logger;
 
-    @Inject
-    BCryptPasswordService passwordService;
-
     @EJB
     ActivityService service;
+
+    @EJB
+    StateService stateService;
 
     public ActivityController() {
         super(ActivityDTO.class);
@@ -41,6 +43,8 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
 
     String nextState;
 
+    String permission;
+
     @Override
     public GeneralServiceApi<ActivityDTO> getGeneralServiceApi() {
         return service;
@@ -49,6 +53,10 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
     @Override
     public void prepare() {
         super.prepare();
+
+        entity.setCurrentState(new StateDTO(entityIndicator, currentState));
+        // entity.setNextState(stateService.create(new StateDTO(entityIndicator, nextState)));
+        entity.setPermission(new PermissionDTO(permission));
     }
 
     @Override
@@ -86,5 +94,13 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
 
     public void setNextState(String nextState) {
         this.nextState = nextState;
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 }

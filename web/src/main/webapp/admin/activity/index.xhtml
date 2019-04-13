@@ -24,28 +24,28 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{lbl['label.activity.entity']}</f:facet>
+                        <f:facet name="header">#{lbl['entity.activity.entity']}</f:facet>
                         <h:link value="#{activity.currentState.entityIndicator}" outcome="profile">
                             <f:param name="id" value="#{activity.id}"/>
                         </h:link>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{lbl['label.activity.currentState']}</f:facet>
+                        <f:facet name="header">#{lbl['entity.activity.currentState']}</f:facet>
                         <h:link value="#{activity.currentState.stateName}" outcome="profile">
                             <f:param name="id" value="#{activity.id}"/>
                         </h:link>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{lbl['label.activity.nextState']}</f:facet>
+                        <f:facet name="header">#{lbl['entity.activity.nextState']}</f:facet>
                         <h:link value="#{activity.nextState.stateName}" outcome="profile">
                             <f:param name="id" value="#{activity.id}"/>
                         </h:link>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{lbl['label.activity.permission']}</f:facet>
+                        <f:facet name="header">#{lbl['entity.activity.permission']}</f:facet>
                         #{activity.permission.name}
                     </h:column>
 

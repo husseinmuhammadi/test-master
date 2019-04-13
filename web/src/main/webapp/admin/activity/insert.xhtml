@@ -15,24 +15,13 @@
 
     <ui:define name="content">
         <h:form>
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <h:outputText value="#{lbl['entity.activity.entity']}" for="entity"
-                                  styleClass="input-group-text"/>
-                </div>
-                <h:inputText value="#{activityController.entityIndicator}"
-                             id="entity" label="#{lbl['entity.activity.entity']}"
-                             styleClass="form-control" p:placeholder="#{lbl['entity.activity.entity']}"/>
-            </div>
-
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <h:outputText value="#{lbl['entity.activity.entity']}" for="entity"
                                   styleClass="input-group-text"/>
                 </div>
                 <h:selectOneMenu value="#{activityController.entityIndicator}"
-                                 id="entityIndicator" label="#{lbl['entity.activity.entity']}"
+                                 id="entity" label="#{lbl['entity.activity.entity']}"
                                  required="false" styleClass="form-control">
                     <!--<f:selectItem itemLabel="#{insuredController.defaultRelativeLabel}" itemValue="#{insuredController.defaultRelativeValue}"/>-->
                     <f:selectItems value="#{selectItemsController.entityIndicatorItems.entrySet()}"
@@ -60,6 +49,16 @@
                 <h:inputText value="#{activityController.nextState}"
                              id="nextState" label="#{lbl['entity.activity.nextState']}"
                              styleClass="form-control" p:placeholder="#{lbl['entity.activity.nextState']}"/>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['entity.activity.permission']}" for="permission"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{activityController.permission}"
+                             id="permission" label="#{lbl['entity.activity.permission']}"
+                             styleClass="form-control" p:placeholder="#{lbl['entity.activity.permission']}"/>
             </div>
 
             <div class="input-group mb-3">

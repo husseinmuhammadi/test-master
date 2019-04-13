@@ -19,10 +19,10 @@ public class Activity extends EntityBase {
     @Column(name = ACTIVITY_NAME)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name = "ENTITY_INDICATOR", referencedColumnName = "ENTITY_INDICATOR", insertable = false, updatable = false),
-            @JoinColumn(name = "CURRENT_STATE", referencedColumnName = "STATE_NAME", insertable = false, updatable = false),
+            @JoinColumn(name = "ENTITY_INDICATOR", referencedColumnName = "ENTITY_INDICATOR"),
+            @JoinColumn(name = "CURRENT_STATE", referencedColumnName = "STATE_NAME"),
     })
     private State currentState;
 
@@ -33,7 +33,7 @@ public class Activity extends EntityBase {
     })
     private State nextState;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "PERMISSION_NAME", referencedColumnName = Permission.DB_COLUMN_NAME)
     private Permission permission;
 
