@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template/template.xhtml">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{pinController.id}"/>
+            <f:viewAction action="#{pinController.onLoad}"/>
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container">
+            <h2>Pin change</h2>
+            <h:form>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputText value="#{lbl['label.card.cardNumber']}" for="pan"
+                                      styleClass="input-group-text"/>
+                    </div>
+                    <h:outputText value="#{pinController.card.pan}"
+                                  id="pan" label="#{lbl['label.card.cardNumber']}"
+                                  styleClass="form-control" p:placeholder="#{lbl['label.card.cardNumber']}"/>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputText value="#{lbl['label.card.pin']}" for="pin"
+                                      styleClass="input-group-text"/>
+                    </div>
+                    <h:inputText value="#{pinController.card.pin}"
+                                 id="pin" label="#{lbl['label.card.pin']}"
+                                 styleClass="form-control" p:placeholder="#{lbl['label.card.pin']}"/>
+                    <div class="input-group-append">
+                        <h:commandButton styleClass="btn btn-outline-secondary" value="Update offset"
+                                         actionListener="#{pinController.actionListener}"
+                                         action="#{pinController.action}">
+                            <f:ajax execute="@form" render="@form"/>
+                        </h:commandButton>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputText value="#{lbl['label.pin.offset']}" for="pinOffset"
+                                      styleClass="input-group-text"/>
+                    </div>
+                    <h:inputText value="#{pinController.card.pinOffset}"
+                                 id="pinOffset" label="#{lbl['label.pin.offset']}"
+                                 styleClass="form-control" p:placeholder="#{lbl['label.pin.offset']}"/>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
+
+
