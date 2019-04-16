@@ -8,32 +8,57 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="id" value="#{personController.id}"/>
-            <f:viewAction action="#{personController.onLoad}"/>
+            <f:viewParam name="id" value="#{activityController.id}"/>
+            <f:viewAction action="#{activityController.onLoad}"/>
         </f:metadata>
     </ui:define>
 
     <ui:define name="content">
         <h:form>
-
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <h:outputText value="#{lbl['label.person.firstName']}" for="firstName"
+                    <h:outputText value="#{lbl['entity.activity.entity']}" for="entity"
                                   styleClass="input-group-text"/>
                 </div>
-                <h:inputText value="#{personController.person.firstName}"
-                             id="firstName" label="#{lbl['label.person.firstName']}"
-                             styleClass="form-control" p:placeholder="#{lbl['label.person.firstName']}"/>
+                <h:selectOneMenu value="#{activityController.entityIndicator}"
+                                 id="entity" label="#{lbl['entity.activity.entity']}"
+                                 required="false" styleClass="form-control">
+                    <!--<f:selectItem itemLabel="#{insuredController.defaultRelativeLabel}" itemValue="#{insuredController.defaultRelativeValue}"/>-->
+                    <f:selectItems value="#{selectItemsController.entityIndicatorItems.entrySet()}"
+                                   var="entityIndicator"
+                                   itemLabel="#{entityIndicator.value}" itemValue="#{entityIndicator.key}"/>
+                    <f:ajax event="valueChange" execute="@this" render="entity :messages"/>
+                </h:selectOneMenu>
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <h:outputText value="#{lbl['label.person.lastName']}" for="lastName"
+                    <h:outputText value="#{lbl['entity.activity.currentState']}" for="currentState"
                                   styleClass="input-group-text"/>
                 </div>
-                <h:inputText value="#{personController.person.lastName}"
-                             id="lastName" label="#{lbl['label.person.lastName']}"
-                             styleClass="form-control" p:placeholder="#{lbl['label.person.lastName']}"/>
+                <h:inputText value="#{activityController.currentState}"
+                             id="currentState" label="#{lbl['entity.activity.currentState']}"
+                             styleClass="form-control" p:placeholder="#{lbl['entity.activity.currentState']}"/>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['entity.activity.nextState']}" for="nextState"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{activityController.nextState}"
+                             id="nextState" label="#{lbl['entity.activity.nextState']}"
+                             styleClass="form-control" p:placeholder="#{lbl['entity.activity.nextState']}"/>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['entity.activity.permission']}" for="permission"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{activityController.permission}"
+                             id="permission" label="#{lbl['entity.activity.permission']}"
+                             styleClass="form-control" p:placeholder="#{lbl['entity.activity.permission']}"/>
             </div>
 
             <div class="input-group mb-3">
@@ -41,16 +66,19 @@
                     <h:outputText for="description" value="#{lbl['label.entity.description']}"
                                   styleClass="input-group-text"/>
                 </div>
-                <h:inputText value="#{personController.person.description}"
+                <h:inputText value="#{activityController.activity.description}"
                              id="description" label="#{lbl['label.entity.description']}"
                              p:placeholder="#{lbl['label.entity.description']}" styleClass="form-control"/>
             </div>
 
-            <h:commandButton value="#{lbl['button.save']}" action="#{personController.create}" styleClass="btn btn-outline-primary"
-                             rendered="#{empty personController.person.id}"/>
-            <h:commandButton value="#{lbl['button.update']}" action="#{personController.update}" styleClass="btn btn-outline-primary"
-                             rendered="#{not empty personController.person.id}"/>
-            <h:commandButton value="#{lbl['button.cancel']}" action="#{personController.cancel}" styleClass="btn btn-outline-primary"/>
+            <h:commandButton value="#{lbl['button.save']}" action="#{activityController.create}"
+                             styleClass="btn btn-outline-primary"
+                             rendered="#{empty activityController.activity.id}"/>
+            <h:commandButton value="#{lbl['button.update']}" action="#{activityController.update}"
+                             styleClass="btn btn-outline-primary"
+                             rendered="#{not empty activityController.activity.id}"/>
+            <h:commandButton value="#{lbl['button.cancel']}" action="#{activityController.cancel}"
+                             styleClass="btn btn-outline-primary"/>
 
         </h:form>
     </ui:define>

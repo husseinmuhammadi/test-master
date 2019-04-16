@@ -4,6 +4,14 @@ import com.javastudio.tutorial.type.EntityIndicator;
 
 public class StateDTO extends DTOBase {
 
+    public StateDTO() {
+    }
+
+    public StateDTO(EntityIndicator entityIndicator, String stateName) {
+        this.entityIndicator = entityIndicator;
+        this.stateName = stateName;
+    }
+
     private EntityIndicator entityIndicator;
 
     private String stateName;

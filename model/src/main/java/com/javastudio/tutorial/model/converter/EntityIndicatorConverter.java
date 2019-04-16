@@ -15,6 +15,8 @@ public class EntityIndicatorConverter implements AttributeConverter<EntityIndica
 
     @Override
     public EntityIndicator convertToEntityAttribute(String value) {
+        if (value == null)
+            return null;
         return EntityIndicator.valueOf(value);
     }
 }

@@ -43,6 +43,10 @@ public class LocalizedResource extends LocalizedResourceBase implements Serializ
         return super.getLabel(internationalization.getLocale(), key);
     }
 
+    public String getLabel(Enum anEnum) {
+        return getLabel(anEnum.getClass().getName() + "." + anEnum.name());
+    }
+
     public String getValidation(String key) {
         return super.getValidation(internationalization.getLocale(), key);
     }

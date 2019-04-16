@@ -3,6 +3,7 @@ package com.javastudio.tutorial.model.to;
 import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "SECURITY_PERMISSION", uniqueConstraints = {
@@ -12,7 +13,9 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = Permission.FIND_ALL, query = "select t from Permission t"),
 })
-public class Permission extends EntityBase {
+public class Permission extends EntityBase implements Serializable {
+
+    private static final long serialVersionUID = 8143410148598434701L;
 
     public static final String FIND_ALL = "Permission.findAll";
 

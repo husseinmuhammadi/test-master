@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 @Stateless
 @Local(ActivityService.class)
-public class ActivityImpl extends GeneralServiceImpl<Activity, ActivityDTO> implements ActivityService {
+public class ActivityServiceImpl extends GeneralServiceImpl<Activity, ActivityDTO> implements ActivityService {
 
     @Inject
     private Logger logger;
@@ -23,7 +23,7 @@ public class ActivityImpl extends GeneralServiceImpl<Activity, ActivityDTO> impl
     @EJB
     ActivityDao dao;
 
-    public ActivityImpl() {
+    public ActivityServiceImpl() {
         super(Activity.class, ActivityDTO.class);
     }
 
