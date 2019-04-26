@@ -1,8 +1,8 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.RoleService;
-import com.javastudio.tutorial.dao.GenericDao;
-import com.javastudio.tutorial.dao.RoleDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.RoleDao;
 import com.javastudio.tutorial.dto.RoleDTO;
 import com.javastudio.tutorial.model.to.Role;
 

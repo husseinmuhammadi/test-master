@@ -1,4 +1,4 @@
-package com.javastudio.tutorial.dao;
+package com.javastudio.tutorial.model.dao;
 
 import com.javastudio.tutorial.model.to.State;
 

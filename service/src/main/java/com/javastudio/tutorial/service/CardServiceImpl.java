@@ -1,8 +1,8 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.CardService;
-import com.javastudio.tutorial.dao.CardDao;
-import com.javastudio.tutorial.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.CardDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.dto.CardDTO;
 import com.javastudio.tutorial.model.to.Card;
 import org.slf4j.Logger;
@@ -19,8 +19,8 @@ public class CardServiceImpl extends GeneralServiceImpl<Card, CardDTO> implement
     @Inject
     private Logger logger;
 
-    @EJB
-    SecurityModule securityModule;
+//    @EJB
+//    SecurityModule securityModule;
 
     @EJB
     CardDao dao;

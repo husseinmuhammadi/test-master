@@ -1,8 +1,7 @@
-package com.javastudio.tutorial.dao;
+package com.javastudio.tutorial.model.dao;
 
 import com.javastudio.tutorial.model.base.EntityBase;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;

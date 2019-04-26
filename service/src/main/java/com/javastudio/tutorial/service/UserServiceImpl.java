@@ -1,8 +1,8 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.UserService;
-import com.javastudio.tutorial.dao.GenericDao;
-import com.javastudio.tutorial.dao.UserDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.UserDao;
 import com.javastudio.tutorial.dto.UserDTO;
 import com.javastudio.tutorial.model.to.User;
 import org.dozer.DozerBeanMapperSingletonWrapper;

@@ -1,13 +1,8 @@
-package com.javastudio.tutorial.dao;
+package com.javastudio.tutorial.model.dao;
 
 import com.javastudio.tutorial.model.to.Role;
-import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Stateless

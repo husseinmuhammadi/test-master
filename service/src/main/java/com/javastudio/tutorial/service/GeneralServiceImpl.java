@@ -1,7 +1,7 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.GeneralServiceApi;
-import com.javastudio.tutorial.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.dto.DTOBase;
 import com.javastudio.tutorial.model.base.EntityBase;
 import org.dozer.DozerBeanMapperSingletonWrapper;

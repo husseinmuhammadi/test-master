@@ -1,4 +1,4 @@
-package com.javastudio.tutorial.dao;
+package com.javastudio.tutorial.model.dao;
 
 import java.util.HashMap;
 import java.util.Map;

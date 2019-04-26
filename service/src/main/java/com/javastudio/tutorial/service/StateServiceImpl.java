@@ -1,8 +1,8 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.StateService;
-import com.javastudio.tutorial.dao.GenericDao;
-import com.javastudio.tutorial.dao.StateDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.StateDao;
 import com.javastudio.tutorial.dto.StateDTO;
 import com.javastudio.tutorial.model.to.State;
 import org.slf4j.Logger;

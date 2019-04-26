@@ -1,8 +1,8 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.TaskService;
-import com.javastudio.tutorial.dao.GenericDao;
-import com.javastudio.tutorial.dao.TaskDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.TaskDao;
 import com.javastudio.tutorial.dto.TaskDTO;
 import com.javastudio.tutorial.model.to.Task;
 import org.slf4j.Logger;

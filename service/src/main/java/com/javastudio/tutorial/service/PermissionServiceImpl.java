@@ -1,8 +1,8 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.PermissionService;
-import com.javastudio.tutorial.dao.GenericDao;
-import com.javastudio.tutorial.dao.PermissionDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.PermissionDao;
 import com.javastudio.tutorial.dto.PermissionDTO;
 import com.javastudio.tutorial.model.to.Permission;
 import org.slf4j.Logger;

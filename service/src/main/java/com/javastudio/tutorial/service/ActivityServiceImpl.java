@@ -1,9 +1,8 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.ActivityService;
-import com.javastudio.tutorial.api.PersonService;
-import com.javastudio.tutorial.dao.ActivityDao;
-import com.javastudio.tutorial.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.ActivityDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.dto.ActivityDTO;
 import com.javastudio.tutorial.model.to.Activity;
 import org.slf4j.Logger;

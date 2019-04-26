@@ -1,8 +1,8 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.PersonService;
-import com.javastudio.tutorial.dao.GenericDao;
-import com.javastudio.tutorial.dao.PersonDao;
+import com.javastudio.tutorial.model.dao.GenericDao;
+import com.javastudio.tutorial.model.dao.PersonDao;
 import com.javastudio.tutorial.dto.PersonDTO;
 import com.javastudio.tutorial.model.to.Person;
 import org.slf4j.Logger;
