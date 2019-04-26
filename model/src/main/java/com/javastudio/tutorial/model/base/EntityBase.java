@@ -1,5 +1,6 @@
 package com.javastudio.tutorial.model.base;
 
+import com.javastudio.tutorial.model.listener.EntityLogger;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @MappedSuperclass
+@EntityListeners(EntityLogger.class)
 public abstract class EntityBase {
 
     protected static final String NEW_LINE = System.getProperty("line.separator");
