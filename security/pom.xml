@@ -11,8 +11,8 @@
         <relativePath>../parent</relativePath>
     </parent>
 
-    <artifactId>${service.artifactId}</artifactId>
-    <version>${service.version}</version>
+    <artifactId>${security.artifactId}</artifactId>
+    <version>${security.version}</version>
 
     <packaging>ejb</packaging>
 
@@ -101,22 +101,15 @@
         </dependency>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>${security.artifactId}</artifactId>
-            <version>${security.version}</version>
-            <scope>provided</scope>
+            <groupId>org.jpos</groupId>
+            <artifactId>jpos</artifactId>
+            <version>1.9.0</version>
         </dependency>
 
         <dependency>
-            <groupId>net.sf.dozer</groupId>
-            <artifactId>dozer</artifactId>
-            <version>5.4.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
         </dependency>
     </dependencies>
 

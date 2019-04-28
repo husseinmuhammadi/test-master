@@ -5,6 +5,7 @@ import com.javastudio.tutorial.model.dao.CardDao;
 import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.dto.CardDTO;
 import com.javastudio.tutorial.model.to.Card;
+import com.javastudio.tutorial.security.SecurityModule;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -19,8 +20,8 @@ public class CardServiceImpl extends GeneralServiceImpl<Card, CardDTO> implement
     @Inject
     private Logger logger;
 
-//    @EJB
-//    SecurityModule securityModule;
+    @EJB
+    SecurityModule securityModule;
 
     @EJB
     CardDao dao;
@@ -36,6 +37,6 @@ public class CardServiceImpl extends GeneralServiceImpl<Card, CardDTO> implement
 
     @Override
     public String changePersonalIdentificationNumber(String cardNumber, String newPin) {
-        return null;
+        return securityModule.generatePinOffset(cardNumber, newPin);
     }
 }
