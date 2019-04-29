@@ -42,6 +42,11 @@
                     </h:column>
 
                     <h:column>
+                        <f:facet name="header">#{lbl['label.entity.status']}</f:facet>
+                        #{person.status}
+                    </h:column>
+
+                    <h:column>
                         <f:facet name="header">#{lbl['label.header.options']}</f:facet>
                         <h:link outcome="insert">
                             <f:param name="id" value="#{person.id}"/>

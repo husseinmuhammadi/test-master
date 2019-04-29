@@ -4,9 +4,9 @@ public class ActivityDTO extends DTOBase {
 
     private String name;
 
-    private StateDTO currentState;
-
-    private StateDTO nextState;
+//    private StateDTO currentState;
+//
+//    private StateDTO nextState;
 
     private PermissionDTO permission;
 
@@ -18,21 +18,21 @@ public class ActivityDTO extends DTOBase {
         this.name = name;
     }
 
-    public StateDTO getCurrentState() {
-        return currentState;
-    }
+//    public StateDTO getCurrentState() {
+//        return currentState;
+//    }
 
-    public void setCurrentState(StateDTO currentState) {
-        this.currentState = currentState;
-    }
+//    public void setCurrentState(StateDTO currentState) {
+//        this.currentState = currentState;
+//    }
 
-    public StateDTO getNextState() {
-        return nextState;
-    }
+//    public StateDTO getNextState() {
+//        return nextState;
+//    }
 
-    public void setNextState(StateDTO nextState) {
-        this.nextState = nextState;
-    }
+//    public void setNextState(StateDTO nextState) {
+//        this.nextState = nextState;
+//    }
 
     public PermissionDTO getPermission() {
         return permission;

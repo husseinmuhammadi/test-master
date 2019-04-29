@@ -1,6 +1,4 @@
-package com.javastudio.tutorial.annotation;
-
-import com.javastudio.tutorial.type.EntityIndicator;
+package com.javastudio.tutorial.model.type;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,6 +8,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Indicator {
-
     EntityIndicator name();
 }

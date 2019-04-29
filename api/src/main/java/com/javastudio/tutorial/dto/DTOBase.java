@@ -28,6 +28,8 @@ public abstract class DTOBase {
 
     private String description;
 
+    private String status;
+
     public Date getCreateOn() {
         return createOn;
     }
@@ -76,4 +78,11 @@ public abstract class DTOBase {
         this.description = description;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

@@ -1,8 +1,8 @@
 package com.javastudio.tutorial.model.to;
 
-import com.javastudio.tutorial.annotation.Indicator;
 import com.javastudio.tutorial.model.base.EntityBase;
-import com.javastudio.tutorial.type.EntityIndicator;
+import com.javastudio.tutorial.model.type.EntityIndicator;
+import com.javastudio.tutorial.model.type.Indicator;
 
 import javax.persistence.*;
 import javax.persistence.Entity;

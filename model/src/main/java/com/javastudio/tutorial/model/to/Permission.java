@@ -19,9 +19,9 @@ public class Permission extends EntityBase implements Serializable {
 
     public static final String FIND_ALL = "Permission.findAll";
 
-    public static final String DB_COLUMN_NAME = "NAME";
+    public static final String NAME = "NAME";
 
-    @Column(name = DB_COLUMN_NAME, length = 60)
+    @Column(name = NAME, length = 60)
     String name;
 
     public String getName() {

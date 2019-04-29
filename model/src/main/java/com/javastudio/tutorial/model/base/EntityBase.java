@@ -1,6 +1,7 @@
 package com.javastudio.tutorial.model.base;
 
 import com.javastudio.tutorial.model.listener.EntityLogger;
+import com.javastudio.tutorial.model.to.Activity;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.persistence.*;
@@ -11,18 +12,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 @MappedSuperclass
 @EntityListeners(EntityLogger.class)
 public abstract class EntityBase {
 
     protected static final String NEW_LINE = System.getProperty("line.separator");
+    public static final String STATUS = "STATUS";
 
     public EntityBase() {
+
     }
 
     public EntityBase(Long id) {
@@ -52,6 +52,9 @@ public abstract class EntityBase {
 
     @Column(name = "DESCRIPTION", length = 300)
     private String description;
+
+    @Column(name = STATUS, length = 100)
+    private String status;
 
     @PrePersist
     private void prePersist() {
@@ -171,16 +174,16 @@ public abstract class EntityBase {
         return version;
     }
 
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     public void setCreateOn(Date createOn) {
         this.createOn = createOn;
     }
 
     public void setUpdateOn(Date updateOn) {
         this.updateOn = updateOn;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
     public String getDescription() {
@@ -191,4 +194,11 @@ public abstract class EntityBase {
         this.description = description;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

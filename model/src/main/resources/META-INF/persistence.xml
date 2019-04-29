@@ -13,7 +13,6 @@
         <class>com.javastudio.tutorial.model.to.Person</class>
         <class>com.javastudio.tutorial.model.to.OrganizationChart</class>
         <class>com.javastudio.tutorial.model.to.Activity</class>
-        <class>com.javastudio.tutorial.model.to.State</class>
         <class>com.javastudio.tutorial.model.to.Permission</class>
         <class>com.javastudio.tutorial.model.to.Card</class>
         <class>com.javastudio.tutorial.model.to.PersonalIdentificationNumber</class>
