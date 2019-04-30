@@ -1,6 +1,6 @@
 package com.javastudio.tutorial.model.converter;
 
-import com.javastudio.tutorial.type.EntityIndicator;
+import com.javastudio.tutorial.model.type.EntityIndicator;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

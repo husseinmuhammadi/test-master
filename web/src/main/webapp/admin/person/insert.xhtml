@@ -38,6 +38,16 @@
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
+                    <h:outputText for="status" value="#{lbl['label.entity.status']}"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{personController.person.status}"
+                             id="status" label="#{lbl['label.entity.status']}"
+                             p:placeholder="#{lbl['label.entity.status']}" styleClass="form-control"/>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
                     <h:outputText for="description" value="#{lbl['label.entity.description']}"
                                   styleClass="input-group-text"/>
                 </div>

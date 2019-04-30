@@ -85,6 +85,12 @@
                             <bundleFileName>${service.archive.name}.jar</bundleFileName>
                         </ejbModule>
 
+                        <ejbModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${security.artifactId}</artifactId>
+                            <bundleFileName>${security.archive.name}.jar</bundleFileName>
+                        </ejbModule>
+
                         <webModule>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>${web.artifactId}</artifactId>
@@ -155,6 +161,13 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>${service.artifactId}</artifactId>
             <version>${service.version}</version>
+            <type>ejb</type>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${security.artifactId}</artifactId>
+            <version>${security.version}</version>
             <type>ejb</type>
         </dependency>
 

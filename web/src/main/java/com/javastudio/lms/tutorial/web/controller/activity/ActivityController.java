@@ -4,11 +4,8 @@ import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.tutorial.api.ActivityService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
-import com.javastudio.tutorial.api.StateService;
 import com.javastudio.tutorial.dto.ActivityDTO;
 import com.javastudio.tutorial.dto.PermissionDTO;
-import com.javastudio.tutorial.dto.StateDTO;
-import com.javastudio.tutorial.type.EntityIndicator;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -30,14 +27,9 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
     @EJB
     ActivityService service;
 
-    @EJB
-    StateService stateService;
-
     public ActivityController() {
         super(ActivityDTO.class);
     }
-
-    EntityIndicator entityIndicator;
 
     String currentState;
 
@@ -54,7 +46,7 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
     public void prepare() {
         super.prepare();
 
-        entity.setCurrentState(new StateDTO(entityIndicator, currentState));
+        // entity.setCurrentState(new StateDTO(entityIndicator, currentState));
         // entity.setNextState(stateService.create(new StateDTO(entityIndicator, nextState)));
         entity.setPermission(new PermissionDTO(permission));
     }
@@ -70,14 +62,6 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
 
     public void setActivity(ActivityDTO activity) {
         super.entity = activity;
-    }
-
-    public EntityIndicator getEntityIndicator() {
-        return entityIndicator;
-    }
-
-    public void setEntityIndicator(EntityIndicator entityIndicator) {
-        this.entityIndicator = entityIndicator;
     }
 
     public String getCurrentState() {

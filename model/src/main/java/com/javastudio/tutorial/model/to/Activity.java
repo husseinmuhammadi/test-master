@@ -15,26 +15,21 @@ public class Activity extends EntityBase {
     public static final String FIND_ALL = "Activity.findAll";
 
     public static final String ACTIVITY_NAME = "ACTIVITY_NAME";
+    public static final String CURRENT_STATE = "CURRENT_STATE";
+    public static final String NEXT_STATE = "NEXT_STATE";
+    public static final String PERMISSION_NAME = "PERMISSION_NAME";
 
     @Column(name = ACTIVITY_NAME)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumns({
-            @JoinColumn(name = "ENTITY_INDICATOR", referencedColumnName = "ENTITY_INDICATOR"),
-            @JoinColumn(name = "CURRENT_STATE", referencedColumnName = "STATE_NAME"),
-    })
-    private State currentState;
+    @Column(name = CURRENT_STATE)
+    private String currentState;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "ENTITY_INDICATOR", referencedColumnName = "ENTITY_INDICATOR", insertable = false, updatable = false),
-            @JoinColumn(name = "NEXT_STATE", referencedColumnName = "STATE_NAME", insertable = false, updatable = false),
-    })
-    private State nextState;
+    @Column(name = NEXT_STATE)
+    private String nextState;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "PERMISSION_NAME", referencedColumnName = Permission.DB_COLUMN_NAME)
+    @JoinColumn(name = PERMISSION_NAME, referencedColumnName = Permission.NAME)
     private Permission permission;
 
     public String getName() {
@@ -53,19 +48,19 @@ public class Activity extends EntityBase {
         this.permission = permission;
     }
 
-    public State getCurrentState() {
+    public String getCurrentState() {
         return currentState;
     }
 
-    public void setCurrentState(State currentState) {
+    public void setCurrentState(String currentState) {
         this.currentState = currentState;
     }
 
-    public State getNextState() {
+    public String getNextState() {
         return nextState;
     }
 
-    public void setNextState(State nextState) {
+    public void setNextState(String nextState) {
         this.nextState = nextState;
     }
 }

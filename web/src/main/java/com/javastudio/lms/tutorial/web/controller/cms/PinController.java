@@ -54,11 +54,13 @@ public class PinController extends ControllerBase<CardDTO> implements Serializab
         logger.info("");
     }
 
-    public void action() {
+    public String action() {
         logger.info("");
 
         String pinOffset = service.changePersonalIdentificationNumber(entity.getPan(), entity.getPin());
+        entity.setPinOffset(pinOffset);
+        service.update(entity);
 
+        return null;
     }
-
 }

@@ -2,6 +2,7 @@ package com.javastudio.lms.tutorial.web.controller.base;
 
 import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.tutorial.api.GeneralServiceApi;
+import com.javastudio.tutorial.dto.ActivityDTO;
 import com.javastudio.tutorial.dto.DTOBase;
 import org.slf4j.Logger;
 
@@ -13,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Set;
 
 @ShiroSecured
 @Dependent
@@ -24,6 +26,8 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     private final LocalizedResource localizedResource;
 
     protected T entity;
+
+    private Set<ActivityDTO> activities;
 
     private Long id;
 
@@ -147,8 +151,8 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
             if (entity == null) {
                 try {
                     FacesContext.getCurrentInstance().getExternalContext().dispatch("index");
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Throwable e) {
+                    logger.warn("Something wrong while dispatching to index", e);
                 }
             }
         }

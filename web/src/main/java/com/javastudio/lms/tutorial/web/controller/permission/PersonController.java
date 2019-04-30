@@ -1,6 +1,5 @@
 package com.javastudio.lms.tutorial.web.controller.permission;
 
-import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.lms.tutorial.web.security.BCryptPasswordService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
@@ -14,12 +13,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
-@ShiroSecured
 @Named
 @ViewScoped
 public class PersonController extends ControllerBase<PersonDTO> implements Serializable {
 
-    private static final long serialVersionUID = -4360806817248079581L;
+    private static final long serialVersionUID = 3233666231649250158L;
 
     @Inject
     private Logger logger;
