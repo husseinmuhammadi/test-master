@@ -1,6 +1,7 @@
 package com.javastudio.lms.tutorial.web.security;
 
 import com.javastudio.tutorial.api.UserService;
+import com.javastudio.tutorial.dto.PersonDTO;
 import com.javastudio.tutorial.dto.UserDTO;
 import org.slf4j.Logger;
 
@@ -41,6 +42,7 @@ public class InsertUser {
             admin.setPassword(passwordService.encryptPassword("admin"));
             admin.setDescription("Administrator");
             admin.setEnabled(Boolean.TRUE);
+            admin.setPerson(new PersonDTO("Hossein", "Mohammadi"));
 
             /*
             Role role = new Role();

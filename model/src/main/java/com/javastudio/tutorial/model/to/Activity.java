@@ -1,6 +1,8 @@
 package com.javastudio.tutorial.model.to;
 
 import com.javastudio.tutorial.model.base.EntityBase;
+import com.javastudio.tutorial.model.converter.EntityIndicatorConverter;
+import com.javastudio.tutorial.model.type.EntityIndicator;
 
 import javax.persistence.*;
 
@@ -12,12 +14,19 @@ import javax.persistence.*;
 })
 public class Activity extends EntityBase {
 
+    // region Constant
     public static final String FIND_ALL = "Activity.findAll";
 
     public static final String ACTIVITY_NAME = "ACTIVITY_NAME";
     public static final String CURRENT_STATE = "CURRENT_STATE";
     public static final String NEXT_STATE = "NEXT_STATE";
     public static final String PERMISSION_NAME = "PERMISSION_NAME";
+    public static final String ENTITY_INDICATOR = "ENTITY_INDICATOR";
+    // endregion Constant
+
+    @Column(name = ENTITY_INDICATOR, length = 100)
+    @Convert(converter = EntityIndicatorConverter.class)
+    EntityIndicator entityIndicator;
 
     @Column(name = ACTIVITY_NAME)
     private String name;
@@ -62,5 +71,13 @@ public class Activity extends EntityBase {
 
     public void setNextState(String nextState) {
         this.nextState = nextState;
+    }
+
+    public EntityIndicator getEntityIndicator() {
+        return entityIndicator;
+    }
+
+    public void setEntityIndicator(EntityIndicator entityIndicator) {
+        this.entityIndicator = entityIndicator;
     }
 }

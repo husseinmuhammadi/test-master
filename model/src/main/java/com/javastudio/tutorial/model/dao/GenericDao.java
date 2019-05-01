@@ -1,6 +1,7 @@
 package com.javastudio.tutorial.model.dao;
 
 import com.javastudio.tutorial.model.base.EntityBase;
+import com.javastudio.tutorial.model.to.EntityState;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.Dependent;
@@ -36,6 +37,12 @@ public abstract class GenericDao<T extends EntityBase> {
         logger.info("GenericDao --> create");
         entityManager.persist(t);
         return t;
+    }
+
+    public EntityState create(EntityState entityState) {
+        logger.info("GenericDao --> create");
+        entityManager.persist(entityState);
+        return entityState;
     }
 
     public void remove(T t) {
