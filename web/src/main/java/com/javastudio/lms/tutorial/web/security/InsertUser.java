@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import javax.persistence.metamodel.EntityType;
 
 /**
  * Created by nebrass on 25/12/2015.

@@ -3,6 +3,7 @@ package com.javastudio.tutorial.model.to;
 import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ACTIVITY_MASTER")
@@ -23,7 +24,7 @@ public class Activity extends EntityBase {
     // endregion Constant
 
     @Column(name = ENTITY_INDICATOR, length = 100)
-    String entityIndicator;
+    private String entity;
 
     @Column(name = ACTIVITY_NAME)
     private String name;
@@ -38,6 +39,7 @@ public class Activity extends EntityBase {
     @JoinColumn(name = PERMISSION_NAME, referencedColumnName = Permission.NAME)
     private Permission permission;
 
+    // region Getters & Setters
     public String getName() {
         return name;
     }
@@ -70,11 +72,13 @@ public class Activity extends EntityBase {
         this.nextState = nextState;
     }
 
-    public String getEntityIndicator() {
-        return entityIndicator;
+    public String getEntity() {
+        return entity;
     }
 
-    public void setEntityIndicator(String entityIndicator) {
-        this.entityIndicator = entityIndicator;
+    public void setEntity(String entity) {
+        this.entity = entity;
     }
+
+    // endregion Getters & Setters
 }

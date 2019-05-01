@@ -23,6 +23,7 @@ public class EntityState {
             idType = "long", metaType = "string",
             metaValues = {
                     @MetaValue(targetEntity = Person.class, value = "P"),
+                    @MetaValue(targetEntity = Task.class, value = "T")
                     // @MetaValue(targetEntity = Company.class, value = "C")
             }
     )

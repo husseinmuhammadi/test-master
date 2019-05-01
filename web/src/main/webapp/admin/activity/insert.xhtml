@@ -20,15 +20,25 @@
                     <h:outputText value="#{lbl['entity.activity.entity']}" for="entity"
                                   styleClass="input-group-text"/>
                 </div>
-                <h:selectOneMenu value="#{activityController.entityIndicator}"
+                <h:selectOneMenu value="#{activityController.activity.entity}"
                                  id="entity" label="#{lbl['entity.activity.entity']}"
                                  required="false" styleClass="form-control">
                     <!--<f:selectItem itemLabel="#{insuredController.defaultRelativeLabel}" itemValue="#{insuredController.defaultRelativeValue}"/>-->
-                    <f:selectItems value="#{selectItemsController.entityIndicatorItems.entrySet()}"
-                                   var="entityIndicator"
-                                   itemLabel="#{entityIndicator.value}" itemValue="#{entityIndicator.key}"/>
+                    <f:selectItems value="#{selectItemsController.entityTypeItems.entrySet()}"
+                                   var="entityType"
+                                   itemLabel="#{entityType.value}" itemValue="#{entityType.key}"/>
                     <f:ajax event="valueChange" execute="@this" render="entity :messages"/>
                 </h:selectOneMenu>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['entity.activity.name']}" for="name"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{activityController.activity.name}"
+                             id="name" label="#{lbl['entity.activity.name']}"
+                             styleClass="form-control" p:placeholder="#{lbl['entity.activity.name']}"/>
             </div>
 
             <div class="input-group mb-3">
@@ -36,7 +46,7 @@
                     <h:outputText value="#{lbl['entity.activity.currentState']}" for="currentState"
                                   styleClass="input-group-text"/>
                 </div>
-                <h:inputText value="#{activityController.currentState}"
+                <h:inputText value="#{activityController.activity.currentState}"
                              id="currentState" label="#{lbl['entity.activity.currentState']}"
                              styleClass="form-control" p:placeholder="#{lbl['entity.activity.currentState']}"/>
             </div>
@@ -46,7 +56,7 @@
                     <h:outputText value="#{lbl['entity.activity.nextState']}" for="nextState"
                                   styleClass="input-group-text"/>
                 </div>
-                <h:inputText value="#{activityController.nextState}"
+                <h:inputText value="#{activityController.activity.nextState}"
                              id="nextState" label="#{lbl['entity.activity.nextState']}"
                              styleClass="form-control" p:placeholder="#{lbl['entity.activity.nextState']}"/>
             </div>

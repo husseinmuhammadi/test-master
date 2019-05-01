@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.metamodel.EntityType;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -93,6 +95,4 @@ public abstract class GenericDao<T extends EntityBase> {
         }
         return typedQuery;
     }
-
-
 }
