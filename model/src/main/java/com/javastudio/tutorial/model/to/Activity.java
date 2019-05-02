@@ -12,6 +12,7 @@ import java.util.List;
         @NamedQuery(name = Activity.FIND_ALL, query = "select t from Activity t"),
 })
 public class Activity extends EntityBase {
+    // todo rename to EntityActivitySpecification
 
     // region Constant
     public static final String FIND_ALL = "Activity.findAll";

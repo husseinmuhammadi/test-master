@@ -16,8 +16,13 @@
         <class>com.javastudio.tutorial.model.to.Permission</class>
         <class>com.javastudio.tutorial.model.to.Card</class>
         <class>com.javastudio.tutorial.model.to.PersonalIdentificationNumber</class>
+        <class>com.javastudio.tutorial.model.to.Dashboard</class>
         <class>com.javastudio.tutorial.model.to.Task</class>
         <class>com.javastudio.tutorial.model.to.EntityState</class>
+        <class>com.javastudio.tutorial.model.to.TaskDetails</class>
+        <class>com.javastudio.tutorial.model.to.TaskComment</class>
+        <class>com.javastudio.tutorial.model.to.Tag</class>
+        <class>com.javastudio.tutorial.model.to.Product</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>
