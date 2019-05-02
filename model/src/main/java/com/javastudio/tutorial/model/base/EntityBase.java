@@ -16,7 +16,7 @@ import java.util.*;
 
 @MappedSuperclass
 @EntityListeners(EntityLogger.class)
-public abstract class EntityBase {
+public abstract class EntityBase implements HasState {
 
     protected static final String NEW_LINE = System.getProperty("line.separator");
     public static final String STATUS = "STATUS";
@@ -194,6 +194,7 @@ public abstract class EntityBase {
         this.description = description;
     }
 
+    @Override
     public String getStatus() {
         return status;
     }

@@ -1,6 +1,7 @@
 package com.javastudio.lms.tutorial.web.security;
 
 import com.javastudio.tutorial.api.UserService;
+import com.javastudio.tutorial.dto.PersonDTO;
 import com.javastudio.tutorial.dto.UserDTO;
 import org.slf4j.Logger;
 
@@ -9,6 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import javax.persistence.metamodel.EntityType;
 
 /**
  * Created by nebrass on 25/12/2015.
@@ -41,6 +43,7 @@ public class InsertUser {
             admin.setPassword(passwordService.encryptPassword("admin"));
             admin.setDescription("Administrator");
             admin.setEnabled(Boolean.TRUE);
+            admin.setPerson(new PersonDTO("Hossein", "Mohammadi"));
 
             /*
             Role role = new Role();

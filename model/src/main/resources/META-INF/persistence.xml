@@ -17,6 +17,7 @@
         <class>com.javastudio.tutorial.model.to.Card</class>
         <class>com.javastudio.tutorial.model.to.PersonalIdentificationNumber</class>
         <class>com.javastudio.tutorial.model.to.Task</class>
+        <class>com.javastudio.tutorial.model.to.EntityState</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>

@@ -40,8 +40,8 @@ public class User extends EntityBase {
     )
     private Set<Role> roles;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "PERSON_ID")
     Person person;
 
     public String getUsername() {
@@ -74,5 +74,13 @@ public class User extends EntityBase {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

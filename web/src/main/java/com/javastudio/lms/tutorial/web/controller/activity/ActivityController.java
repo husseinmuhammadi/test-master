@@ -31,10 +31,6 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
         super(ActivityDTO.class);
     }
 
-    String currentState;
-
-    String nextState;
-
     String permission;
 
     @Override
@@ -46,9 +42,7 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
     public void prepare() {
         super.prepare();
 
-        // entity.setCurrentState(new StateDTO(entityIndicator, currentState));
-        // entity.setNextState(stateService.create(new StateDTO(entityIndicator, nextState)));
-        entity.setPermission(new PermissionDTO(permission));
+        // entity.setPermission(new PermissionDTO(permission));
     }
 
     @Override
@@ -62,22 +56,6 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
 
     public void setActivity(ActivityDTO activity) {
         super.entity = activity;
-    }
-
-    public String getCurrentState() {
-        return currentState;
-    }
-
-    public void setCurrentState(String currentState) {
-        this.currentState = currentState;
-    }
-
-    public String getNextState() {
-        return nextState;
-    }
-
-    public void setNextState(String nextState) {
-        this.nextState = nextState;
     }
 
     public String getPermission() {

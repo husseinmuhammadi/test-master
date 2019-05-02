@@ -7,39 +7,78 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="id" value="#{userController.id}"/>
-            <f:viewAction action="#{userController.onLoad}"/>
+            <f:viewParam name="id" value="#{activityController.id}"/>
+            <f:viewAction action="#{activityController.onLoad}"/>
         </f:metadata>
     </ui:define>
 
     <ui:define name="header">
-        <h2>#{lbl['label.user.profile']}</h2>
+        <h2>#{lbl['label.activity.profile']}</h2>
     </ui:define>
 
     <ui:define name="content">
         <h:form class="form-group">
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <h:outputLabel for="username"
-                                       value="#{lbl['label.user.username']}"/>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="entity" styleClass="input-group-text"
+                                       value="#{lbl['entity.activity.entity']}"/>
                     </div>
-                    <h:outputText value="#{userController.user.username}"
-                                  id="username" label="#{lbl['label.user.username']}"
-                                  styleClass="form-control" required="true">
+                    <h:outputText value="#{activityController.activity.entity}"
+                                  id="entity" label="#{lbl['entity.activity.entity']}"
+                                  styleClass="form-control">
                     </h:outputText>
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <h:outputLabel for="description"
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="name" styleClass="input-group-text"
+                                       value="#{lbl['entity.activity.name']}"/>
+                    </div>
+                    <h:outputText value="#{activityController.activity.name}"
+                                  id="name" label="#{lbl['entity.activity.name']}"
+                                  styleClass="form-control">
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="currentState" styleClass="input-group-text"
+                                       value="#{lbl['entity.activity.currentState']}"/>
+                    </div>
+                    <h:outputText value="#{activityController.activity.currentState}"
+                                  id="currentState" label="#{lbl['entity.activity.currentState']}"
+                                  styleClass="form-control">
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="nextState" styleClass="input-group-text"
+                                       value="#{lbl['entity.activity.nextState']}"/>
+                    </div>
+                    <h:outputText value="#{activityController.activity.nextState}"
+                                  id="nextState" label="#{lbl['entity.activity.nextState']}"
+                                  styleClass="form-control">
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="description" styleClass="input-group-text"
                                        value="#{lbl['label.entity.description']}"/>
                     </div>
-                    <h:outputText value="#{userController.user.description}"
+                    <h:outputText value="#{activityController.activity.description}"
                                   id="description" label="#{lbl['label.entity.description']}"
-                                  styleClass="form-control" required="true">
+                                  styleClass="form-control">
                     </h:outputText>
                 </div>
             </div>

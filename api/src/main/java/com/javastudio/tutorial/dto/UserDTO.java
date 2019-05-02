@@ -10,6 +10,8 @@ public class UserDTO extends DTOBase {
 
     private Boolean enabled;
 
+    PersonDTO person;
+
     private Set<RoleDTO> roles;
 
     public String getUsername() {
@@ -42,5 +44,13 @@ public class UserDTO extends DTOBase {
 
     public void setRoles(Set<RoleDTO> roles) {
         this.roles = roles;
+    }
+
+    public PersonDTO getPerson() {
+        return person;
+    }
+
+    public void setPerson(PersonDTO person) {
+        this.person = person;
     }
 }
