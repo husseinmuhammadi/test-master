@@ -21,7 +21,8 @@
             <div class="form-group">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <h:outputLabel for="firstName" value="#{lbl['label.person.firstName']}" styleClass="input-group-text"/>
+                        <h:outputLabel for="firstName" styleClass="input-group-text"
+                                       value="#{lbl['label.person.firstName']}"/>
                     </div>
                     <h:outputText value="#{personController.person.firstName}"
                                   id="firstName" label="#{lbl['label.person.firstName']}"
@@ -33,7 +34,8 @@
             <div class="form-group">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <h:outputLabel for="lastName" value="#{lbl['label.person.lastName']}" styleClass="input-group-text"/>
+                        <h:outputLabel for="lastName" value="#{lbl['label.person.lastName']}"
+                                       styleClass="input-group-text"/>
                     </div>
                     <h:outputText value="#{personController.person.lastName}"
                                   id="lastName" label="#{lbl['label.person.lastName']}"
@@ -45,7 +47,8 @@
             <div class="form-group">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <h:outputLabel for="status" value="#{lbl['label.entity.status']}" styleClass="input-group-text"/>
+                        <h:outputLabel for="status" value="#{lbl['label.entity.status']}"
+                                       styleClass="input-group-text"/>
                     </div>
                     <h:outputText value="#{personController.person.status}"
                                   id="status" label="#{lbl['label.entity.status']}"

@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "ORGANIZATION_CHART")
+@Table(name = "ORGANIZATION_CHART", uniqueConstraints = {
+        @UniqueConstraint(name = "UQ_ORGANIZATION_CHART_01", columnNames = {"CORPORATE_ID", "USERNAME"})
+})
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ORGANIZATION_CHART_SEQ")
 @NamedQueries({
         @NamedQuery(name = OrganizationChart.FIND_ALL, query = "select t from OrganizationChart t")
@@ -15,9 +17,12 @@ public class OrganizationChart extends EntityBase {
 
     public static final String FIND_ALL = "OrganizationChart.findAll";
 
+    @Column(name = "CORPORATE_ID", length = 100)
+    private String corporateId;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PERSON_ID")
-    private Person person;
+    @JoinColumn(name = "USERNAME", referencedColumnName = User.COLUMN_USERNAME)
+    private User user;
 
     private String title;
 
@@ -36,12 +41,12 @@ public class OrganizationChart extends EntityBase {
     )
     private Set<Activity> activities;
 
-    public Person getPerson() {
-        return person;
+    public User getUser() {
+        return user;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {
@@ -74,5 +79,13 @@ public class OrganizationChart extends EntityBase {
 
     public void setActivities(Set<Activity> activities) {
         this.activities = activities;
+    }
+
+    public String getCorporateId() {
+        return corporateId;
+    }
+
+    public void setCorporateId(String corporateId) {
+        this.corporateId = corporateId;
     }
 }

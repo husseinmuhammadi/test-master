@@ -14,7 +14,6 @@ public class EntityState {
     @Id
     @GeneratedValue
     long id;
-
     @Any(
             metaColumn = @Column(name = "entity_type", length = 4),
             fetch = FetchType.EAGER
@@ -23,12 +22,14 @@ public class EntityState {
             idType = "long", metaType = "string",
             metaValues = {
                     @MetaValue(targetEntity = Person.class, value = "P"),
-                    @MetaValue(targetEntity = Task.class, value = "T")
                     // @MetaValue(targetEntity = Company.class, value = "C")
+                    @MetaValue(targetEntity = Task.class, value = "T"),
+                    @MetaValue(targetEntity = OrganizationChart.class, value = "O"),
             }
     )
     @JoinColumn(name = "entity_id")
     HasState entity;
+
 
     String status;
 

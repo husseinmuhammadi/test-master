@@ -13,17 +13,30 @@
         </f:metadata>
     </ui:define>
 
+    <ui:define name="header">
+        <h2>#{lbl['label.organizationChart.insert']}</h2>
+    </ui:define>
+
     <ui:define name="content">
         <h:form>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['entity.organizationChart.corporate']}" for="corporateId"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{organizationChartController.organizationChart.corporateId}"
+                             id="corporateId" label="#{lbl['entity.organizationChart.corporate']}"
+                             styleClass="form-control" p:placeholder="#{lbl['entity.organizationChart.corporate']}"/>
+            </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <h:outputText value="#{lbl['label.organizationChart.title']}" for="title"
+                    <h:outputText value="#{lbl['entity.organizationChart.title']}" for="title"
                                   styleClass="input-group-text"/>
                 </div>
                 <h:inputText value="#{organizationChartController.organizationChart.title}"
-                             id="title" label="#{lbl['label.organizationChart.title']}"
-                             styleClass="form-control" p:placeholder="#{lbl['label.organizationChart.title']}"/>
+                             id="title" label="#{lbl['entity.organizationChart.title']}"
+                             styleClass="form-control" p:placeholder="#{lbl['entity.organizationChart.title']}"/>
             </div>
 
             <div class="input-group mb-3">

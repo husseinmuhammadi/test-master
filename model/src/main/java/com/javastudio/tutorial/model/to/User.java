@@ -4,6 +4,7 @@ import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Locale;
 import java.util.Set;
 
 @Entity
@@ -18,11 +19,12 @@ import java.util.Set;
 public class User extends EntityBase {
 
     public static final String FIND_ALL = "User.findAll";
-
     public static final String FIND_BY_USERNAME = "User.findByUsername";
 
+    public static final String COLUMN_USERNAME = "USERNAME";
+
     @NotNull
-    @Column(name = "USERNAME", length = 50, nullable = false)
+    @Column(name = COLUMN_USERNAME, length = 50, nullable = false)
     private String username;
 
     @NotNull
@@ -43,6 +45,8 @@ public class User extends EntityBase {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "PERSON_ID")
     Person person;
+
+    Locale locale;
 
     public String getUsername() {
         return username;
@@ -82,5 +86,13 @@ public class User extends EntityBase {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 }

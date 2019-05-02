@@ -1,5 +1,6 @@
 package com.javastudio.lms.tutorial.web.security;
 
+import com.javastudio.lms.tutorial.web.controller.user.UserInformation;
 import com.javastudio.tutorial.api.UserService;
 import com.javastudio.tutorial.dto.UserDTO;
 import org.apache.shiro.authc.*;
@@ -19,6 +20,9 @@ public class SecurityRealm extends AuthorizingRealm {
 
     @Inject
     private Logger logger;
+
+    @Inject
+    private UserInformation userInformation;
 
     @EJB
     UserService userService;
@@ -40,6 +44,9 @@ public class SecurityRealm extends AuthorizingRealm {
             logger.warn("No account found for user [{}]", username);
             throw new IncorrectCredentialsException();
         }
+
+        userInformation.setLocale(user.getLocale());
+        userInformation.setUsername(user.getUsername());
 
         return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), getName());
     }

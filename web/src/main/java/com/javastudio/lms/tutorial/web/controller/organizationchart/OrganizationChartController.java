@@ -44,6 +44,8 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     @Override
     public void prepare() {
         super.prepare();
+
+        // getOrganizationChart().setUser();
     }
 
     @Override

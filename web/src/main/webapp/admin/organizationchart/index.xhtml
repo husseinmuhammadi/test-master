@@ -4,10 +4,13 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/template/template.xhtml">
+
+    <ui:define name="header">
+        <h2>#{lbl['label.organizationChart.index']}</h2>
+    </ui:define>
+
     <ui:define name="content">
         <div class="container">
-            <h2>People</h2>
-
             <h:form>
                 <h:commandButton value="#{lbl['button.add']}" action="insert.xhtml?faces-redirect=true" styleClass="btn btn-outline-primary"/>
 
@@ -23,7 +26,12 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">#{lbl['label.organizationChart.title']}</f:facet>
+                        <f:facet name="header">#{lbl['entity.organizationChart.corporate']}</f:facet>
+                        #{organizationChart.corporateId}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">#{lbl['entity.organizationChart.title']}</f:facet>
                         <h:link value="#{organizationChart.title}" outcome="profile">
                             <f:param name="id" value="#{organizationChart.id}"/>
                         </h:link>

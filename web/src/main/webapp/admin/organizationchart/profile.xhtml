@@ -7,39 +7,52 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="id" value="#{userController.id}"/>
-            <f:viewAction action="#{userController.onLoad}"/>
+            <f:viewParam name="id" value="#{organizationChartController.id}"/>
+            <f:viewAction action="#{organizationChartController.onLoad}"/>
         </f:metadata>
     </ui:define>
 
     <ui:define name="header">
-        <h2>#{lbl['label.user.profile']}</h2>
+        <h2>#{lbl['label.organizationChart.profile']}</h2>
     </ui:define>
 
     <ui:define name="content">
         <h:form class="form-group">
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <h:outputLabel for="username"
-                                       value="#{lbl['label.user.username']}"/>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="corporateId" styleClass="input-group-text"
+                                       value="#{lbl['entity.organizationChart.corporate']}"/>
                     </div>
-                    <h:outputText value="#{userController.user.username}"
-                                  id="username" label="#{lbl['label.user.username']}"
-                                  styleClass="form-control" required="true">
+                    <h:outputText value="#{organizationChartController.organizationChart.corporateId}"
+                                  id="corporateId" label="#{lbl['entity.organizationChart.corporate']}"
+                                  styleClass="form-control">
                     </h:outputText>
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <h:outputLabel for="description"
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="title" styleClass="input-group-text"
+                                       value="#{lbl['entity.organizationChart.title']}"/>
+                    </div>
+                    <h:outputText value="#{organizationChartController.organizationChart.title}"
+                                  id="title" label="#{lbl['entity.organizationChart.title']}"
+                                  styleClass="form-control">
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="description" styleClass="input-group-text"
                                        value="#{lbl['label.entity.description']}"/>
                     </div>
-                    <h:outputText value="#{userController.user.description}"
+                    <h:outputText value="#{organizationChartController.organizationChart.description}"
                                   id="description" label="#{lbl['label.entity.description']}"
-                                  styleClass="form-control" required="true">
+                                  styleClass="form-control">
                     </h:outputText>
                 </div>
             </div>

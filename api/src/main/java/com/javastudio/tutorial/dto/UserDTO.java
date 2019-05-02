@@ -1,5 +1,8 @@
 package com.javastudio.tutorial.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import java.util.Locale;
 import java.util.Set;
 
 public class UserDTO extends DTOBase {
@@ -13,6 +16,8 @@ public class UserDTO extends DTOBase {
     PersonDTO person;
 
     private Set<RoleDTO> roles;
+
+    private Locale locale;
 
     public String getUsername() {
         return username;
@@ -52,5 +57,13 @@ public class UserDTO extends DTOBase {
 
     public void setPerson(PersonDTO person) {
         this.person = person;
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 }

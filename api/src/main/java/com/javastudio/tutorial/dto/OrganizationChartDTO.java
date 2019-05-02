@@ -4,21 +4,15 @@ import java.util.Set;
 
 public class OrganizationChartDTO extends DTOBase {
 
-    private PersonDTO person;
+    private String corporateId;
+
+    private UserDTO user;
 
     private String title;
 
     private OrganizationChartDTO parent;
 
     private Set<OrganizationChartDTO> children;
-
-    public PersonDTO getPerson() {
-        return person;
-    }
-
-    public void setPerson(PersonDTO person) {
-        this.person = person;
-    }
 
     public String getTitle() {
         return title;
@@ -42,5 +36,21 @@ public class OrganizationChartDTO extends DTOBase {
 
     public void setChildren(Set<OrganizationChartDTO> children) {
         this.children = children;
+    }
+
+    public String getCorporateId() {
+        return corporateId;
+    }
+
+    public void setCorporateId(String corporateId) {
+        this.corporateId = corporateId;
+    }
+
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 }
