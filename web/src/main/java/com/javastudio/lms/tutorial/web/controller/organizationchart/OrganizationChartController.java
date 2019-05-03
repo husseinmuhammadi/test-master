@@ -6,15 +6,16 @@ import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.OrganizationChartService;
 import com.javastudio.tutorial.api.UserService;
 import com.javastudio.tutorial.dto.OrganizationChartDTO;
-import com.javastudio.tutorial.dto.UserDTO;
 import org.slf4j.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @ShiroSecured
@@ -34,7 +35,7 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     UserService userService;
 
     // region Fields
-    List<SelectItem> selectUsers;
+    List<SelectItem> selectUsers = new ArrayList<>();
     // endregion Fields
 
     // region Constructor
@@ -49,6 +50,7 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     }
 
     @Override
+    @PostConstruct
     protected void init() {
         super.init();
         userService.findAll().forEach(user -> selectUsers.add(new SelectItem(user, user.getUsername())));

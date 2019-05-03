@@ -1,7 +1,5 @@
 package com.javastudio.tutorial.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
 import java.util.Locale;
 import java.util.Set;
 

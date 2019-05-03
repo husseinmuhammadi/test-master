@@ -48,7 +48,7 @@
                                  id="user" label="#{lbl['entity.organizationChart.user']}"
                                  styleClass="form-control">
                     <f:selectItems value="#{organizationChartController.selectUsers}"/>
-                    <!--<f:converter converterId="userConverter"/>-->
+                    <f:converter binding="#{userConverter}"/>
                 </h:selectOneMenu>
             </div>
 

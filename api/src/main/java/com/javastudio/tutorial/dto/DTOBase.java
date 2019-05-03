@@ -1,6 +1,7 @@
 package com.javastudio.tutorial.dto;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Data Transfer Object
@@ -104,5 +105,22 @@ public abstract class DTOBase {
 
     public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
+    }
+
+    /**
+     * https://stackoverflow.com/questions/9069379/validation-error-value-is-not-valid
+     * Error on faces convert while saving organization chart
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof DTOBase))
+            return false;
+
+        DTOBase dtoBase = (DTOBase) o;
+
+        return Objects.equals(getId(), dtoBase.getId()) &&
+                Objects.equals(getVersion(), dtoBase.getVersion());
     }
 }
