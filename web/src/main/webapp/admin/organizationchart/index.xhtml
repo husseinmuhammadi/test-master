@@ -36,6 +36,12 @@
                     </h:column>
 
                     <h:column>
+                        <f:facet name="header">#{lbl['entity.organizationChart.parent']}</f:facet>
+                        <h:outputText value="#{organizationChart.parent.user.username}"
+                                      rendered="#{not empty organizationChart.parent and not empty organizationChart.parent.user}"/>
+                    </h:column>
+
+                    <h:column>
                         <f:facet name="header">#{lbl['entity.organizationChart.title']}</f:facet>
                         <h:link value="#{organizationChart.title}" outcome="profile">
                             <f:param name="id" value="#{organizationChart.id}"/>

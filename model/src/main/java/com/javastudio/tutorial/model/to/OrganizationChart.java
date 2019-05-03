@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "ORGANIZATION_CHART", uniqueConstraints = {
-        @UniqueConstraint(name = "UQ_ORGANIZATION_CHART_01", columnNames = {"CORPORATE_ID", "USERNAME"})
+        // @UniqueConstraint(name = "UQ_ORGANIZATION_CHART_01", columnNames = {"CORPORATE_ID", "USERNAME"})
 })
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ORGANIZATION_CHART_SEQ")
 @NamedQueries({
@@ -24,6 +24,7 @@ public class OrganizationChart extends EntityBase {
     @JoinColumn(name = "USERNAME", referencedColumnName = User.COLUMN_USERNAME)
     private User user;
 
+    @Column(name = "TITLE", length = 200)
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)

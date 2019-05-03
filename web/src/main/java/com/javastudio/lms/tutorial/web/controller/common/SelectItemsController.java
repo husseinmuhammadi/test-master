@@ -5,20 +5,20 @@ import com.javastudio.lms.tutorial.web.controller.base.Localization;
 import com.javastudio.lms.tutorial.web.controller.base.LocalizedResource;
 import com.javastudio.tutorial.api.MetaModelService;
 import com.javastudio.tutorial.api.UserService;
-import com.javastudio.tutorial.dto.UserDTO;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import javax.persistence.metamodel.EntityType;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 @Named
-@SessionScoped
+@ApplicationScoped
 public class SelectItemsController extends Localization implements Internationalization, Serializable {
 
     private static final long serialVersionUID = -1704322412699194522L;
@@ -31,8 +31,11 @@ public class SelectItemsController extends Localization implements International
     @EJB
     UserService userService;
 
+    final SelectItem emptyItem;
+
     public SelectItemsController() {
         localizedResource = new LocalizedResource(this);
+        emptyItem = new SelectItem(null, localizedResource.getLabel("label.select.empty"));
     }
 
     public Map<String, String> getEntityTypeItems() {
@@ -46,5 +49,9 @@ public class SelectItemsController extends Localization implements International
 //            items.put(entityIndicator.name(), localizedResource.getLabel(entityIndicator));
 //        }
         return items;
+    }
+
+    public SelectItem getEmptyItem() {
+        return emptyItem;
     }
 }
