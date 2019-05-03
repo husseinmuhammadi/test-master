@@ -1,5 +1,6 @@
 package com.javastudio.lms.tutorial.web.security;
 
+import com.javastudio.lms.tutorial.web.controller.user.UserInformation;
 import com.javastudio.tutorial.api.UserService;
 import com.javastudio.tutorial.dto.PersonDTO;
 import com.javastudio.tutorial.dto.UserDTO;
@@ -37,13 +38,19 @@ public class InsertUser {
                 return;
             }
 
-            logger.info("Prepare to add user admin.");
             UserDTO admin = new UserDTO();
             admin.setUsername("admin");
             admin.setPassword(passwordService.encryptPassword("admin"));
             admin.setDescription("Administrator");
             admin.setEnabled(Boolean.TRUE);
-            admin.setPerson(new PersonDTO("Hossein", "Mohammadi"));
+            admin.setCreateBy("system");
+            admin.setUpdateBy("system");
+
+            PersonDTO person = new PersonDTO("Hossein", "Mohammadi");
+            person.setCreateBy("system");
+            person.setUpdateBy("system");
+
+            admin.setPerson(person);
 
             /*
             Role role = new Role();

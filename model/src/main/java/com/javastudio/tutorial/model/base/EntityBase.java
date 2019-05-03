@@ -39,9 +39,17 @@ public abstract class EntityBase implements HasState {
     @Column(name = "CREATE_ON", nullable = false, updatable = false, columnDefinition = "Date default sysdate")
     private Date createOn;
 
+    @NotNull
+    @Column(name = "CREATE_BY", nullable = false, updatable = false, length = 100)
+    private String createBy;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "UPDATE_ON", columnDefinition = "Date default sysdate", nullable = false)
     private Date updateOn;
+
+    @NotNull
+    @Column(name = "UPDATE_BY", nullable = false, updatable = false, length = 100)
+    private String updateBy;
 
     @Version
     @Column(nullable = false, columnDefinition = "NUMBER(19,0) default 0")
@@ -201,5 +209,21 @@ public abstract class EntityBase implements HasState {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
     }
 }

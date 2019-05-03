@@ -1,6 +1,7 @@
 package com.javastudio.lms.tutorial.web.controller.base;
 
 import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
+import com.javastudio.lms.tutorial.web.controller.user.UserInformation;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.dto.ActivityDTO;
 import com.javastudio.tutorial.dto.DTOBase;
@@ -12,8 +13,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import java.io.IOException;
-import java.util.Locale;
 import java.util.Set;
 
 @ShiroSecured
@@ -22,6 +21,9 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
 
     @Inject
     private Logger logger;
+
+    @Inject
+    UserInformation userInformation;
 
     private final LocalizedResource localizedResource;
 
@@ -67,8 +69,13 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     protected void init() {
     }
 
+    /**
+     * Pre persist
+     */
     public void prepare() {
         entity.setId(null);
+        entity.setCreateBy(userInformation.getUsername());
+        entity.setUpdateBy(userInformation.getUsername());
     }
 
     public String create() {
@@ -102,6 +109,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     public String update() {
         String url = null;
         try {
+            entity.setUpdateBy(userInformation.getUsername());
             getGeneralServiceApi().update(entity);
             url = FacesContext.getCurrentInstance().getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";
         } catch (Exception e) {

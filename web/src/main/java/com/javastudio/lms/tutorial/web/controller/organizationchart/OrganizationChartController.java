@@ -2,19 +2,20 @@ package com.javastudio.lms.tutorial.web.controller.organizationchart;
 
 import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
-import com.javastudio.lms.tutorial.web.security.BCryptPasswordService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.OrganizationChartService;
-import com.javastudio.tutorial.api.PersonService;
+import com.javastudio.tutorial.api.UserService;
 import com.javastudio.tutorial.dto.OrganizationChartDTO;
-import com.javastudio.tutorial.dto.PersonDTO;
+import com.javastudio.tutorial.dto.UserDTO;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 @ShiroSecured
 @Named
@@ -26,15 +27,21 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     @Inject
     private Logger logger;
 
-    @Inject
-    BCryptPasswordService passwordService;
-
     @EJB
     OrganizationChartService service;
 
+    @EJB
+    UserService userService;
+
+    // region Fields
+    List<SelectItem> selectUsers;
+    // endregion Fields
+
+    // region Constructor
     public OrganizationChartController() {
         super(OrganizationChartDTO.class);
     }
+    // endregion Constructor
 
     @Override
     public GeneralServiceApi<OrganizationChartDTO> getGeneralServiceApi() {
@@ -42,16 +49,22 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     }
 
     @Override
+    protected void init() {
+        super.init();
+        userService.findAll().forEach(user -> selectUsers.add(new SelectItem(user, user.getUsername())));
+    }
+
+    @Override
     public void prepare() {
         super.prepare();
-
-        // getOrganizationChart().setUser();
     }
 
     @Override
     protected void afterLoad() {
 
     }
+
+    // region Getters & Setters
 
     public OrganizationChartDTO getOrganizationChart() {
         return super.entity;
@@ -60,4 +73,14 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     public void setOrganizationChart(OrganizationChartDTO organizationChart) {
         super.entity = organizationChart;
     }
+
+    public List<SelectItem> getSelectUsers() {
+        return selectUsers;
+    }
+
+    public void setSelectUsers(List<SelectItem> selectUsers) {
+        this.selectUsers = selectUsers;
+    }
+
+    // region Getters & Setters
 }

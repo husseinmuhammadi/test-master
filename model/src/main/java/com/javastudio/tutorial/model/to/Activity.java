@@ -3,7 +3,6 @@ package com.javastudio.tutorial.model.to;
 import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "ACTIVITY_MASTER")

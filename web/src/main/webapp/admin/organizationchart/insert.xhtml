@@ -41,6 +41,19 @@
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['entity.organizationChart.user']}" for="user"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:selectOneMenu value="#{organizationChartController.organizationChart.user}"
+                                 id="user" label="#{lbl['entity.organizationChart.user']}"
+                                 styleClass="form-control">
+                    <f:selectItems value="#{organizationChartController.selectUsers}"/>
+                    <!--<f:converter converterId="userConverter"/>-->
+                </h:selectOneMenu>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
                     <h:outputText for="description" value="#{lbl['label.entity.description']}"
                                   styleClass="input-group-text"/>
                 </div>

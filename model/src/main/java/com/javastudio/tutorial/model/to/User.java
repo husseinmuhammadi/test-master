@@ -4,24 +4,28 @@ import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.Set;
 
 @Entity
 @Table(name = "SECURITY_USER", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"USERNAME"})
+        @UniqueConstraint(columnNames = {"USERNAME"}),
+        // @UniqueConstraint(columnNames = {"USERNAME", "CORPORATE_ID"}),
 })
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "USER_SEQ")
 @NamedQueries({
         @NamedQuery(name = User.FIND_ALL, query = "select t from User t"),
         @NamedQuery(name = User.FIND_BY_USERNAME, query = "SELECT u FROM User u WHERE u.username = :username"),
 })
-public class User extends EntityBase {
+public class User extends EntityBase implements Serializable {
+
+    private static final long serialVersionUID = 1415732038426448052L;
 
     public static final String FIND_ALL = "User.findAll";
     public static final String FIND_BY_USERNAME = "User.findByUsername";
 
-    public static final String COLUMN_USERNAME = "USERNAME";
+    static final String COLUMN_USERNAME = "USERNAME";
 
     @NotNull
     @Column(name = COLUMN_USERNAME, length = 50, nullable = false)
@@ -47,6 +51,9 @@ public class User extends EntityBase {
     Person person;
 
     Locale locale;
+
+    @Column(name = "CORPORATE_ID", length = 100)
+    private String corporateId;
 
     public String getUsername() {
         return username;
@@ -94,5 +101,13 @@ public class User extends EntityBase {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
+    }
+
+    public String getCorporateId() {
+        return corporateId;
+    }
+
+    public void setCorporateId(String corporateId) {
+        this.corporateId = corporateId;
     }
 }

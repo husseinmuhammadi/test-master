@@ -30,6 +30,10 @@ public abstract class DTOBase {
 
     private String status;
 
+    private String createBy;
+
+    private String updateBy;
+
     public Date getCreateOn() {
         return createOn;
     }
@@ -84,5 +88,21 @@ public abstract class DTOBase {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
     }
 }

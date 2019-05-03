@@ -31,6 +31,11 @@
                     </h:column>
 
                     <h:column>
+                        <f:facet name="header">#{lbl['entity.organizationChart.user']}</f:facet>
+                        #{organizationChart.user.username}
+                    </h:column>
+
+                    <h:column>
                         <f:facet name="header">#{lbl['entity.organizationChart.title']}</f:facet>
                         <h:link value="#{organizationChart.title}" outcome="profile">
                             <f:param name="id" value="#{organizationChart.id}"/>
