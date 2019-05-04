@@ -3,28 +3,31 @@ package com.javastudio.tutorial.model.to;
 import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name = "ORGANIZATION_CHART", uniqueConstraints = {
-        // @UniqueConstraint(name = "UQ_ORGANIZATION_CHART_01", columnNames = {"CORPORATE_ID", "USERNAME"})
-})
+@Table(name = "ORGANIZATION_CHART")
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ORGANIZATION_CHART_SEQ")
 @NamedQueries({
-        @NamedQuery(name = OrganizationChart.FIND_ALL, query = "select t from OrganizationChart t")
+        @NamedQuery(name = OrganizationChart.FIND_ALL, query = "select o from OrganizationChart o"),
+        @NamedQuery(name = OrganizationChart.FIND_BY_ORGANIZATION_DESCRIPTOR, query = "select o from OrganizationChart o where o.corporateId = :corporateId and o.title = :title and coalesce(o.user.username, 'reserved') = coalesce(:username, 'reserved')"),
 })
 public class OrganizationChart extends EntityBase {
 
     public static final String FIND_ALL = "OrganizationChart.findAll";
+    public static final String FIND_BY_ORGANIZATION_DESCRIPTOR = "OrganizationChart.findByOrganizationDescriptor";
 
-    @Column(name = "CORPORATE_ID", length = 100)
+    @NotNull
+    @Column(name = "CORPORATE_ID", length = 100, nullable = false)
     private String corporateId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USERNAME", referencedColumnName = User.COLUMN_USERNAME)
     private User user;
 
-    @Column(name = "TITLE", length = 200)
+    @NotNull
+    @Column(name = "TITLE", length = 200, nullable = false)
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)

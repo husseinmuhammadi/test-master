@@ -5,6 +5,7 @@ import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.model.dao.OrganizationChartDao;
 import com.javastudio.tutorial.dto.OrganizationChartDTO;
 import com.javastudio.tutorial.model.to.OrganizationChart;
+import com.sun.corba.se.impl.orb.ParserTable;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -29,5 +30,10 @@ public class OrganizationChartServiceImpl extends GeneralServiceImpl<Organizatio
     @Override
     public GenericDao<OrganizationChart> getGenericDao() {
         return dao;
+    }
+
+    @Override
+    public OrganizationChartDTO findByOrganizationDescriptor(String corporateId, String title, String username) {
+        return dto(dao.findByOrganizationDescriptor(corporateId, title, username));
     }
 }

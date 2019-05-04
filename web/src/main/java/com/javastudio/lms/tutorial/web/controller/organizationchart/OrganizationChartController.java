@@ -96,5 +96,13 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
         this.selectUsers = selectUsers;
     }
 
+    public List<SelectItem> getSelectOrganizationCharts() {
+        return selectOrganizationCharts;
+    }
+
+    public void setSelectOrganizationCharts(List<SelectItem> selectOrganizationCharts) {
+        this.selectOrganizationCharts = selectOrganizationCharts;
+    }
+
     // region Getters & Setters
 }

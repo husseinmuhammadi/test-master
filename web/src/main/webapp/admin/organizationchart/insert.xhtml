@@ -55,6 +55,20 @@
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['entity.organizationChart.parent']}" for="parent"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:selectOneMenu value="#{organizationChartController.organizationChart.parent}"
+                                 id="parent" label="#{lbl['entity.organizationChart.parent']}"
+                                 styleClass="form-control">
+                    <f:selectItem value="#{selectItemsController.emptyItem}"/>
+                    <f:selectItems value="#{organizationChartController.selectOrganizationCharts}"/>
+                    <f:converter binding="#{organizationChartConverter}"/>
+                </h:selectOneMenu>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
                     <h:outputText for="description" value="#{lbl['label.entity.description']}"
                                   styleClass="input-group-text"/>
                 </div>
