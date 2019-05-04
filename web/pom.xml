@@ -108,5 +108,11 @@
             <version>${data.type.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.javastudio.tutorial</groupId>
+            <artifactId>light-faces</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

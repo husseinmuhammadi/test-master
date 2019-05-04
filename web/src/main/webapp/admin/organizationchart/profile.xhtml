@@ -47,6 +47,19 @@
             <div class="form-group">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
+                        <h:outputLabel for="title" styleClass="input-group-text"
+                                       value="#{lbl['entity.organizationChart.user']}"/>
+                    </div>
+                    <h:outputText value="#{organizationChartController.organizationChart.user.username}"
+                                  id="username" label="#{lbl['entity.organizationChart.user']}"
+                                  styleClass="form-control">
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
                         <h:outputLabel for="description" styleClass="input-group-text"
                                        value="#{lbl['label.entity.description']}"/>
                     </div>
@@ -56,6 +69,67 @@
                     </h:outputText>
                 </div>
             </div>
+        </h:form>
+
+        <h:form id="activites">
+            <h:dataTable value="#{activityManager.activities}" var="activity"
+                         styleClass="table table-striped table-bordered dt-responsive nowrap"
+                         headerClass="employeeTableHeader" rowClasses="employeeTableOddRow,employeeTableEvenRow">
+
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
+                    #{activity.id}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.activity.entity']}</f:facet>
+                    <h:link value="#{activity.entity}" outcome="profile">
+                        <f:param name="id" value="#{activity.id}"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.activity.currentState']}</f:facet>
+                    <h:link value="#{activity.currentState}" outcome="profile">
+                        <f:param name="id" value="#{activity.id}"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.activity.nextState']}</f:facet>
+                    <h:link value="#{activity.nextState}" outcome="profile">
+                        <f:param name="id" value="#{activity.id}"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.activity.permission']}</f:facet>
+                    #{activity.permission.name}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
+                    #{activity.description}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['label.header.options']}</f:facet>
+                    <h:link outcome="insert">
+                        <f:param name="id" value="#{activity.id}"/>
+                        <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
+                                        styleClass="img-responsive"/>
+                    </h:link>
+                    <h:commandLink action="#{activityController.delete(activity.id)}">
+                        <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                        styleClass="img-responsive"/>
+                        <!--<f:ajax execute="@form" render="@form" />-->
+                    </h:commandLink>
+                    <h:commandLink action="#{activityController.refresh}">
+                        <h:graphicImage alt="reload" library="images" name="reload.png" width="20"
+                                        styleClass="img-responsive"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
         </h:form>
     </ui:define>
 </ui:composition>

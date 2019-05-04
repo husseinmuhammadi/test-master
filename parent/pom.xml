@@ -15,6 +15,8 @@
         <module>../type</module>
         <module>../utility</module>
 
+        <module>../jsf</module>
+
         <module>../security</module>
 
         <module>../api</module>
