@@ -9,8 +9,56 @@
     <tag>
         <tag-name>greeting</tag-name>
         <component>
-            <component-type>com.javastudio.tutorial.jsf.component.Greeting</component-type>
+            <component-type>com.javastudio.tutorial.jsf.component.UIGreeting</component-type>
         </component>
+
+        <attribute>
+            <name>name</name>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>current</tag-name>
+        <component>
+            <component-type>com.javastudio.tutorial.jsf.component.UICurrent</component-type>
+        </component>
+
+        <attribute>
+            <name>time</name>
+            <required>true</required>
+            <type>java.time.LocalDateTime</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>tabContainer</tag-name>
+        <component>
+            <component-type>ir.javadev.jsf.parsfaces.component.TabContainer</component-type>
+            <renderer-type>ir.javadev.jsf.renderer.TabContainerRenderer</renderer-type>
+        </component>
+    </tag>
+
+    <tag>
+        <tag-name>tab</tag-name>
+        <component>
+            <component-type>ir.javadev.jsf.parsfaces.component.Tab</component-type>
+        </component>
+        <attribute>
+            <name>src</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>active</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
     </tag>
 
 </facelet-taglib>

@@ -12,6 +12,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Named
 @ViewScoped
@@ -53,5 +54,15 @@ public class PersonController extends ControllerBase<PersonDTO> implements Seria
 
     public void setPerson(PersonDTO person) {
         super.entity = person;
+    }
+
+    LocalDateTime current = LocalDateTime.now();
+
+    public LocalDateTime getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(LocalDateTime current) {
+        this.current = current;
     }
 }
