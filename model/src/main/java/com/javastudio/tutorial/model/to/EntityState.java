@@ -14,6 +14,7 @@ public class EntityState {
     @Id
     @GeneratedValue
     long id;
+    
     @Any(
             metaColumn = @Column(name = "entity_type", length = 4),
             fetch = FetchType.EAGER

@@ -28,6 +28,7 @@
         <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <property name="hibernate.jpa.compliance.global_id_generators" value="false"/>
 
             <property name="javax.persistence.sql-load-script-source" value="META-INF/insert.sql"/>
 

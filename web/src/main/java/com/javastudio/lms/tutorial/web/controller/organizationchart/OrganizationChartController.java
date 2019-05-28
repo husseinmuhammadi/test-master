@@ -6,7 +6,6 @@ import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.OrganizationChartService;
 import com.javastudio.tutorial.api.UserService;
 import com.javastudio.tutorial.dto.OrganizationChartDTO;
-import com.javastudio.tutorial.dto.UserDTO;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
