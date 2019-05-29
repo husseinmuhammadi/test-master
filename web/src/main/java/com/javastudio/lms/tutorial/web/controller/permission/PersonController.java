@@ -8,6 +8,7 @@ import com.javastudio.tutorial.dto.PersonDTO;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +16,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Named
-@ViewScoped
+@RequestScoped
 public class PersonController extends ControllerBase<PersonDTO> implements Serializable {
 
     private static final long serialVersionUID = 3233666231649250158L;

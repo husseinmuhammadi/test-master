@@ -169,4 +169,26 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     }
 
     protected abstract void afterLoad();
+
+    public void save() {
+        audit();
+        getGeneralServiceApi().create(entity);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+//        logger.info("entity saved successfully.");
+    }
+
+    private void audit() {
+        entity.setCreateBy(userInformation.getUsername());
+        entity.setUpdateBy(userInformation.getUsername());
+    }
+
+    public String showPage(String response, boolean redirect) {
+        logger .info(String.format("ControllerBase --> showPage(%s, %b)", response, redirect));
+        if (redirect)
+            response += "?faces-redirect=true";
+        return response;
+    }
+
+
 }
