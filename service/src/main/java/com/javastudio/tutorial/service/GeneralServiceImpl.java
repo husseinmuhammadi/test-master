@@ -35,6 +35,9 @@ public abstract class GeneralServiceImpl<T extends EntityBase, V extends DTOBase
     }
 
     protected V dto(T entity) {
+        if (entity == null)
+            return null;
+
         Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
         return mapper.map(entity, dtoType);
     }

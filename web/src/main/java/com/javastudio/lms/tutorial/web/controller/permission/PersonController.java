@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class PersonController extends ControllerBase<PersonDTO> implements Serializable {
 
     private static final long serialVersionUID = 3233666231649250158L;

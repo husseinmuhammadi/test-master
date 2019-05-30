@@ -28,6 +28,8 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     private final LocalizedResource localizedResource;
 
     protected T entity;
+    Class<T> entityBeanType;
+
 
     private Set<ActivityDTO> activities;
 
@@ -39,12 +41,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
 
     public ControllerBase(Class<T> entityBeanType) {
         this();
-
-        try {
-            entity = entityBeanType.newInstance();
-        } catch (IllegalAccessException | InstantiationException e) {
-            logger.error("Could not create instance for " + entityBeanType.getName(), e);
-        }
+        this.entityBeanType = entityBeanType;
     }
 
     public T getEntity() {
@@ -67,6 +64,11 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
 
     @PostConstruct
     protected void init() {
+        try {
+            entity = entityBeanType.newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            logger.error("Could not create instance for " + entityBeanType.getName(), e);
+        }
     }
 
     /**
@@ -153,7 +155,11 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
         return context.getViewRoot().getViewId() + "?faces-redirect=true";
     }
 
+    /**
+     * preRenderView
+     */
     public void onLoad() {
+        logger.info("ControllerBase --> onLoad");
         if (id != null) {
             entity = getGeneralServiceApi().find(id);
             if (entity == null) {
@@ -171,11 +177,26 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     protected abstract void afterLoad();
 
     public void save() {
-        audit();
-        getGeneralServiceApi().create(entity);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-//        logger.info("entity saved successfully.");
+        try {
+            audit();
+            getGeneralServiceApi().create(entity);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            logger.info("entity saved successfully.");
+        } catch (Throwable e) {
+            logger.error("Error on entity update", e);
+            localizedResource.printErrorMessage(e);
+        }
+    }
+
+    public void edit() {
+        try {
+            entity.setUpdateBy(userInformation.getUsername());
+            getGeneralServiceApi().update(entity);
+        } catch (Throwable e) {
+            logger.error("Error on entity update", e);
+            localizedResource.printErrorMessage(e);
+        }
     }
 
     private void audit() {
@@ -184,9 +205,12 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     }
 
     public String showPage(String response, boolean redirect) {
-        logger .info(String.format("ControllerBase --> showPage(%s, %b)", response, redirect));
+        logger.info(String.format("ControllerBase --> showPage(%s, %b)", response, redirect));
         if (redirect)
             response += "?faces-redirect=true";
+
+        // url = FacesContext.getCurrentInstance().getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";
+
         return response;
     }
 

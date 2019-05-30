@@ -14,6 +14,7 @@ public class PersonDTO extends DTOBase {
 
     private String lastName;
 
+    // region Getters & Setters
     public String getFirstName() {
         return firstName;
     }
@@ -29,4 +30,5 @@ public class PersonDTO extends DTOBase {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    // endregion Getters & Setters
 }
