@@ -6,34 +6,39 @@
                 template="/WEB-INF/templates/layout.xhtml">
 
     <ui:define name="mainContent">
-        <h:dataTable value="#{personManager.people}" var="person">
-            <h:column>
-                <f:facet name="header">ID</f:facet>
-                <h:link value="#{person.id}" outcome="profile">
-                    <f:param name="id" value="#{person.id}"/>
-                </h:link>
-            </h:column>
-            <h:column>
-                <f:facet name="header">First Name</f:facet>
-                #{person.firstName}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Last Name</f:facet>
-                #{person.lastName}
-            </h:column>
-            <h:column>
-                <h:link value="edit" outcome="insert">
-                    <f:param name="id" value="#{person.id}"/>
-                </h:link>
-                <h:form>
-                    <h:commandButton value="delete" action="#{personController.remove(person)}">
-                    </h:commandButton>
-                    <h:commandButton value="delete" action="#{personController.remove}">
+        <h:outputText id="people" value="#{personManager.count}"/>
+        <h:panelGroup layout="block" id="xs">
+            <h:dataTable value="#{personManager.people}" var="person">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:link value="#{person.id}" outcome="profile">
                         <f:param name="id" value="#{person.id}"/>
-                    </h:commandButton>
-                </h:form>
-            </h:column>
-        </h:dataTable>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">First Name</f:facet>
+                    #{person.firstName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Last Name</f:facet>
+                    #{person.lastName}
+                </h:column>
+                <h:column>
+                    <h:link value="edit" outcome="insert">
+                        <f:param name="id" value="#{person.id}"/>
+                    </h:link>
+                    <h:form>
+                        <h:commandButton value="delete" actionListener="#{personController.remove(person)}"
+                                         action="#{personManager.init}">
+                            <f:ajax render=":messages people xs"/>
+                        </h:commandButton>
+                        <h:commandButton value="delete" action="#{personController.remove}">
+                            <f:param name="id" value="#{person.id}"/>
+                        </h:commandButton>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
 
         <h:link value="Add" outcome="insert"/>
     </ui:define>

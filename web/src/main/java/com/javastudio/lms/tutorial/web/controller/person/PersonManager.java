@@ -42,6 +42,9 @@ public class PersonManager extends ManagerBase<PersonDTO> implements Serializabl
     }
 
     public List<PersonDTO> getPeople() {
+        logger.info("PersonManager --> getPeople");
         return entityList;
     }
+
+    public int getCount(){return getPeople().size();}
 }
