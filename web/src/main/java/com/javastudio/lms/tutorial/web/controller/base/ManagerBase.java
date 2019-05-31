@@ -29,10 +29,16 @@ public abstract class ManagerBase<T extends DTOBase> extends Localization implem
     }
 
     @PostConstruct
-    public void init() {
-        logger.info("init list ...");
+    private void init() {
+        logger.info("ManagerBase --> init");
+        populate();
+    }
+
+    public void populate(){
+        logger.info("Populate list ...");
         entityList = getGeneralServiceApi().findAll();
     }
+
 
     public void showNewEntityView() {
         FacesContext context = FacesContext.getCurrentInstance();
