@@ -8,15 +8,26 @@
     <ui:define name="mainContent">
         <h:dataTable value="#{personManager.people}" var="person">
             <h:column>
+                <f:facet name="header">ID</f:facet>
+                <h:link value="#{person.id}" outcome="profile">
+                    <f:param name="id" value="#{person.id}"/>
+                </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">First Name</f:facet>
                 #{person.firstName}
             </h:column>
             <h:column>
+                <f:facet name="header">Last Name</f:facet>
                 #{person.lastName}
+            </h:column>
+            <h:column>
+                <h:link value="edit" outcome="insert">
+                    <f:param name="id" value="#{person.id}"/>
+                </h:link>
             </h:column>
         </h:dataTable>
 
         <h:link value="Add" outcome="insert"/>
-        <h:link value="Add" outcome="/person/insert"/>
-        <h:link value="Add" outcome="/person/insert.xhtml"/>
     </ui:define>
 </ui:composition>
