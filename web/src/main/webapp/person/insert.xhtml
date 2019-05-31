@@ -30,7 +30,7 @@
                 <f:ajax execute="@form"/>
             </h:commandButton>
 
-            <h:commandButton value="edit" action="#{personController.showPage('index', 'true')}"
+            <h:commandButton value="edit" action="#{personController.redirect}"
                              actionListener="#{personController.edit}"
                              rendered="#{not empty personController.id}">
                 <f:ajax execute="@form"/>

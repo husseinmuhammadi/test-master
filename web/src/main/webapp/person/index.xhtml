@@ -25,6 +25,13 @@
                 <h:link value="edit" outcome="insert">
                     <f:param name="id" value="#{person.id}"/>
                 </h:link>
+                <h:form>
+                    <h:commandButton value="delete" action="#{personController.remove(person)}">
+                    </h:commandButton>
+                    <h:commandButton value="delete" action="#{personController.remove}">
+                        <f:param name="id" value="#{person.id}"/>
+                    </h:commandButton>
+                </h:form>
             </h:column>
         </h:dataTable>
 

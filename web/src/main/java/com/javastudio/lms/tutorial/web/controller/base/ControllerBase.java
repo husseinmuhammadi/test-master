@@ -13,6 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.util.Map;
 import java.util.Set;
 
 @ShiroSecured
@@ -193,8 +194,11 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
         try {
             entity.setUpdateBy(userInformation.getUsername());
             getGeneralServiceApi().update(entity);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            logger.info("entity edited successfully.");
         } catch (Throwable e) {
-            logger.error("Error on entity update", e);
+            logger.error("Error while updating entity", e);
             localizedResource.printErrorMessage(e);
         }
     }
@@ -208,11 +212,33 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
         logger.info(String.format("ControllerBase --> showPage(%s, %b)", response, redirect));
         if (redirect)
             response += "?faces-redirect=true";
-
-        // url = FacesContext.getCurrentInstance().getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";
-
         return response;
     }
 
+    public String redirect() {
+        String url = FacesContext.getCurrentInstance().getViewRoot().getViewId().replace("insert", "index") + "?faces-redirect=true";
+        return url;
+    }
 
+    public void remove(T entity) {
+        try {
+            getGeneralServiceApi().delete(entity);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            logger.info("entity deleted successfully.");
+        } catch (Throwable e){
+            logger.error("Error while deleting entity", e);
+            localizedResource.printErrorMessage(e);
+        }
+    }
+
+    public void remove() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        Long id = Long.valueOf(params.get("id"));
+        getGeneralServiceApi().delete(getGeneralServiceApi().find(id));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        logger.info("entity deleted successfully.");
+    }
 }
