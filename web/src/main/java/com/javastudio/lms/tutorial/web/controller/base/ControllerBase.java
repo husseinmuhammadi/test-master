@@ -226,7 +226,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
             logger.info("entity deleted successfully.");
-        } catch (Throwable e){
+        } catch (Throwable e) {
             logger.error("Error while deleting entity", e);
             localizedResource.printErrorMessage(e);
         }
@@ -240,5 +240,9 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
         FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         logger.info("entity deleted successfully.");
+    }
+
+    public void facetListener(javax.faces.event.AjaxBehaviorEvent event) throws javax.faces.event.AbortProcessingException {
+        logger.info("ControllerBase --> facetListener");
     }
 }

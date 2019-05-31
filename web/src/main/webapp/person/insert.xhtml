@@ -16,12 +16,16 @@
         <h:form>
             <div>
                 <h:outputLabel value="first name"/>
-                <h:inputText value="#{personController.person.firstName}"/>
+                <h:inputText value="#{personController.person.firstName}">
+                    <f:validateLength maximum="20"/>
+                </h:inputText>
             </div>
 
             <div>
                 <h:outputLabel value="last name"/>
-                <h:inputText value="#{personController.person.lastName}"/>
+                <h:inputText value="#{personController.person.lastName}">
+                    <f:validateLength maximum="20"/>
+                </h:inputText>
             </div>
 
             <h:commandButton value="save" action="#{personController.showPage('index', 'true')}"

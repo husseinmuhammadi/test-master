@@ -27,13 +27,20 @@
                         <f:param name="id" value="#{person.id}"/>
                     </h:link>
                     <h:form>
-                        <h:commandButton value="delete"
+                        <h:commandButton value="delete (view scoped)"
                                          actionListener="#{personController.remove(person)}"
                                          action="#{personManager.populate}">
                             <f:ajax render=":messages people"/>
                         </h:commandButton>
-                        <h:commandButton value="delete" action="#{personController.remove}">
+
+                        <h:commandButton value="delete (view scoped)" actionListener="#{personController.remove}"
+                                         action="#{personManager.populate}">
                             <f:param name="id" value="#{person.id}"/>
+                            <f:ajax render=":messages people"/>
+                        </h:commandButton>
+
+                        <h:commandButton value="delete">
+                            <f:ajax render=":messages people" listener="#{personController.facetListener}"/>
                         </h:commandButton>
                     </h:form>
                 </h:column>
