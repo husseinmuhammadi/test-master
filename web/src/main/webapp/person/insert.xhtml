@@ -3,6 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 template="/WEB-INF/templates/layout.xhtml">
 
     <ui:define name="metadata">
@@ -14,33 +15,67 @@
 
     <ui:define name="mainContent">
         <h:form>
-            <div>
-                <h:outputLabel value="first name"/>
-                <h:inputText value="#{personController.person.firstName}">
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['label.person.firstName']}" for="firstName"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{personController.person.firstName}"
+                             id="firstName" label="#{lbl['label.person.firstName']}"
+                             styleClass="form-control" p:placeholder="#{lbl['label.person.firstName']}">
                     <f:validateLength maximum="20"/>
                 </h:inputText>
             </div>
 
-            <div>
-                <h:outputLabel value="last name"/>
-                <h:inputText value="#{personController.person.lastName}">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['label.person.lastName']}" for="lastName"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{personController.person.lastName}"
+                             id="lastName" label="#{lbl['label.person.lastName']}"
+                             styleClass="form-control" p:placeholder="#{lbl['label.person.lastName']}">
                     <f:validateLength maximum="20"/>
                 </h:inputText>
             </div>
 
-            <h:commandButton value="save" action="#{personController.showPage('index', 'true')}"
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText for="status" value="#{lbl['label.entity.status']}"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{personController.person.status}"
+                             id="status" label="#{lbl['label.entity.status']}"
+                             p:placeholder="#{lbl['label.entity.status']}" styleClass="form-control"/>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputText for="description" value="#{lbl['label.entity.description']}"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{personController.person.description}"
+                             id="description" label="#{lbl['label.entity.description']}"
+                             p:placeholder="#{lbl['label.entity.description']}" styleClass="form-control"/>
+            </div>
+
+            <h:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
+                             action="#{personController.showPage('index', 'true')}"
                              actionListener="#{personController.save}"
                              rendered="#{empty personController.id}">
                 <f:ajax execute="@form"/>
             </h:commandButton>
 
-            <h:commandButton value="edit" action="#{personController.redirect}"
+            <h:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
+                             action="#{personController.redirect}"
                              actionListener="#{personController.edit}"
                              rendered="#{not empty personController.id}">
                 <f:ajax execute="@form"/>
             </h:commandButton>
 
-            <h:commandLink value="cancel" immediate="true" action="index"/>
+            <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
+                           immediate="true" action="index"/>
         </h:form>
     </ui:define>
 

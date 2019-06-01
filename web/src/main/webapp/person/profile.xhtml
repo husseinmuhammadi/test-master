@@ -3,6 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://javastudio.com/tags"
                 template="/WEB-INF/templates/layout.xhtml">
 
     <ui:define name="metadata">
@@ -13,18 +14,53 @@
     </ui:define>
 
     <ui:define name="mainContent">
-        <h:form>
-            <div>
-                <h:outputLabel value="First Name" for="firstName"/>
-                <h:outputText id="firstName" value="#{personController.person.firstName}"/>
+        <h:form class="form-group">
+
+            <div class="form-group">
+                <h:link value="index" outcome="index" styleClass="btn btn-outline-primary"/>
+                <h:commandLink rendered="false" value="back" onclick="history.go(-1)"/>
             </div>
-            <div>
-                <h:outputLabel value="Last Name" for="lastName"/>
-                <h:outputText id="lastName" value="#{personController.person.lastName}"/>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="firstName" styleClass="input-group-text"
+                                       value="#{lbl['label.person.firstName']}"/>
+                    </div>
+                    <h:outputText value="#{personController.person.firstName}"
+                                  id="firstName" label="#{lbl['label.person.firstName']}"
+                                  styleClass="form-control" required="true">
+                    </h:outputText>
+                </div>
             </div>
-            <h:link value="index" outcome="index"/>
-            This dont work
-            <h:commandLink value="back" onclick="history.go(-1)"/>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="lastName" value="#{lbl['label.person.lastName']}"
+                                       styleClass="input-group-text"/>
+                    </div>
+                    <h:outputText value="#{personController.person.lastName}"
+                                  id="lastName" label="#{lbl['label.person.lastName']}"
+                                  styleClass="form-control" required="true">
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="status" value="#{lbl['label.entity.status']}"
+                                       styleClass="input-group-text"/>
+                    </div>
+                    <h:outputText value="#{personController.person.status}"
+                                  id="status" label="#{lbl['label.entity.status']}"
+                                  styleClass="form-control" required="true">
+                    </h:outputText>
+                </div>
+            </div>
+
+
         </h:form>
     </ui:define>
 </ui:composition>
