@@ -1,4 +1,4 @@
-package com.javastudio.lms.tutorial.web.controller.person;
+package com.javastudio.lms.tutorial.web.controller.permission;
 
 import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;

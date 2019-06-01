@@ -27,6 +27,11 @@
                         <f:param name="id" value="#{person.id}"/>
                     </h:link>
                     <h:form>
+                        <h:commandButton value="delete (view scoped recommended)"
+                                         actionListener="#{personManager.remove(person)}">
+                            <f:ajax render=":messages people"/>
+                        </h:commandButton>
+
                         <h:commandButton value="delete (view scoped)"
                                          actionListener="#{personController.remove(person)}"
                                          action="#{personManager.populate}">

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -75,5 +76,16 @@ public abstract class ManagerBase<T extends DTOBase> extends Localization implem
         this.entityList = entityList;
     }
 
+    public void remove(T entity) {
+        try {
+            getGeneralServiceApi().delete(entity);
+            populate();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
+            logger.info("entity deleted successfully.");
+        } catch (Throwable e) {
+            logger.error("Error while deleting entity", e);
+            localizedResource.printErrorMessage(e);
+        }
+    }
 
 }

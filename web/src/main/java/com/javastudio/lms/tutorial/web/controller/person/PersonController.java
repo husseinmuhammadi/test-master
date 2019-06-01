@@ -1,4 +1,4 @@
-package com.javastudio.lms.tutorial.web.controller.permission;
+package com.javastudio.lms.tutorial.web.controller.person;
 
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.lms.tutorial.web.security.BCryptPasswordService;
