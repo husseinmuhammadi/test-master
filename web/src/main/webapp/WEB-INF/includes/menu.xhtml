@@ -1,9 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-</html>
+    <div id='cssmenu' style="z-index: 900">
+        <ul>
+            <!--active class-->
+            <li>
+                <a href='#{request.contextPath}/index.xhtml'>#{lbl['menu.home']}</a>
+            </li>
+            <li class='has-sub'><a href='#'>#{lbl['menu.fundamental']}</a>
+                <ul>
+                    <li>
+                        <a href='#{request.contextPath}/admin/agerange/index.xhtml'>#{lbl['agerange.index.title']}</a>
+                    </li>
+                    <li>
+                        <a href='#{request.contextPath}/admin/insuredworkplace/index.xhtml'>#{lbl['menu.insuredworkplace']}</a>
+                    </li>
+                    <li>
+                        <a href='#{request.contextPath}/admin/plantype/index.xhtml'>#{lbl['menu.plantype']}</a>
+                    </li>
+                    <li>
+                        <a href='#{request.contextPath}/admin/medicalcenter/index.xhtml'>#{lbl['menu.medicalcenter']}</a>
+                    </li>
+                    <li>
+                        <a href='#{request.contextPath}/admin/insuranceliability/index.xhtml'>#{lbl['menu.insuranceLiability.list']}</a>
+                    </li>
+                    <!--<li class='has-sub'><a href='#'>Product 2</a>-->
+                    <!--<ul>-->
+                    <!--<li><a href='#'>Sub Product</a></li>-->
+                    <!--<li><a href='#'>Sub Product</a></li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                </ul>
+            </li>
+            <li class='has-sub'><a href='#'>#{lbl['menu.operations']}</a>
+                <ul>
+                    <li>
+                        <a href='#{request.contextPath}/admin/insured/index.xhtml'>#{lbl['menu.insured.list']}</a>
+                    </li>
+                    <li>
+                        <a href='#{request.contextPath}/admin/insuranceplan/index.xhtml'>#{lbl['menu.insurancePlan.list']}</a>
+                    </li>
+                    <li>
+                        <a href='#{request.contextPath}/admin/insuredinsuranceplan/index.xhtml'>#{lbl['menu.insuredInsurancePlan.list']}</a>
+                    </li>
+                    <li>
+                        <a href='#{request.contextPath}/admin/receipt/index.xhtml'>#{lbl['menu.receipt.list']}</a>
+                    </li>
+                    <li>
+                        <a href='#{request.contextPath}/admin/payment/index.xhtml'>#{lbl['menu.payment.list']}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class='has-sub'><a href='#'>#{lbl['menu.reports']}</a>
+                <ul>
+                    <li class='has-sub'><a href='#'>#{lbl['menu.report.insured']}</a>
+                        <ul>
+                            <li>
+                                <a href='#{request.contextPath}/admin/report/insured/insuredCancelDateReport.xhtml'>#{lbl['menu.report.insured.list']}</a>
+                            </li>
+                            <li>
+                                <a href='#{request.contextPath}/admin/report/insured/summary.xhtml'>#{lbl['menu.report.insured.list']}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='has-sub'><a href='#'>#{lbl['menu.report.receipt']}</a>
+                        <ul>
+                            <li>
+                                <a href='#{request.contextPath}/admin/report/receipt/receiptSummaryReport.xhtml'>#{lbl['menu.receiptsummaryreport.report']}</a>
+                            </li>
+                            <li>
+                                <a href='#{request.contextPath}/admin/report/receipt/receiptSummaryReportByLiability.xhtml'>#{lbl['menu.receiptsummaryreportbyliability.report']}</a>
+                            </li>
+                            <li>
+                                <a href='#{request.contextPath}/admin/report/receiptcategory/receiptCategoryReport.xhtml'>#{lbl['menu.receiptcategory.report']}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class='has-sub'><a href='#'>#{lbl['menu.report.payment']}</a>
+                        <ul>
+                            <li>
+                                <a href="#{request.contextPath}/admin/report/payment/paymentReceiptsSummary.xhtml">#{lbl['menu.report.payment.receipts.summary']}</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/admin/report/payment/receiptPayableAmount.xhtml">#{lbl['menu.report.payment.receipt.paid.amount']}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <c:if test="#{templateController.administrator}">
+                <li class='has-sub'><a href='#'>#{lbl['user.management']}</a>
+                    <ul>
+                        <li>
+                            <a href='#{request.contextPath}/user/signUp.xhtml'>#{lbl['user.singUp']}</a>
+                        </li>
+                    </ul>
+                </li>
+            </c:if>
+        </ul>
+    </div>
+
+</ui:composition>
