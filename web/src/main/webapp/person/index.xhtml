@@ -7,7 +7,8 @@
 
     <ui:define name="mainContent">
         <h:panelGroup layout="block" id="people">
-            <h:dataTable value="#{personManager.people}" var="person">
+            <h:dataTable value="#{personManager.people}" var="person"
+                         styleClass="table table-striped table-bordered dt-responsive nowrap">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                     <h:link value="#{person.id}" outcome="profile">
@@ -52,6 +53,6 @@
             </h:dataTable>
         </h:panelGroup>
 
-        <h:link value="Add" outcome="insert"/>
+        <h:link value="#{lbl['button.add']}" outcome="insert" styleClass="btn btn-outline-primary"/>
     </ui:define>
 </ui:composition>
