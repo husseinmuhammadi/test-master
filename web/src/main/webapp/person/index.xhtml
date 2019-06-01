@@ -10,44 +10,68 @@
             <h:dataTable value="#{personManager.people}" var="person"
                          styleClass="table table-striped table-bordered dt-responsive nowrap">
                 <h:column>
-                    <f:facet name="header">ID</f:facet>
+                    <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
                     <h:link value="#{person.id}" outcome="profile">
                         <f:param name="id" value="#{person.id}"/>
                     </h:link>
                 </h:column>
+
                 <h:column>
-                    <f:facet name="header">First Name</f:facet>
+                    <f:facet name="header">#{lbl['label.person.firstName']}</f:facet>
                     #{person.firstName}
                 </h:column>
+
                 <h:column>
-                    <f:facet name="header">Last Name</f:facet>
+                    <f:facet name="header">#{lbl['label.person.lastName']}</f:facet>
                     #{person.lastName}
                 </h:column>
+
                 <h:column>
-                    <h:link value="edit" outcome="insert">
-                        <f:param name="id" value="#{person.id}"/>
-                    </h:link>
-                    <h:form>
-                        <h:commandButton value="delete (view scoped recommended)"
-                                         actionListener="#{personManager.remove(person)}">
-                            <f:ajax render=":messages people"/>
-                        </h:commandButton>
+                    <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
+                    #{person.description}
+                </h:column>
 
-                        <h:commandButton value="delete (view scoped)"
-                                         actionListener="#{personController.remove(person)}"
-                                         action="#{personManager.populate}">
-                            <f:ajax render=":messages people"/>
-                        </h:commandButton>
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.status']}</f:facet>
+                    #{person.status}
+                </h:column>
 
-                        <h:commandButton value="delete (view scoped)" actionListener="#{personController.remove}"
-                                         action="#{personManager.populate}">
+                <h:column>
+                    <f:facet name="header">#{lbl['label.header.options']}</f:facet>
+
+                    <h:form styleClass="form-group">
+                        <h:link outcome="insert">
+                            <f:param name="id" value="#{person.id}"/>
+                            <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:link>
+
+                        <h:commandLink actionListener="#{personManager.remove(person)}">
+                            <f:ajax render=":messages people"/>
+                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
+
+                        <h:commandLink actionListener="#{personController.remove(person)}"
+                                       action="#{personManager.populate}">
+                            <f:ajax render=":messages people"/>
+                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
+
+                        <h:commandLink actionListener="#{personController.remove}"
+                                       action="#{personManager.populate}">
                             <f:param name="id" value="#{person.id}"/>
                             <f:ajax render=":messages people"/>
-                        </h:commandButton>
+                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
 
-                        <h:commandButton value="delete">
+                        <h:commandLink>
                             <f:ajax render=":messages people" listener="#{personController.facetListener}"/>
-                        </h:commandButton>
+                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
                     </h:form>
                 </h:column>
             </h:dataTable>
