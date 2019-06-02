@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://java.sun.com/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <c:choose>
+        <c:when test="#{param.partial eq null or param.partial ne '0'}">
+            <ui:decorate template="layout.xhtml">
+
+            </ui:decorate>
+        </c:when>
+        <c:otherwise>
+            <ui:include src="partial.xhtml"/>
+        </c:otherwise>
+    </c:choose>
+
+</ui:composition>
