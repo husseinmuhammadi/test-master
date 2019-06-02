@@ -13,6 +13,8 @@
         </f:metadata>
     </ui:define>
 
+    <ui:param name="header" value="#{lbl['title.person.profile']}"/>
+
     <ui:define name="mainContent">
         <h:form class="form-group">
 
@@ -60,9 +62,18 @@
                 </div>
             </div>
 
-            <p:tabContainer>
-                <p:tab src="index.xhtml" text="xyz" active="true"/>
-            </p:tabContainer>
+            <div id="tab">
+                Hello
+                <h:commandButton>
+                    <script>
+                        $(document).load(function () {
+                            $.ajax('http://localhost:8080/test-master/person/index.xhtml?partial=0')
+                        }).done(function (data) {
+                            $('#tab').html(data);
+                        });
+                    </script>
+                </h:commandButton>
+            </div>
 
         </h:form>
     </ui:define>
