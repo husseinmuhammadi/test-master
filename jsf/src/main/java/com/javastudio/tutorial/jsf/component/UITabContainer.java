@@ -1,5 +1,7 @@
 package com.javastudio.tutorial.jsf.component;
 
+import com.javastudio.tutorial.jsf.type.AsyncHttpRequest;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -25,11 +27,11 @@ public class UITabContainer extends UIOutput {
         return RENDERER_TYPE;
     }
 
-    public Map<String, Map<String, Map<String, String>>> getSrcMap() {
-        return (Map<String, Map<String, Map<String, String>>>) getStateHelper().eval(PropertyKeys.srcMap);
+    public Map<String, AsyncHttpRequest> getSrcMap() {
+        return (Map<String, AsyncHttpRequest>) getStateHelper().eval(PropertyKeys.srcMap);
     }
 
-    public void setSrcMap(Map<String, Map<String, Map<String, String>>> srcMap) {
+    public void setSrcMap(Map<String, AsyncHttpRequest> srcMap) {
         getStateHelper().put(PropertyKeys.srcMap, srcMap);
     }
 
@@ -49,6 +51,4 @@ public class UITabContainer extends UIOutput {
     public enum PropertyKeys {
         srcMap;
     }
-
-
 }

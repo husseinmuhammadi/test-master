@@ -2,7 +2,9 @@ package com.javastudio.tutorial.jsf.render;
 
 import com.javastudio.tutorial.jsf.component.UITab;
 import com.javastudio.tutorial.jsf.component.UITabContainer;
+import com.javastudio.tutorial.jsf.type.AsyncHttpRequest;
 import com.javastudio.tutorial.jsf.util.RendererUtil;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.NavigationCase;
@@ -28,8 +30,11 @@ public class TabContainerRenderer extends Renderer {
             return;
         }
         ResponseWriter writer = context.getResponseWriter();
-        writer.startElement("ul", component);
-        writer.writeAttribute("class", "nav nav-tabs", null);
+        writer.write("nav");
+        writer.startElement("div", component);
+        writer.writeAttribute("class", "nav nav-tabs nav-fill", null);
+        writer.writeAttribute("id", "nav-tab", null);
+        writer.writeAttribute("role", "tablist", null);
     }
 
     @Override
@@ -39,39 +44,43 @@ public class TabContainerRenderer extends Renderer {
             return;
         }
         UITabContainer uiTabContainer = (UITabContainer) component;
-        Map<String, Map<String, Map<String, String>>> srcIdMap = uiTabContainer.getSrcMap();
-        if (srcIdMap == null) {
-            srcIdMap = new HashMap<>();
-            uiTabContainer.setSrcMap(srcIdMap);
+        Map<String, AsyncHttpRequest> asyncHttpRequestMap = uiTabContainer.getSrcMap();
+        if (asyncHttpRequestMap == null) {
+            asyncHttpRequestMap = new HashMap<>();
+            uiTabContainer.setSrcMap(asyncHttpRequestMap);
         }
         ResponseWriter writer = context.getResponseWriter();
-        boolean checkActivation = true;
         for (UIComponent uiComponent : component.getChildren()) {
             if (uiComponent instanceof UITab) {
                 UITab uiTab = (UITab) uiComponent;
-                writer.startElement("li", uiTab);
+
+                writer.startElement("a", uiTab);
+
+                boolean active = uiTab.isActive() == null ? false : uiTab.isActive();
+
                 UUID uuid = UUID.randomUUID();
-                if (checkActivation && uiTab.isActive()) {
-                    checkActivation = false;
-                    writer.writeAttribute("class", "active", null);
+
+                if (active) {
                     uiTabContainer.setActiveId(uuid.toString());
                 }
-                writer.startElement("a", uiTab);
-                Map<String, Map<String, String>> urlParameters = new HashMap<>();
-                Map<String, String> parameters = RendererUtil.getParameterTagValue(uiComponent);
 
-                urlParameters.put(uiTab.getSrc(), parameters);
-                srcIdMap.put(uuid.toString(), urlParameters);
+                Map<String, String> parameters = RendererUtil.getParameterTagValue(uiComponent);
+                AsyncHttpRequest asyncHttpRequest = new AsyncHttpRequest(uiTab.getSrc(), parameters);
+
+                asyncHttpRequestMap.put(uuid.toString(), asyncHttpRequest);
+                writer.writeAttribute("class", active ? "nav-item nav-link active" : "nav-item nav-link", null);
+                writer.writeAttribute("id", "nav-" + uuid.toString() + "-tab", null);
                 writer.writeAttribute("href", "#" + uuid.toString(), null);
                 writer.writeAttribute("data-toggle", "tab", null);
+                writer.writeAttribute("role", "tab", null);
+                writer.writeAttribute("aria-controls", uuid.toString(), null);
+                writer.writeAttribute("aria-selected", active ? "true" : "false", null);
+
                 writer.write(uiTab.getText());
                 writer.endElement("a");
-                writer.endElement("li");
             }
         }
     }
-
-
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
@@ -80,40 +89,34 @@ public class TabContainerRenderer extends Renderer {
             return;
         }
         ResponseWriter writer = context.getResponseWriter();
-        writer.endElement("ul");
+        writer.endElement("div");
+        writer.endElement("nav");
+
         UITabContainer uiTabContainer = (UITabContainer) component;
-        Map<String, Map<String, Map<String, String>>> srcIdMap = uiTabContainer.getSrcMap();
-        Set<Map.Entry<String, Map<String, Map<String, String>>>> entries = srcIdMap.entrySet();
+        Map<String, AsyncHttpRequest> asyncHttpRequestMap = uiTabContainer.getSrcMap();
+        Set<Map.Entry<String, AsyncHttpRequest>> entries = asyncHttpRequestMap.entrySet();
+
         StringBuilder scripts = new StringBuilder();
+
         if (entries.size() > 0) {
             writer.startElement("div", component);
             writer.writeAttribute("class", "tab-content", null);
             scripts.append("<script type='text/javascript'>$(function() {");
         }
 
-        for (Map.Entry<String, Map<String, Map<String, String>>> mapEntry : entries) {
-            Set<Map.Entry<String, Map<String, String>>> urlParameters = mapEntry.getValue().entrySet();
-            Map.Entry<String, Map<String, String>> urlParameterEntry = urlParameters.iterator().next();
-            NavigationCase navigationCase = ((ConfigurableNavigationHandler) context.getApplication().getNavigationHandler()).
-                    getNavigationCase(context, null, urlParameterEntry.getKey());
-            String toViewId = navigationCase.getToViewId(context);
-            String uri = context.getApplication().getViewHandler().getBookmarkableURL(context, toViewId, null, false);
-            StringBuilder urlParametersString = new StringBuilder();
-            for (Map.Entry<String, String> parameter : urlParameterEntry.getValue().entrySet()) {
-                if (urlParametersString.length() > 0) {
-                    urlParametersString.append("&");
-                }
-                urlParametersString.append(parameter.getKey()).append("=").append(parameter.getValue());
+        asyncHttpRequestMap.forEach((href, asyncHttpRequest) -> {
+            try {
+                String absoluteUrl = getAbsoluteUrl(context, asyncHttpRequest);
+                scripts.append("ajaxRequest('" + absoluteUrl + "','" + href + "');");
+                writer.startElement("div", component);
+                writer.writeAttribute("id", href, null);
+                writer.writeAttribute("class", "tab-pane fade" + (href.equals(uiTabContainer.getActiveId()) ? " show active" : ""), null);
+                writer.writeAttribute("aria-labelledby", "nav-" + href + "-tab", null);
+                writer.endElement("div");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            String absoluteUrl = ((HttpServletRequest) context.getExternalContext().getRequest()).getRequestURL().toString().
-                    replace(((HttpServletRequest) context.getExternalContext().getRequest()).getRequestURI(), "") + uri +
-                    (urlParametersString.length() > 0 ? "?" + urlParametersString.toString() : "");
-            scripts.append("ajaxRequest('" + absoluteUrl + "','" + mapEntry.getKey() + "');");
-            writer.startElement("div", component);
-            writer.writeAttribute("id", mapEntry.getKey(), null);
-            writer.writeAttribute("class", "tab-pane fade in" + (mapEntry.getKey().equals(uiTabContainer.getActiveId()) ? " active" : ""), null);
-            writer.endElement("div");
-        }
+        });
 
         uiTabContainer.setSrcMap(null);
         if (entries.size() > 0) {
@@ -121,6 +124,24 @@ public class TabContainerRenderer extends Renderer {
             scripts.append("});</script>");
             writer.append(scripts);
         }
+    }
 
+    String getAbsoluteUrl(FacesContext context, AsyncHttpRequest asyncHttpRequest){
+        NavigationCase navigationCase = ((ConfigurableNavigationHandler) context.getApplication().getNavigationHandler()).
+                getNavigationCase(context, null, asyncHttpRequest.getUrl());
+        String toViewId = navigationCase.getToViewId(context);
+        String uri = context.getApplication().getViewHandler().getBookmarkableURL(context, toViewId, null, false);
+        StringBuilder urlParametersString = new StringBuilder();
+        for (Map.Entry<String, String> parameter : asyncHttpRequest.getParameters().entrySet()) {
+            if (urlParametersString.length() > 0) {
+                urlParametersString.append("&");
+            }
+            urlParametersString.append(parameter.getKey()).append("=").append(parameter.getValue());
+        }
+        String absoluteUrl = ((HttpServletRequest) context.getExternalContext().getRequest()).getRequestURL().toString().
+                replace(((HttpServletRequest) context.getExternalContext().getRequest()).getRequestURI(), "") + uri +
+                (urlParametersString.length() > 0 ? "?" + urlParametersString.toString() : "");
+
+        return absoluteUrl;
     }
 }
