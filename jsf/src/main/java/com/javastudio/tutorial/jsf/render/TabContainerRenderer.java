@@ -126,7 +126,7 @@ public class TabContainerRenderer extends Renderer {
         }
     }
 
-    String getAbsoluteUrl(FacesContext context, AsyncHttpRequest asyncHttpRequest){
+    String getAbsoluteUrl(FacesContext context, AsyncHttpRequest asyncHttpRequest) {
         NavigationCase navigationCase = ((ConfigurableNavigationHandler) context.getApplication().getNavigationHandler()).
                 getNavigationCase(context, null, asyncHttpRequest.getUrl());
         String toViewId = navigationCase.getToViewId(context);
