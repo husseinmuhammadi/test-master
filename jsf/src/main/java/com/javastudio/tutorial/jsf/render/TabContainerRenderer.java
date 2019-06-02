@@ -30,7 +30,7 @@ public class TabContainerRenderer extends Renderer {
             return;
         }
         ResponseWriter writer = context.getResponseWriter();
-        writer.write("nav");
+        writer.startElement("nav", component);
         writer.startElement("div", component);
         writer.writeAttribute("class", "nav nav-tabs nav-fill", null);
         writer.writeAttribute("id", "nav-tab", null);
