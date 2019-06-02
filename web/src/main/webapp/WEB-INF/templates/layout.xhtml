@@ -70,14 +70,9 @@
                             fatalClass="alert-danger" errorClass="alert-danger"/>
                 <div>
                     <ui:insert name="header">
-                        <!--<ui:include src="/base/header.xhtml"/>-->
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Data</li>
-                            </ol>
-                        </nav>
+                        <ui:decorate template="/WEB-INF/decorations/header.xhtml">
+                            <h2>#{componentHeader}</h2>
+                        </ui:decorate>
                     </ui:insert>
                 </div>
 

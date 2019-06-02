@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <f:view encoding="UTF-8" contentType="text/html; charset=UTF-8" locale="#{localeController.locale}">
 
@@ -46,78 +46,16 @@
              id="ajaxloader">
         </div>
 
-        <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-light"
-             role="navigation">
-            <a class="navbar-brand" href="#">
-                <h:graphicImage library="images" name="kisspng-pencil-the-drawing-art-gold-pen.png"
-                                width="40" height="40" alt="Ketabkade"/>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="username" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            UserName
-                            <b class="caret"></b>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="username" id="user-panel">
-                            <a class="dropdown-item" href="#">#{lbl.logout}</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                </ul>
-                <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2"
-                                 p:type="search" p:placeholder="Search" aria-label="Search">
-                    </h:inputText>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </h:form>
-                <div class="dropdown">
-                    <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        #{loginController.currentUser.principal}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Account</a>
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <div class="dropdown-divider"/>
-                        <a class="dropdown-item" href="#{request.contextPath}/logout.xhtml">Logout</a>
-                    </div>
+        <ui:decorate template="/WEB-INF/decorations/navbar.xhtml">
+            <h:form>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <h:commandButton styleClass="btn btn-primary" value="En"
+                                     action="#{localeController.changeLocale('en', 'US')}"/>
+                    <h:commandButton styleClass="btn btn-primary" value="Fa"
+                                     action="#{localeController.changeLocale('fa', 'IR')}"/>
                 </div>
-                <h:form>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <h:commandButton styleClass="btn btn-primary" value="En"
-                                         action="#{localeController.changeLocale('en', 'US')}"/>
-                        <h:commandButton styleClass="btn btn-primary" value="Fa"
-                                         action="#{localeController.changeLocale('fa', 'IR')}"/>
-                    </div>
-                </h:form>
-            </div>
-        </nav>
+            </h:form>
+        </ui:decorate>
 
         <ui:include src="/WEB-INF/includes/menu.xhtml"/>
 
@@ -127,34 +65,20 @@
                 <h:messages id="messages" styleClass="alert"
                             infoClass="alert-info" warnClass="alert-warning"
                             fatalClass="alert-danger" errorClass="alert-danger"/>
-                <div>
-                    <ui:insert name="header">
-                        <!--<ui:include src="/base/header.xhtml"/>-->
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Data</li>
-                            </ol>
-                        </nav>
-                    </ui:insert>
-                </div>
+
+                <ui:decorate template="/WEB-INF/decorations/header.xhtml">
+
+                </ui:decorate>
 
                 <div>
                     <ui:insert name="mainContent"/>
                 </div>
             </div>
 
-            <div>
-                <ui:insert name="footer">
-                    <!--<ui:include src="/base/footer.xhtml"/>-->
-                    <div style="padding: 20px 10px 10px 10px; text-align: center">
-                        <p class="text-primary footer">
-                            #{msg.copyright}
-                        </p>
-                    </div>
-                </ui:insert>
-            </div>
+            <ui:decorate template="/WEB-INF/decorations/footer.xhtml">
+                #{msg.copyright}
+            </ui:decorate>
+
         </div>
     </h:body>
 </f:view>
