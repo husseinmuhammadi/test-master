@@ -34,15 +34,15 @@
     <tag>
         <tag-name>tabContainer</tag-name>
         <component>
-            <component-type>ir.javadev.jsf.parsfaces.component.TabContainer</component-type>
-            <renderer-type>ir.javadev.jsf.renderer.TabContainerRenderer</renderer-type>
+            <component-type>com.javastudio.tutorial.jsf.component.TabContainer</component-type>
+            <renderer-type>com.javastudio.tutorial.jsf.render.TabContainerRenderer</renderer-type>
         </component>
     </tag>
 
     <tag>
         <tag-name>tab</tag-name>
         <component>
-            <component-type>ir.javadev.jsf.parsfaces.component.Tab</component-type>
+            <component-type>com.javastudio.tutorial.jsf.component.Tab</component-type>
         </component>
         <attribute>
             <name>src</name>
@@ -58,6 +58,54 @@
             <name>text</name>
             <required>true</required>
             <type>java.lang.String</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>lookup</tag-name>
+        <component>
+            <component-type>com.javastudio.tutorial.jsf.component.Lookup</component-type>
+            <renderer-type>com.javastudio.tutorial.jsf.render.LookupRenderer</renderer-type>
+        </component>
+        <attribute>
+            <name>lookupPath</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>inputClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>btnClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>readOnly</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <name>inputText</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>required</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <name>requiredMessage</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>binding</name>
+            <required>false</required>
+            <type>javax.faces.component.UIComponent</type>
         </attribute>
     </tag>
 
