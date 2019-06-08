@@ -8,13 +8,13 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 import java.util.Map;
 
-@FacesComponent(value = "ir.javadev.jsf.parsfaces.component.TabContainer")
+@FacesComponent(value = "com.javastudio.tutorial.jsf.component.TabContainer")
 @ResourceDependencies({
         @ResourceDependency(library = "faces", name = "js/componentFaces.js")
 })
 public class UITabContainer extends UIOutput {
-    public static final String FAMILY = "ir.javadev.jsf.parsfaces.component";
-    public static final String RENDERER_TYPE = "ir.javadev.jsf.renderer.TabContainerRenderer";
+    public static final String FAMILY = "com.javastudio.tutorial.jsf.component";
+    public static final String RENDERER_TYPE = "com.javastudio.tutorial.jsf.render.TabContainerRenderer";
     private String activeId;
 
     @Override

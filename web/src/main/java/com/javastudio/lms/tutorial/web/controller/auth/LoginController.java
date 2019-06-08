@@ -59,15 +59,18 @@ public class LoginController implements Serializable {
             logger.info("User {} has logged in successfully.", token.getUsername());
 
             logger.info("---SAVED REQUEST---");
-            SavedRequest savedRequest = getSavedRequest();
-            logger.info(savedRequest.getMethod());
-            logger.info(savedRequest.getQueryString());
-            logger.info(savedRequest.getRequestURI());
-            logger.info(savedRequest.getRequestUrl());
 
-            if (savedRequest.getRequestURI() != null) {
-                redirect(savedRequest.getRequestURI());
-                // return savedRequest.getRequestURI();
+            SavedRequest savedRequest = getSavedRequest();
+
+            if (savedRequest != null) {
+                logger.info(savedRequest.getMethod());
+                logger.info(savedRequest.getQueryString());
+                logger.info(savedRequest.getRequestURI());
+                logger.info(savedRequest.getRequestUrl());
+                if (savedRequest.getRequestURI() != null) {
+                    redirect(savedRequest.getRequestURI());
+                    // return savedRequest.getRequestURI();
+                }
             }
 
             return "/index?faces-redirect=true";

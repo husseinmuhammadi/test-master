@@ -3,9 +3,9 @@ package com.javastudio.tutorial.jsf.component;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
-@FacesComponent(value = "ir.javadev.jsf.parsfaces.component.Tab")
+@FacesComponent(value = "com.javastudio.tutorial.jsf.component.Tab")
 public class UITab extends UIOutput {
-    public static final String FAMILY = "ir.javadev.jsf.parsfaces.component";
+    public static final String FAMILY = "com.javastudio.tutorial.jsf.component";
     public static final String RENDERER_TYPE = null;
 
     @Override
