@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--https://stackoverflow.com/questions/8517263/conditionally-including-a-template-file-in-uicomposition-tag-->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -16,30 +14,39 @@
     <ui:insert name="metadata"/>
 
     <h:head>
-        <f:facet name="first">
-            <h:outputScript library="js" name="jquery.js" target="head"/>
-
-            <h:outputScript library="jquery-ui-dist" name="jquery-ui.min.js" target="head"/>
-            <h:outputStylesheet library="jquery-ui-dist" name="jquery-ui.min.css"/>
-
-            <h:outputStylesheet library="css" name="bootstrap.css"/>
-
-            <h:outputScript library="js" name="popper.js" target="head"/>
-            <h:outputScript library="js" name="bootstrap.js" target="head"/>
-
-            <h:outputScript library="numeral" name="numeral.js" target="head"/>
-
-            <h:outputScript library="en_US" name="/menumaker/script.js" target="head"/>
-            <h:outputStylesheet library="en_US" name="/menumaker/styles.css"/>
-
-            <h:outputStylesheet library="#{localeController.locale.language}_#{localeController.locale.country}" name="styles.css"/>
-        </f:facet>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta http-equiv="x-ua-compatible" content="ie=edge"/>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-        <title>
-            <ui:insert name="title">Test Master</ui:insert>
-        </title>
+        <title><ui:insert name="title">Test Master</ui:insert></title>
+
+        <!-- Font Awesome -->
+        <h:outputStylesheet library="fontawesome" name="/css/all.css"/>
+        <!-- Bootstrap core CSS -->
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <!-- Material Design Bootstrap -->
+        <h:outputStylesheet library="css" name="mdb.css"/>
+        <!-- Your custom styles (optional) -->
+        <h:outputStylesheet library="css" name="style.css"/>
+
+        <!-- SCRIPTS -->
+        <!-- JQuery -->
+        <h:outputScript library="js" name="jquery.js" target="head"/>
+        <!-- Bootstrap tooltips -->
+        <h:outputScript library="js" name="popper.js" target="head"/>
+        <!-- Bootstrap core JavaScript -->
+        <h:outputScript library="js" name="bootstrap.js" target="head"/>
+        <!-- MDB core JavaScript -->
+        <h:outputScript library="js" name="mdb.js" target="head"/>
+
+        <h:outputScript library="jquery-ui-dist" name="jquery-ui.min.js" target="head"/>
+        <h:outputStylesheet library="jquery-ui-dist" name="jquery-ui.min.css"/>
+
+        <h:outputScript library="numeral" name="numeral.js" target="head"/>
+
+        <h:outputScript library="en_US" name="/menumaker/script.js" target="head"/>
+        <h:outputStylesheet library="en_US" name="/menumaker/styles.css"/>
+
+        <h:outputStylesheet library="#{localeController.locale.language}_#{localeController.locale.country}" name="styles.css"/>
         <ui:insert name="head"/>
     </h:head>
 
