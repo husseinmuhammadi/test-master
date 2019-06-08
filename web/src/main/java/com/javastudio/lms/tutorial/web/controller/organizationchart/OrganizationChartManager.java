@@ -39,7 +39,7 @@ public class OrganizationChartManager extends ManagerBase<OrganizationChartDTO> 
         return service;
     }
 
-    public List<OrganizationChartDTO> getPeople() {
+    public List<OrganizationChartDTO> getOrganizationCharts() {
         return entityList;
     }
 }

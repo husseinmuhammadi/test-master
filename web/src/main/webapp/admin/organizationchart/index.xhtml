@@ -3,75 +3,67 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="/template/template.xhtml">
+                template="/WEB-INF/templates/template.xhtml">
 
-    <ui:define name="header">
-        <h2>#{lbl['label.organizationChart.index']}</h2>
-    </ui:define>
+    <ui:param name="header" value="#{lbl['label.organizationChart.index']}"/>
 
-    <ui:define name="content">
-        <div class="container">
-            <h:form>
-                <h:commandButton value="#{lbl['button.add']}" action="insert.xhtml?faces-redirect=true" styleClass="btn btn-outline-primary"/>
+    <ui:define name="mainContent">
+        <h:panelGroup layout="block" id="organization-charts">
+            <h:dataTable value="#{organizationChartManager.organizationCharts}" var="organizationChart"
+                         styleClass="table table-striped table-bordered dt-responsive nowrap">
 
-                <br/>
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
+                    #{organizationChart.id}
+                </h:column>
 
-                <h:dataTable value="#{organizationChartManager.people}" var="organizationChart"
-                             styleClass="table table-striped table-bordered dt-responsive nowrap"
-                             headerClass="employeeTableHeader" rowClasses="employeeTableOddRow,employeeTableEvenRow">
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.organizationChart.corporate']}</f:facet>
+                    #{organizationChart.corporateId}
+                </h:column>
 
-                    <h:column>
-                        <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
-                        #{organizationChart.id}
-                    </h:column>
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.organizationChart.user']}</f:facet>
+                    #{organizationChart.user.username}
+                </h:column>
 
-                    <h:column>
-                        <f:facet name="header">#{lbl['entity.organizationChart.corporate']}</f:facet>
-                        #{organizationChart.corporateId}
-                    </h:column>
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.organizationChart.parent']}</f:facet>
+                    <h:outputText value="#{organizationChart.parent.user.username}"
+                                  rendered="#{not empty organizationChart.parent and not empty organizationChart.parent.user}"/>
+                </h:column>
 
-                    <h:column>
-                        <f:facet name="header">#{lbl['entity.organizationChart.user']}</f:facet>
-                        #{organizationChart.user.username}
-                    </h:column>
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.organizationChart.title']}</f:facet>
+                    <h:link value="#{organizationChart.title}" outcome="profile">
+                        <f:param name="id" value="#{organizationChart.id}"/>
+                    </h:link>
+                </h:column>
 
-                    <h:column>
-                        <f:facet name="header">#{lbl['entity.organizationChart.parent']}</f:facet>
-                        <h:outputText value="#{organizationChart.parent.user.username}"
-                                      rendered="#{not empty organizationChart.parent and not empty organizationChart.parent.user}"/>
-                    </h:column>
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
+                    #{organizationChart.description}
+                </h:column>
 
-                    <h:column>
-                        <f:facet name="header">#{lbl['entity.organizationChart.title']}</f:facet>
-                        <h:link value="#{organizationChart.title}" outcome="profile">
-                            <f:param name="id" value="#{organizationChart.id}"/>
-                        </h:link>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
-                        #{organizationChart.description}
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">#{lbl['label.header.options']}</f:facet>
+                <h:column>
+                    <f:facet name="header">#{lbl['label.header.options']}</f:facet>
+                    <h:form styleClass="form-group">
                         <h:link outcome="insert">
                             <f:param name="id" value="#{organizationChart.id}"/>
                             <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:link>
-                        <h:commandLink action="#{organizationChartController.delete(organizationChart.id)}">
+
+                        <h:commandLink actionListener="#{organizationChartManager.remove(organizationChart)}">
+                            <f:ajax render=":messages organization-charts"/>
                             <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
                                             styleClass="img-responsive"/>
-                            <!--<f:ajax execute="@form" render="@form" />-->
                         </h:commandLink>
-                        <h:commandLink action="#{organizationChartController.refresh}">
-                            <h:graphicImage alt="reload" library="images" name="reload.png" width="20"
-                                            styleClass="img-responsive"/>
-                        </h:commandLink>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </div>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
+
+        <h:link value="#{lbl['button.add']}" outcome="insert" styleClass="btn btn-outline-primary"/>
     </ui:define>
 </ui:composition>

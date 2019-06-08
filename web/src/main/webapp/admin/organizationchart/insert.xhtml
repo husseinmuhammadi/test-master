@@ -3,8 +3,8 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-                template="/template/template.xhtml">
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -17,7 +17,7 @@
         <h2>#{lbl['label.organizationChart.insert']}</h2>
     </ui:define>
 
-    <ui:define name="content">
+    <ui:define name="mainContent">
         <h:form>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -25,8 +25,8 @@
                                   styleClass="input-group-text"/>
                 </div>
                 <h:inputText value="#{organizationChartController.organizationChart.corporateId}"
-                             id="corporateId" label="#{lbl['entity.organizationChart.corporate']}"
-                             styleClass="form-control" p:placeholder="#{lbl['entity.organizationChart.corporate']}"/>
+                             id="corporateId" label="#{lbl['entity.organizationChart.corporate']}" required="true"
+                             styleClass="form-control" pt:placeholder="#{lbl['entity.organizationChart.corporate']}"/>
             </div>
 
             <div class="input-group mb-3">
@@ -35,8 +35,8 @@
                                   styleClass="input-group-text"/>
                 </div>
                 <h:inputText value="#{organizationChartController.organizationChart.title}"
-                             id="title" label="#{lbl['entity.organizationChart.title']}"
-                             styleClass="form-control" p:placeholder="#{lbl['entity.organizationChart.title']}"/>
+                             id="title" label="#{lbl['entity.organizationChart.title']}" required="true"
+                             styleClass="form-control" pt:placeholder="#{lbl['entity.organizationChart.title']}"/>
             </div>
 
             <div class="input-group mb-3">
@@ -74,15 +74,25 @@
                 </div>
                 <h:inputText value="#{organizationChartController.organizationChart.description}"
                              id="description" label="#{lbl['label.entity.description']}"
-                             p:placeholder="#{lbl['label.entity.description']}" styleClass="form-control"/>
+                             pt:placeholder="#{lbl['label.entity.description']}" styleClass="form-control"/>
             </div>
 
-            <h:commandButton value="#{lbl['button.save']}" action="#{organizationChartController.create}" styleClass="btn btn-outline-primary"
-                             rendered="#{empty organizationChartController.organizationChart.id}"/>
-            <h:commandButton value="#{lbl['button.update']}" action="#{organizationChartController.update}" styleClass="btn btn-outline-primary"
-                             rendered="#{not empty organizationChartController.organizationChart.id}"/>
-            <h:commandButton value="#{lbl['button.cancel']}" action="#{organizationChartController.cancel}" styleClass="btn btn-outline-primary"/>
+            <h:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
+                             action="#{organizationChartController.showPage('index', 'true')}"
+                             actionListener="#{organizationChartController.save}"
+                             rendered="#{empty organizationChartController.id}">
+                <f:ajax execute="@form"/>
+            </h:commandButton>
 
+            <h:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
+                             action="#{organizationChartController.redirect}"
+                             actionListener="#{organizationChartController.edit}"
+                             rendered="#{not empty organizationChartController.id}">
+                <f:ajax execute="@form"/>
+            </h:commandButton>
+
+            <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
+                           immediate="true" action="index"/>
         </h:form>
     </ui:define>
 </ui:composition>
