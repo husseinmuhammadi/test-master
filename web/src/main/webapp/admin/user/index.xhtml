@@ -3,56 +3,51 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="/template/template.xhtml">
-    <ui:define name="content">
-        <div class="container">
-            <h2>Users</h2>
+                template="/WEB-INF/templates/template.xhtml">
 
-            <h:form>
-                <h:commandButton value="#{lbl['button.add']}" action="insert.xhtml?faces-redirect=true" styleClass="btn btn-outline-primary"/>
+    <ui:param name="header" value="#{lbl['title.user.list']}"/>
 
-                <br/>
+    <ui:define name="mainContent">
+        <h:panelGroup layout="block" id="entity-list">
+            <h:dataTable value="#{userManager.users}" var="user"
+                         styleClass="table table-striped table-bordered dt-responsive nowrap">
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
+                    #{user.id}
+                </h:column>
 
-                <h:dataTable value="#{userManager.users}" var="user"
-                             styleClass="table table-striped table-bordered dt-responsive nowrap"
-                             headerClass="employeeTableHeader" rowClasses="employeeTableOddRow,employeeTableEvenRow">
+                <h:column>
+                    <f:facet name="header">#{lbl['label.user.username']}</f:facet>
+                    <h:link value="#{user.username}" outcome="profile">
+                        <f:param name="id" value="#{user.id}"/>
+                    </h:link>
+                </h:column>
 
-                    <h:column>
-                        <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
-                        #{user.id}
-                    </h:column>
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
+                    #{user.description}
+                </h:column>
 
-                    <h:column>
-                        <f:facet name="header">#{lbl['label.user.username']}</f:facet>
-                        <h:link value="#{user.username}" outcome="profile">
-                            <f:param name="id" value="#{user.id}"/>
-                        </h:link>
-                    </h:column>
+                <h:column>
+                    <f:facet name="header">#{lbl['label.header.options']}</f:facet>
 
-                    <h:column>
-                        <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
-                        #{user.description}
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">#{lbl['label.header.options']}</f:facet>
+                    <h:form styleClass="form-group">
                         <h:link outcome="insert">
                             <f:param name="id" value="#{user.id}"/>
                             <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:link>
-                        <h:commandLink action="#{userController.delete(user.id)}">
+
+                        <h:commandLink actionListener="#{userManager.remove(user)}">
+                            <f:ajax render=":messages entity-list"/>
                             <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
                                             styleClass="img-responsive"/>
-                            <!--<f:ajax execute="@form" render="@form" />-->
                         </h:commandLink>
-                        <h:commandLink action="#{userController.refresh}">
-                            <h:graphicImage alt="reload" library="images" name="reload.png" width="20"
-                                            styleClass="img-responsive"/>
-                        </h:commandLink>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </div>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+
+            <h:link value="#{lbl['button.add']}" outcome="insert" styleClass="btn btn-outline-primary"/>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>

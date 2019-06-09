@@ -3,8 +3,8 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-                template="/template/template.xhtml">
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -13,7 +13,9 @@
         </f:metadata>
     </ui:define>
 
-    <ui:define name="content">
+    <ui:param name="header" value="#{lbl['title.user.insert']}"/>
+
+    <ui:define name="mainContent">
         <h:form styleClass="form-group">
 
             <div class="input-group mb-3">
@@ -23,7 +25,7 @@
                 </div>
                 <h:inputText value="#{personController.person.firstName}"
                              id="firstName" label="#{lbl['label.person.firstName']}"
-                             styleClass="form-control" p:placeholder="#{lbl['label.person.firstName']}"/>
+                             styleClass="form-control" pt:placeholder="#{lbl['label.person.firstName']}"/>
             </div>
 
             <div class="input-group mb-3">
@@ -33,7 +35,7 @@
                 </div>
                 <h:inputText value="#{personController.person.lastName}"
                              id="lastName" label="#{lbl['label.person.lastName']}"
-                             styleClass="form-control" p:placeholder="#{lbl['label.person.lastName']}"/>
+                             styleClass="form-control" pt:placeholder="#{lbl['label.person.lastName']}"/>
             </div>
 
             <div class="input-group mb-3">
@@ -43,7 +45,7 @@
                 </div>
                 <h:inputText value="#{personController.person.status}"
                              id="status" label="#{lbl['label.entity.status']}"
-                             p:placeholder="#{lbl['label.entity.status']}" styleClass="form-control"/>
+                             pt:placeholder="#{lbl['label.entity.status']}" styleClass="form-control"/>
             </div>
 
             <div class="input-group mb-3">
@@ -53,15 +55,25 @@
                 </div>
                 <h:inputText value="#{personController.person.description}"
                              id="description" label="#{lbl['label.entity.description']}"
-                             p:placeholder="#{lbl['label.entity.description']}" styleClass="form-control"/>
+                             pt:placeholder="#{lbl['label.entity.description']}" styleClass="form-control"/>
             </div>
 
-            <h:commandButton value="#{lbl['button.save']}" action="#{personController.create}" styleClass="btn btn-outline-primary"
-                             rendered="#{empty personController.person.id}"/>
-            <h:commandButton value="#{lbl['button.update']}" action="#{personController.update}" styleClass="btn btn-outline-primary"
-                             rendered="#{not empty personController.person.id}"/>
-            <h:commandButton value="#{lbl['button.cancel']}" action="#{personController.cancel}" styleClass="btn btn-outline-primary"/>
+            <h:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
+                             action="#{personController.showPage('index', 'true')}"
+                             actionListener="#{personController.save}"
+                             rendered="#{empty personController.id}">
+                <f:ajax execute="@form"/>
+            </h:commandButton>
 
+            <h:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
+                             action="#{personController.redirect}"
+                             actionListener="#{personController.edit}"
+                             rendered="#{not empty personController.id}">
+                <f:ajax execute="@form"/>
+            </h:commandButton>
+
+            <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
+                           immediate="true" action="index"/>
         </h:form>
     </ui:define>
 </ui:composition>

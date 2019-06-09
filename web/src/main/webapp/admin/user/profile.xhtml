@@ -3,7 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="/template/template.xhtml">
+                template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -12,34 +12,36 @@
         </f:metadata>
     </ui:define>
 
-    <ui:define name="header">
-        <h2>#{lbl['label.user.profile']}</h2>
-    </ui:define>
+    <ui:param name="header" value="#{lbl['title.user.profile']}"/>
 
-    <ui:define name="content">
+    <ui:define name="mainContent">
         <h:form class="form-group">
+
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <h:outputLabel for="username"
+                <h:link value="index" outcome="index" styleClass="btn btn-outline-primary"/>
+                <h:commandLink rendered="false" value="back" onclick="history.go(-1)"/>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="username" styleClass="input-group-text"
                                        value="#{lbl['label.user.username']}"/>
                     </div>
-                    <h:outputText value="#{userController.user.username}"
-                                  id="username" label="#{lbl['label.user.username']}"
-                                  styleClass="form-control" required="true">
+                    <h:outputText id="username" styleClass="form-control" required="true"
+                                  label="#{lbl['label.user.username']}" value="#{userController.user.username}">
                     </h:outputText>
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <h:outputLabel for="description"
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="description" styleClass="input-group-text"
                                        value="#{lbl['label.entity.description']}"/>
                     </div>
-                    <h:outputText value="#{userController.user.description}"
-                                  id="description" label="#{lbl['label.entity.description']}"
-                                  styleClass="form-control" required="true">
+                    <h:outputText id="description" styleClass="form-control" required="true"
+                                  label="#{lbl['label.entity.description']}" value="#{userController.user.description}">
                     </h:outputText>
                 </div>
             </div>

@@ -77,8 +77,6 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
      */
     public void prepare() {
         entity.setId(null);
-        entity.setCreateBy(userInformation.getUsername());
-        entity.setUpdateBy(userInformation.getUsername());
     }
 
     public String create() {
@@ -180,6 +178,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     public void save() {
         try {
             audit();
+            prepare();
             getGeneralServiceApi().create(entity);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
