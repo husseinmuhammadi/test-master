@@ -63,17 +63,15 @@
             </div>
 
             <h:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
-                             action="#{personController.showPage('index', 'true')}"
-                             actionListener="#{personController.save}"
+                             action="#{personController.save}"
                              rendered="#{empty personController.id}">
                 <f:ajax execute="@form" render=":messages"/>
             </h:commandButton>
 
             <h:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
-                             action="#{personController.redirect}"
-                             actionListener="#{personController.edit}"
+                             action="#{personController.edit}"
                              rendered="#{not empty personController.id}">
-                <f:ajax execute="@form"/>
+                <f:ajax execute="@form" render=":messages"/>
             </h:commandButton>
 
             <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
