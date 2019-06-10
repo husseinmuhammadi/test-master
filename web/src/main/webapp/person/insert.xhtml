@@ -63,14 +63,12 @@
             </div>
 
             <h:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
-                             action="#{personController.save}"
-                             rendered="#{empty personController.id}">
+                             action="#{personController.save}" rendered="#{empty personController.id}">
                 <f:ajax execute="@form" render=":messages"/>
             </h:commandButton>
 
             <h:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
-                             action="#{personController.edit}"
-                             rendered="#{not empty personController.id}">
+                             action="#{personController.edit}" rendered="#{not empty personController.id}">
                 <f:ajax execute="@form" render=":messages"/>
             </h:commandButton>
 

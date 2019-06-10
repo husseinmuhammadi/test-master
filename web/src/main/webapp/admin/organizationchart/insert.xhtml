@@ -78,21 +78,17 @@
             </div>
 
             <h:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
-                             action="#{organizationChartController.showPage('index', 'true')}"
-                             actionListener="#{organizationChartController.save}"
-                             rendered="#{empty organizationChartController.id}">
-                <f:ajax execute="@form"/>
+                             action="#{organizationChartController.save}" rendered="#{empty organizationChartController.id}">
+                <f:ajax execute="@form :messages"/>
             </h:commandButton>
 
             <h:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
-                             action="#{organizationChartController.redirect}"
-                             actionListener="#{organizationChartController.edit}"
-                             rendered="#{not empty organizationChartController.id}">
-                <f:ajax execute="@form"/>
+                             action="#{organizationChartController.edit}" rendered="#{not empty organizationChartController.id}">
+                <f:ajax execute="@form :messages"/>
             </h:commandButton>
 
             <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
-                           immediate="true" action="index"/>
+                           action="index" immediate="true"/>
         </h:form>
     </ui:define>
 </ui:composition>
