@@ -54,30 +54,30 @@ public class LookupRenderer extends BaseRenderer {
         }
         String clientId = component.getClientId();
         String hiddenFieldId = clientId + "_hdn";
-        PartialViewContext partialViewContext = context.getPartialViewContext();
-        boolean partialRequest = partialViewContext.isPartialRequest();
-        PartialResponseWriter partialResponseWriter = partialViewContext.getPartialResponseWriter();
+//        PartialViewContext partialViewContext = context.getPartialViewContext();
+//        boolean partialRequest = partialViewContext.isPartialRequest();
+//        PartialResponseWriter partialResponseWriter = partialViewContext.getPartialResponseWriter();
         renderInputElement(context, component, writer, uiLookup, bindingLookup, clientId);
 
-        if (partialRequest) {
-            partialResponseWriter.endUpdate();
-        }
+//        if (partialRequest) {
+//            partialResponseWriter.endUpdate();
+//        }
 
-        renderHiddenElement(component, writer, uiLookup, bindingLookup, hiddenFieldId, partialRequest, partialResponseWriter);
+        renderHiddenElement(component, writer, uiLookup, bindingLookup, hiddenFieldId/*, partialRequest, partialResponseWriter*/);
 
 
         String buttonId = clientId + "_btn";
         String buttonSpanId = buttonId + "_spn";
 
-        renderButtonElement(context, component, writer, uiLookup, bindingLookup, clientId, partialRequest, partialResponseWriter, buttonId, buttonSpanId);
+        renderButtonElement(context, component, writer, uiLookup, bindingLookup, clientId/*, partialRequest, partialResponseWriter*/, buttonId, buttonSpanId);
     }
 
     private void renderButtonElement(FacesContext context, UIComponent component, ResponseWriter writer, UILookup uiLookup, UILookup bindingLookup,
-                                     String clientId, boolean partialRequest, PartialResponseWriter partialResponseWriter, String buttonId,
+                                     String clientId, /*boolean partialRequest, PartialResponseWriter partialResponseWriter,*/ String buttonId,
                                      String buttonSpanId) throws IOException {
-        if (partialRequest) {
-            partialResponseWriter.startUpdate(buttonSpanId);
-        }
+//        if (partialRequest) {
+//            partialResponseWriter.startUpdate(buttonSpanId);
+//        }
         writer.startElement("span", component);
         writer.writeAttribute("id", buttonSpanId, null);
         writer.writeAttribute("class", "input-group-btn", null);
@@ -117,10 +117,10 @@ public class LookupRenderer extends BaseRenderer {
     }
 
     private void renderHiddenElement(UIComponent component, ResponseWriter writer, UILookup uiLookup, UILookup bindingLookup,
-                                     String hiddenFieldId, boolean partialRequest, PartialResponseWriter partialResponseWriter) throws IOException {
-        if (partialRequest) {
-            partialResponseWriter.startUpdate(hiddenFieldId);
-        }
+                                     String hiddenFieldId/*, boolean partialRequest, PartialResponseWriter partialResponseWriter*/) throws IOException {
+//        if (partialRequest) {
+//            partialResponseWriter.startUpdate(hiddenFieldId);
+//        }
         writer.startElement("input", component);
         writer.writeAttribute("id", hiddenFieldId, null);
         writer.writeAttribute("type", "hidden", null);
@@ -129,9 +129,9 @@ public class LookupRenderer extends BaseRenderer {
             writer.writeAttribute("value", uiLookup.getValue(), null);
         }
         writer.endElement("input");
-        if (partialRequest) {
-            partialResponseWriter.endUpdate();
-        }
+//        if (partialRequest) {
+//            partialResponseWriter.endUpdate();
+//        }
     }
 
     private void renderInputElement(FacesContext context, UIComponent component, ResponseWriter writer, UILookup uiLookup,

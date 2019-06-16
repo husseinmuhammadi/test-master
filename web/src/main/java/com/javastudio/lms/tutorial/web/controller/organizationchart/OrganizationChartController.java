@@ -6,6 +6,7 @@ import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.OrganizationChartService;
 import com.javastudio.tutorial.api.UserService;
 import com.javastudio.tutorial.dto.OrganizationChartDTO;
+import com.javastudio.tutorial.jsf.component.UILookup;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -39,6 +40,10 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     List<SelectItem> selectUsers = new ArrayList<>();
 
     List<SelectItem> selectOrganizationCharts = new ArrayList<>();
+
+    private UILookup uiLookupUser = new UILookup();
+
+    Long userId;
 
     // endregion Fields
 
@@ -101,6 +106,22 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
 
     public void setSelectOrganizationCharts(List<SelectItem> selectOrganizationCharts) {
         this.selectOrganizationCharts = selectOrganizationCharts;
+    }
+
+    public UILookup getUiLookupUser() {
+        return uiLookupUser;
+    }
+
+    public void setUiLookupUser(UILookup uiLookupUser) {
+        this.uiLookupUser = uiLookupUser;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     // region Getters & Setters
