@@ -3,6 +3,7 @@ package com.javastudio.lms.tutorial.web.controller.base;
 
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.dto.DTOBase;
+import com.javastudio.tutorial.jsf.application.RequestContext;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -35,7 +36,7 @@ public abstract class ManagerBase<T extends DTOBase> extends Localization implem
         populate();
     }
 
-    public void populate(){
+    public void populate() {
         logger.info("Populate list ...");
         entityList = getGeneralServiceApi().findAll();
     }
@@ -88,4 +89,26 @@ public abstract class ManagerBase<T extends DTOBase> extends Localization implem
         }
     }
 
+    private String parentId;
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public void select(T entity) {
+        if (parentId != null) {
+            // String text = String.format("%s %s", insured.getFirstName(), insured.getLastName());
+            RequestContext.getCurrentInstance().lookup(parentId, getLookupLabel(entity), entity.getId());
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error", null));
+        }
+    }
+
+    protected String getLookupLabel(T selectedEntity) {
+        return "Id: " + selectedEntity.getId();
+    }
 }

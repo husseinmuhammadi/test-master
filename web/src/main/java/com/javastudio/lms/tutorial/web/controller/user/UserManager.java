@@ -39,6 +39,12 @@ public class UserManager extends ManagerBase<UserDTO> implements Serializable {
         return service;
     }
 
+    @Override
+    protected String getLookupLabel(UserDTO selectedEntity) {
+        return selectedEntity.getUsername();
+    }
+
+
     public List<UserDTO> getUsers() {
         return entityList;
     }
