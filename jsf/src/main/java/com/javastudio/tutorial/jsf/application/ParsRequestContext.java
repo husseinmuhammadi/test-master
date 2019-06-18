@@ -46,6 +46,8 @@ public class ParsRequestContext extends RequestContext {
 
     @Override
     public void lookup(String parentId, String text, Object value) {
+        // TODO: correct this using javax.faces.SEPARATOR_CHAR in web.xml
+        parentId = parentId.replace(":", "\\\\:");
         getCurrentInstance().getScripts().add("$(function(){$('#" + parentId + "').val('" + text + "');");
 //        getCurrentInstance().getScripts().add("$('#" + parentId + "').trigger('change');");
         getCurrentInstance().getScripts().add("$('#" + parentId + "_hdn').val('" + value + "');");

@@ -14,9 +14,6 @@ import java.util.*;
 
 @FacesComponent(value = "com.javastudio.tutorial.jsf.component.Lookup")
 @ResourceDependencies({
-        @ResourceDependency(library = "faces", name = "bootstrap/bootstrap.min.js"),
-        @ResourceDependency(library = "faces", name = "dialog/bootstrap-dialog.js"),
-        @ResourceDependency(library = "faces", name = "dialog/bootstrap-dialog.css"),
         @ResourceDependency(library = "faces", name = "js/componentFaces.js")})
 public class UILookup extends UIInput implements ClientBehaviorHolder {
     public static final String FAMILY = "com.javastudio.tutorial.jsf.component";

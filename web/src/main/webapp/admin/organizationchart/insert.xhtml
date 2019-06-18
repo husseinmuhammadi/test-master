@@ -19,7 +19,7 @@
     </ui:define>
 
     <ui:define name="mainContent">
-        <h:form>
+        <h:form id="organization-chart-form">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <h:outputText value="#{lbl['entity.organizationChart.corporate']}" for="corporateId"
@@ -105,43 +105,13 @@
 
             <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
                            action="index" immediate="true"/>
-
-            <!-- Button trigger modal-->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Launch modal</button>
         </h:form>
 
-
-        <!-- Modal: modalCart -->
-        <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <!--Header-->
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Your cart</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <!--Body-->
-                    <div class="modal-body">
-
-                        <div id="5be2285e-6a6f-4801-9954-7493c2e26636"/>
-                        <script type="text/javascript">
-                            $(function () {
-                                ajaxRequest('http://localhost:8080/test-master/admin/user/index.xhtml?partial=0&amp;parentId=jdt', '5be2285e-6a6f-4801-9954-7493c2e26636')
-                            });
-                        </script>
-
-                    </div>
-                    <!--Footer-->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Checkout</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal: modalCart -->
+        <p:tabContainer>
+            <p:tab src="/admin/user/index" text="lookup" active="true">
+                <f:param name="partial" value="0"/>
+                <f:param name="parentId" value="organization-chart-form:userId"/>
+            </p:tab>
+        </p:tabContainer>
     </ui:define>
 </ui:composition>

@@ -27,11 +27,6 @@
             <h:outputScript library="js" name="popper.min.js" target="head"/>
             <h:outputScript library="js" name="bootstrap.min.js" target="head"/>
 
-            <h:outputScript library="numeral" name="numeral.js" target="head"/>
-
-            <h:outputScript library="en_US" name="/menumaker/script.js" target="head"/>
-            <h:outputStylesheet library="en_US" name="/menumaker/styles.css"/>
-
             <h:outputStylesheet library="#{localeController.locale.language}_#{localeController.locale.country}" name="styles.css"/>
         </f:facet>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
@@ -59,7 +54,7 @@
             </h:form>
         </ui:decorate>
 
-        <ui:include src="/WEB-INF/includes/menu.xhtml"/>
+        <!--<ui:include src="/WEB-INF/includes/menu.xhtml"/>-->
 
         <div>
             <div class="watermark"/>

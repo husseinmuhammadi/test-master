@@ -8,7 +8,9 @@
     <ui:param name="header" value="#{lbl['title.user.list']}"/>
 
     <ui:define name="metadata">
-        <f:viewParam name="parentId" value="#{userManager.parentId}"/>
+        <f:metadata>
+            <f:viewParam name="parentId" value="#{userManager.parentId}"/>
+        </f:metadata>
     </ui:define>
 
     <ui:define name="mainContent">
@@ -48,8 +50,9 @@
                                             styleClass="img-responsive"/>
                         </h:commandLink>
 
-                        <h:commandLink actionListener="#{userManager.remove(user)}" rendered="#{param.parentId ne null}">
-                            <f:ajax render=":messages entity-list"/>
+                        <h:commandLink actionListener="#{userManager.select(user)}">
+                            <f:ajax render=":messages entity-list" execute="none"/>
+                            <f:ajax name="parentId" value="#{param.parentId}"/>
                             <h:graphicImage alt="delete" library="images" name="tick-mark.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:commandLink>
