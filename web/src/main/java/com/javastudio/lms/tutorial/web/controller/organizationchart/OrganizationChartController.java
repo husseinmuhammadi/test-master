@@ -76,6 +76,9 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     @Override
     public void prepare() {
         super.prepare();
+        if (uiLookupUser.getValue() != null && !"".equals(uiLookupUser.getValue())) {
+            getOrganizationChart().setUser(userService.find(Long.valueOf(uiLookupUser.getValue().toString())));
+        }
     }
 
     @Override
@@ -128,7 +131,7 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     // region Getters & Setters
 
 
-    public String getMojarraImplementationVersion(){
+    public String getMojarraImplementationVersion() {
         Package p = FacesContext.class.getPackage();
         return p.getImplementationTitle() + " " + p.getImplementationVersion();
     }

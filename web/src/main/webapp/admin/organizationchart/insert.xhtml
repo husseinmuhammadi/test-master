@@ -40,19 +40,21 @@
                              styleClass="form-control" pt:placeholder="#{lbl['entity.organizationChart.title']}"/>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <h:outputText value="#{lbl['entity.organizationChart.user']}" for="user"
-                                  styleClass="input-group-text"/>
+            <h:panelGroup rendered="false">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputText value="#{lbl['entity.organizationChart.user']}" for="user"
+                                      styleClass="input-group-text"/>
+                    </div>
+                    <h:selectOneMenu value="#{organizationChartController.organizationChart.user}"
+                                     id="user" label="#{lbl['entity.organizationChart.user']}"
+                                     styleClass="form-control">
+                        <f:selectItem value="#{selectItemsController.emptyItem}"/>
+                        <f:selectItems value="#{organizationChartController.selectUsers}"/>
+                        <f:converter binding="#{userConverter}"/>
+                    </h:selectOneMenu>
                 </div>
-                <h:selectOneMenu value="#{organizationChartController.organizationChart.user}"
-                                 id="user" label="#{lbl['entity.organizationChart.user']}"
-                                 styleClass="form-control">
-                    <f:selectItem value="#{selectItemsController.emptyItem}"/>
-                    <f:selectItems value="#{organizationChartController.selectUsers}"/>
-                    <f:converter binding="#{userConverter}"/>
-                </h:selectOneMenu>
-            </div>
+            </h:panelGroup>
 
             <div class="form-group">
                 <div class="input-group mb-3">
