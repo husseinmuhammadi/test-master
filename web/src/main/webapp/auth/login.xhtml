@@ -10,19 +10,19 @@
 <f:view encoding="UTF-8" contentType="text/html; charset=UTF-8" locale="#{localeController.locale}">
     <h:head>
         <f:facet name="first">
-            <h:outputScript library="js" name="jquery.min.js" target="head"/>
+            <h:outputScript library="default" name="js/jquery.min.js" target="head"/>
 
             <h:outputScript library="jquery-ui-dist" name="jquery-ui.min.js" target="head"/>
             <h:outputStylesheet library="jquery-ui-dist" name="jquery-ui.min.css"/>
 
-            <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+            <h:outputStylesheet library="default" name="css/bootstrap.min.css"/>
 
-            <h:outputScript library="js" name="popper.min.js" target="head"/>
-            <h:outputScript library="js" name="bootstrap.min.js" target="head"/>
+            <h:outputScript library="default" name="js/popper.min.js" target="head"/>
+            <h:outputScript library="default" name="js/bootstrap.min.js" target="head"/>
 
             <h:outputScript library="numeral" name="numeral.js" target="head"/>
 
-            <h:outputStylesheet library="#{localeController.locale.language}_#{localeController.locale.country}" name="login.css"/>
+            <h:outputStylesheet library="default" name="#{localeController.locale.language}_#{localeController.locale.country}/login.css"/>
         </f:facet>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
         <title>Signin</title>
