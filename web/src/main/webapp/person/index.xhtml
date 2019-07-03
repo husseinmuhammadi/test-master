@@ -3,6 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 template="/WEB-INF/templates/template.xhtml">
 
     <ui:param name="header" value="#{lbl['title.person.list']}"/>
@@ -80,5 +81,116 @@
         </h:panelGroup>
 
         <h:link value="#{lbl['button.add']}" outcome="insert" styleClass="btn btn-outline-primary"/>
+
+        <!-- Button trigger modal-->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalYT">Add</button>
+
+        <!--Modal: modalYT-->
+        <div class="modal fade" id="modalYT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                            <h:form>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <h:outputText value="#{lbl['label.person.firstName']}" for="firstName"
+                                                      styleClass="input-group-text"/>
+                                    </div>
+                                    <h:inputText value="#{personController.person.firstName}"
+                                                 id="firstName" label="#{lbl['label.person.firstName']}"
+                                                 styleClass="form-control" pt:placeholder="#{lbl['label.person.firstName']}">
+                                        <f:validateLength maximum="20"/>
+                                    </h:inputText>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <h:outputText value="#{lbl['label.person.lastName']}" for="lastName"
+                                                      styleClass="input-group-text"/>
+                                    </div>
+                                    <h:inputText value="#{personController.person.lastName}"
+                                                 id="lastName" label="#{lbl['label.person.lastName']}"
+                                                 styleClass="form-control" pt:placeholder="#{lbl['label.person.lastName']}">
+                                        <f:validateLength maximum="20"/>
+                                    </h:inputText>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <h:outputText for="status" value="#{lbl['label.entity.status']}"
+                                                      styleClass="input-group-text"/>
+                                    </div>
+                                    <h:inputText value="#{personController.person.status}"
+                                                 id="status" label="#{lbl['label.entity.status']}"
+                                                 pt:placeholder="#{lbl['label.entity.status']}" styleClass="form-control"/>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <h:outputText for="description" value="#{lbl['label.entity.description']}"
+                                                      styleClass="input-group-text"/>
+                                    </div>
+                                    <h:inputText value="#{personController.person.description}"
+                                                 id="description" label="#{lbl['label.entity.description']}"
+                                                 pt:placeholder="#{lbl['label.entity.description']}" styleClass="form-control"/>
+                                </div>
+
+                                <h:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
+                                                 actionListener="#{personController.save}"
+                                                 rendered="#{empty personController.id}">
+                                    <f:ajax execute="@form"/>
+                                </h:commandButton>
+
+                                <h:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
+                                                 action="#{personController.redirect}"
+                                                 actionListener="#{personController.edit}"
+                                                 rendered="#{not empty personController.id}">
+                                    <f:ajax execute="@form"/>
+                                </h:commandButton>
+
+                                <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
+                                               immediate="true" action="index"/>
+                            </h:form>                        </div>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center flex-column flex-md-row">
+                        <span class="mr-4">Spread the word!</span>
+                        <div>
+                            <a type="button" class="btn-floating btn-sm btn-fb">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <!--Twitter-->
+                            <a type="button" class="btn-floating btn-sm btn-tw">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <!--Google +-->
+                            <a type="button" class="btn-floating btn-sm btn-gplus">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                            <!--Linkedin-->
+                            <a type="button" class="btn-floating btn-sm btn-ins">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                        <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4"
+                                data-dismiss="modal">Close
+                        </button>
+                    </div>
+
+                </div>
+                <!--/.Content-->
+
+            </div>
+        </div>
+        <!--Modal: modalYT-->
     </ui:define>
 </ui:composition>
