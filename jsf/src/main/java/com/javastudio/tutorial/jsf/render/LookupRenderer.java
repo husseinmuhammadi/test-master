@@ -82,6 +82,8 @@ public class LookupRenderer extends BaseRenderer {
         writer.writeAttribute("id", buttonSpanId, null);
         writer.writeAttribute("class", "input-group-btn", null);
         writer.startElement("button", component);
+        writer.writeAttribute("data-toggle","modal", null);
+        writer.writeAttribute("data-target", "#exampleModalLong", null);
         if (bindingLookup != null && bindingLookup.isReadOnly()) {
             writer.writeAttribute("disabled", "disabled", null);
         } else if (uiLookup.isReadOnly() == null || !uiLookup.isReadOnly()) {
