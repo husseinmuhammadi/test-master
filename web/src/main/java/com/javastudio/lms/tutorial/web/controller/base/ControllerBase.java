@@ -183,7 +183,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
             logger.info("entity saved successfully.");
-            Thread.sleep(3000);
+            // Thread.sleep(3000);
             return "index?faces-redirect=true";
         } catch (Throwable e) {
             logger.error("Error on entity update", e);
@@ -199,7 +199,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(localizedResource.getMessage("request.success")));
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
             logger.info("entity edited successfully.");
-            Thread.sleep(3000);
+            // Thread.sleep(3000);
             return "index?faces-redirect=true";
         } catch (Throwable e) {
             logger.error("Error while updating entity", e);
