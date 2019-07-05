@@ -9,7 +9,7 @@ import javax.faces.render.Renderer;
 import java.util.List;
 import java.util.Map;
 
-public class BaseRenderer extends Renderer {
+public class RendererBase extends Renderer {
     protected final String decodeBehaviors(FacesContext context, UIComponent component) {
 
         if (!(component instanceof ClientBehaviorHolder)) {

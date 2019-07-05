@@ -60,11 +60,11 @@
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <h:outputLabel for="userId" styleClass="input-group-text"
+                            <h:outputLabel for="userId1" styleClass="input-group-text"
                                            value="#{lbl['entity.organizationChart.user']}"/>
                         </div>
                         <p:lookup lookupPath="/admin/user/index.xhtml" label="#{lbl['entity.organizationChart.user']}"
-                                  id="userId" binding="#{organizationChartController.uiLookupUser}"
+                                  id="userId1" binding="#{organizationChartController.uiLookupUser}"
                                   value="#{organizationChartController.userId}"
                                   inputClass="form-control" btnClass="btn btn-default">
                             <f:param name="status" value="ACTIVE"/>
@@ -76,11 +76,12 @@
             <div class="form-group">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">#{lbl['entity.organizationChart.user']}</span>
+                        <h:outputLabel for="userId" styleClass="input-group-text" value="#{lbl['entity.organizationChart.user']}"/>
                     </div>
-                    <input type="text" class="form-control" aria-label="amount"/>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#myModal">Open Dialog</button>
+                    <input id="organization-chart-form:userId" type="text" disabled="disabled" value="form-control" class="form-control"></input>
+                    <input id="organization-chart-form:userId_hdn" type="hidden" name="organization-chart-form:userId_hdn"></input>
+                    <div id="organization-chart-form:userId_btn_div" class="input-group-append">
+                        <button id="organization-chart-form:userId_btn" class="btn btn-default btn-outline-secondary" type="button" data-toggle="modal" data-target="#lookup">...</button>
                     </div>
                 </div>
             </div>
@@ -123,26 +124,30 @@
                            action="index" immediate="true"/>
         </h:form>
 
-        <div class="modal" tabindex="-1" role="dialog" id="myModal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p:tabContainer>
-                            <p:tab src="/admin/user/index" text="lookup" active="true">
-                                <f:param name="partial" value="0"/>
-                                <f:param name="parentId" value="organization-chart-form:userId"/>
-                            </p:tab>
-                        </p:tabContainer>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div id="dialog">
+            <div class="modal" tabindex="-1" role="dialog" id="lookup">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div id="b0ba82d0-a1df-4c6a-86b0-bdeabe2f9fa9"></div>
+
+                            <script type="text/javascript">
+                                $(function () {
+                                    ajaxRequest('http://localhost:8080/test-master/admin/user/index.xhtml?partial=0&amp;parentId=organization-chart-form:userId', 'b0ba82d0-a1df-4c6a-86b0-bdeabe2f9fa9');
+                                });
+                            </script>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>

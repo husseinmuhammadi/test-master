@@ -10,15 +10,13 @@ import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
-import javax.faces.context.PartialResponseWriter;
-import javax.faces.context.PartialViewContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import java.io.IOException;
 import java.util.*;
 
 @FacesRenderer(componentFamily = UILookup.FAMILY, rendererType = UILookup.RENDERER_TYPE)
-public class LookupRenderer extends BaseRenderer {
+public class LookupRenderer extends RendererBase {
 
     @Override
     public void decode(FacesContext context, UIComponent component) {

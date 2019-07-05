@@ -109,4 +109,12 @@
         </attribute>
     </tag>
 
+    <tag>
+        <tag-name>lookup1</tag-name>
+        <component>
+            <display-name>com.javastudio.tutorial.jsf.component.Lookup1</display-name>
+            <renderer-type>com.javastudio.tutorial.jsf.render.Lookup1Renderer</renderer-type>
+        </component>
+    </tag>
+
 </facelet-taglib>

@@ -14,7 +14,8 @@ import java.util.*;
 
 @FacesComponent(value = "com.javastudio.tutorial.jsf.component.Lookup")
 @ResourceDependencies({
-        @ResourceDependency(library = "faces", name = "js/componentFaces.js")})
+        @ResourceDependency(library = "faces", name = "js/componentFaces.js")
+})
 public class UILookup extends UIInput implements ClientBehaviorHolder {
     public static final String FAMILY = "com.javastudio.tutorial.jsf.component";
     public static final String RENDERER_TYPE = "com.javastudio.tutorial.jsf.render.LookupRenderer";
