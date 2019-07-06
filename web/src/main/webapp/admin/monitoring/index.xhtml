@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:param name="header" value="#{lbl['entity.faces.context']}"/>
+
+    <ui:define name="mainContent">
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputLabel for="name" styleClass="input-group-text"
+                                   value="#{lbl['entity.faces.context.name']}"/>
+                </div>
+                <h:outputText value="#{runtimeMonitoring.name}"
+                              id="name" label="#{lbl['entity.faces.context.name']}"
+                              styleClass="form-control">
+                </h:outputText>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputLabel for="implementationTitle" styleClass="input-group-text"
+                                   value="#{lbl['entity.faces.context.implementationTitle']}"/>
+                </div>
+                <h:outputText value="#{runtimeMonitoring.implementationTitle}"
+                              id="implementationTitle" label="#{lbl['entity.faces.context.implementationTitle']}"
+                              styleClass="form-control">
+                </h:outputText>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputLabel for="implementationVendor" styleClass="input-group-text"
+                                   value="#{lbl['entity.faces.context.implementationVendor']}"/>
+                </div>
+                <h:outputText value="#{runtimeMonitoring.implementationVendor}"
+                              id="implementationVendor" label="#{lbl['entity.faces.context.implementationVendor']}"
+                              styleClass="form-control">
+                </h:outputText>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputLabel for="implementationVersion" styleClass="input-group-text"
+                                   value="#{lbl['entity.faces.context.implementationVersion']}"/>
+                </div>
+                <h:outputText value="#{runtimeMonitoring.implementationVersion}"
+                              id="implementationVersion" label="#{lbl['entity.faces.context.implementationVersion']}"
+                              styleClass="form-control">
+                </h:outputText>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <h:outputLabel for="specificationVersion" styleClass="input-group-text"
+                                   value="#{lbl['entity.faces.context.specificationVersion']}"/>
+                </div>
+                <h:outputText value="#{runtimeMonitoring.specificationVersion}"
+                              id="specificationVersion" label="#{lbl['entity.faces.context.specificationVersion']}"
+                              styleClass="form-control">
+                </h:outputText>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
