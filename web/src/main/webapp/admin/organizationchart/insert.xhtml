@@ -63,7 +63,7 @@
                             <h:outputLabel for="userId" styleClass="input-group-text"
                                            value="#{lbl['entity.organizationChart.user']}"/>
                         </div>
-                        <p:lookup id="userId" binding="#{organizationChartController.uiLookupUser}" inputClass="form-control"/>
+                        <p:lookup id="userId" binding="#{organizationChartController.uiLookupUser}" inputClass="form-control" lookupPath="/admin/user/index" btnClass="btn btn-default btn-outline-secondary"/>
                     </div>
                 </div>
             </h:panelGroup>
@@ -119,7 +119,7 @@
                            action="index" immediate="true"/>
         </h:form>
 
-        <div id="dialog">
+        <h:panelGroup id="dialog" layout="block">
             <div class="modal" tabindex="-1" role="dialog" id="lookup">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </h:panelGroup>
 
 
     </ui:define>

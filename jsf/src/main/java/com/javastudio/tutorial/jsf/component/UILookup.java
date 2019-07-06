@@ -4,7 +4,10 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIInput;
+import javax.faces.component.UIParameter;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import java.util.ArrayList;
+import java.util.List;
 
 @FacesComponent(value = "com.javastudio.tutorial.jsf.component.Lookup")
 @ResourceDependencies({
@@ -49,6 +52,38 @@ public class UILookup extends UIInput implements ClientBehaviorHolder {
 
     public void setInputClass(String inputClass) {
         getStateHelper().put(PropertyKeys.inputClass, inputClass);
+    }
+
+    public String getBtnClass() {
+        return (String) getStateHelper().eval(PropertyKeys.btnClass);
+    }
+
+    public void setBtnClass(String btnClass) {
+        getStateHelper().put(PropertyKeys.btnClass, btnClass);
+    }
+
+    public Boolean isReadOnly() {
+        return (Boolean) getStateHelper().eval(PropertyKeys.readOnly, Boolean.FALSE);
+    }
+
+    public void setReadOnly(Boolean readOnly) {
+        getStateHelper().put(PropertyKeys.readOnly, readOnly);
+    }
+
+    public String getLookupPath() {
+        return (String) getStateHelper().eval(PropertyKeys.lookupPath);
+    }
+
+    public void setLookupPath(String lookupPath) {
+        getStateHelper().put(PropertyKeys.lookupPath, lookupPath);
+    }
+
+    public List<UIParameter> getParams() {
+        return (List<UIParameter>) getStateHelper().eval(PropertyKeys.params, new ArrayList<>());
+    }
+
+    public void setParams(List<UIParameter> params) {
+        getStateHelper().put(PropertyKeys.params, params);
     }
 
     // endregion Getters & Setters

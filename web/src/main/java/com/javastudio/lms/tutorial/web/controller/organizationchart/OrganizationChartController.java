@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -131,8 +130,4 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
     // region Getters & Setters
 
 
-    public String getMojarraImplementationVersion() {
-        Package p = FacesContext.class.getPackage();
-        return p.getImplementationTitle() + " " + p.getImplementationVersion();
-    }
 }

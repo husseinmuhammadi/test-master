@@ -2,11 +2,15 @@ package com.javastudio.tutorial.jsf.render;
 
 import com.javastudio.tutorial.jsf.component.UILookup;
 import com.javastudio.tutorial.jsf.util.RendererUtil;
+import com.javastudio.tutorial.jsf.util.ScriptUtil;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIParameter;
+import javax.faces.component.UIViewRoot;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -63,6 +67,59 @@ public class LookupRenderer extends RendererBase {
         if (uiLookup.getInputClass() != null && uiLookup.getInputClass().length() > 0) {
             writer.writeAttribute("class", uiLookup.getInputClass(), null);
         }
+        writer.endElement("input");
+
+        String hiddenFieldId = clientId + "_hdn";
+        writer.startElement("input", component);
+        writer.writeAttribute("type", "hidden", null);
+        writer.writeAttribute("id", hiddenFieldId, null);
+        writer.writeAttribute("name", hiddenFieldId, null);
+        if (bindingLookup != null && bindingLookup.getValue() != null) {
+            writer.writeAttribute("value", uiLookup.getValue(), null);
+        }
+        writer.endElement("input");
+
+        String buttonId = clientId + "_btn";
+        String buttonSpanId = buttonId + "_spn";
+
+        writer.startElement("div", component);
+        writer.writeAttribute("id", buttonSpanId, null);
+        writer.writeAttribute("class", "input-group-append", null);
+        writer.startElement("button", component);
+        writer.writeAttribute("data-toggle", "modal", null);
+        writer.writeAttribute("data-target", "#exampleModalLong", null);
+        if (bindingLookup != null && bindingLookup.isReadOnly()) {
+            writer.writeAttribute("readonly", "readonly", null);
+        } else if (uiLookup.isReadOnly() == null || !uiLookup.isReadOnly()) {
+            String url = context.getApplication().getViewHandler().getBookmarkableURL(context, uiLookup.getLookupPath(), null, false);
+            StringBuilder parameters = new StringBuilder();
+            parameters.append("?parentId=");
+            parameters.append(clientId);
+            parameters.append("&t=0");
+            Map<String, String> parameterTagValue = RendererUtil.getParameterTagValue(component);
+            List<UIParameter> params = uiLookup.getParams();
+            if (params.size() > 0) {
+                for (UIParameter param : params) {
+                    parameterTagValue.put(param.getName(), param.getValue().toString());
+                }
+            }
+            for (Map.Entry<String, String> entry : parameterTagValue.entrySet()) {
+                parameters.append("&");
+                parameters.append(entry.getKey());
+                parameters.append("=");
+                parameters.append(entry.getValue());
+            }
+            writer.writeAttribute("onclick", ScriptUtil.returnDialogBuilder(url + parameters.toString()), null);
+        } else {
+            writer.writeAttribute("readonly", "readonly", null);
+        }
+        writer.writeAttribute("id", buttonId, null);
+        if (uiLookup.getBtnClass() != null && uiLookup.getBtnClass().length() > 0) {
+            writer.writeAttribute("class", uiLookup.getBtnClass(), null);
+        }
+        writer.write("...");
+        writer.endElement("button");
+        writer.endElement("div");
     }
 
     @Override
@@ -90,6 +147,12 @@ public class LookupRenderer extends RendererBase {
             return;
         }
         ResponseWriter writer = context.getResponseWriter();
-        writer.endElement("input");
+        UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
+        UIComponent dialog = view.findComponent("dialog");
+        if (dialog != null) {
+            HtmlOutputText htmlOutputText = new HtmlOutputText();
+            htmlOutputText.setValue("Hello");
+            dialog.getChildren().add(htmlOutputText);
+        }
     }
 }
