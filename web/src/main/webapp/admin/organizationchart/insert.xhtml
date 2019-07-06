@@ -56,19 +56,19 @@
                 </div>
             </h:panelGroup>
 
-            <h:panelGroup rendered="false">
+            <h:panelGroup rendered="true">
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <h:outputLabel for="userId1" styleClass="input-group-text"
                                            value="#{lbl['entity.organizationChart.user']}"/>
                         </div>
-                        <p:lookup lookupPath="/admin/user/index.xhtml" label="#{lbl['entity.organizationChart.user']}"
+                        <p:lookup1 lookupPath="/admin/user/index.xhtml" label="#{lbl['entity.organizationChart.user']}"
                                   id="userId1" binding="#{organizationChartController.uiLookupUser}"
                                   value="#{organizationChartController.userId}"
                                   inputClass="form-control" btnClass="btn btn-default">
                             <f:param name="status" value="ACTIVE"/>
-                        </p:lookup>
+                        </p:lookup1>
                     </div>
                 </div>
             </h:panelGroup>
