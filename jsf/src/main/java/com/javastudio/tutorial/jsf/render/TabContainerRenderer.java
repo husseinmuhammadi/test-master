@@ -4,7 +4,6 @@ import com.javastudio.tutorial.jsf.component.UITab;
 import com.javastudio.tutorial.jsf.component.UITabContainer;
 import com.javastudio.tutorial.jsf.type.AsyncHttpRequest;
 import com.javastudio.tutorial.jsf.util.RendererUtil;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.NavigationCase;

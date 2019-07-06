@@ -61,59 +61,59 @@
         </attribute>
     </tag>
 
+    <!--<tag>-->
+        <!--<tag-name>lookup</tag-name>-->
+        <!--<component>-->
+            <!--<component-type>com.javastudio.tutorial.jsf.component.Lookup</component-type>-->
+            <!--<renderer-type>com.javastudio.tutorial.jsf.render.LookupRenderer</renderer-type>-->
+        <!--</component>-->
+        <!--<attribute>-->
+            <!--<name>lookupPath</name>-->
+            <!--<required>true</required>-->
+            <!--<type>java.lang.String</type>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>inputClass</name>-->
+            <!--<required>false</required>-->
+            <!--<type>java.lang.String</type>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>btnClass</name>-->
+            <!--<required>false</required>-->
+            <!--<type>java.lang.String</type>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>readOnly</name>-->
+            <!--<required>false</required>-->
+            <!--<type>java.lang.Boolean</type>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>inputText</name>-->
+            <!--<required>false</required>-->
+            <!--<type>java.lang.String</type>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>required</name>-->
+            <!--<required>false</required>-->
+            <!--<type>java.lang.Boolean</type>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>requiredMessage</name>-->
+            <!--<required>false</required>-->
+            <!--<type>java.lang.String</type>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>binding</name>-->
+            <!--<required>false</required>-->
+            <!--<type>javax.faces.component.UIComponent</type>-->
+        <!--</attribute>-->
+    <!--</tag>-->
+
     <tag>
         <tag-name>lookup</tag-name>
         <component>
             <component-type>com.javastudio.tutorial.jsf.component.Lookup</component-type>
             <renderer-type>com.javastudio.tutorial.jsf.render.LookupRenderer</renderer-type>
-        </component>
-        <attribute>
-            <name>lookupPath</name>
-            <required>true</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
-            <name>inputClass</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
-            <name>btnClass</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
-            <name>readOnly</name>
-            <required>false</required>
-            <type>java.lang.Boolean</type>
-        </attribute>
-        <attribute>
-            <name>inputText</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
-            <name>required</name>
-            <required>false</required>
-            <type>java.lang.Boolean</type>
-        </attribute>
-        <attribute>
-            <name>requiredMessage</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
-            <name>binding</name>
-            <required>false</required>
-            <type>javax.faces.component.UIComponent</type>
-        </attribute>
-    </tag>
-
-    <tag>
-        <tag-name>lookup1</tag-name>
-        <component>
-            <display-name>com.javastudio.tutorial.jsf.component.Lookup1</display-name>
-            <renderer-type>com.javastudio.tutorial.jsf.render.Lookup1Renderer</renderer-type>
         </component>
     </tag>
 

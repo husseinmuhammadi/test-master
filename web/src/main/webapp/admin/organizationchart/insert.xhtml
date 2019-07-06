@@ -60,15 +60,10 @@
                 <div class="form-group">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <h:outputLabel for="userId1" styleClass="input-group-text"
+                            <h:outputLabel for="userId" styleClass="input-group-text"
                                            value="#{lbl['entity.organizationChart.user']}"/>
                         </div>
-                        <p:lookup1 lookupPath="/admin/user/index.xhtml" label="#{lbl['entity.organizationChart.user']}"
-                                  id="userId1" binding="#{organizationChartController.uiLookupUser}"
-                                  value="#{organizationChartController.userId}"
-                                  inputClass="form-control" btnClass="btn btn-default">
-                            <f:param name="status" value="ACTIVE"/>
-                        </p:lookup1>
+                        <p:lookup id="userId" binding="#{organizationChartController.uiLookupUser}" inputClass="form-control"/>
                     </div>
                 </div>
             </h:panelGroup>
@@ -140,7 +135,7 @@
 
                             <script type="text/javascript">
                                 $(function () {
-                                    ajaxRequest('http://localhost:8080/test-master/admin/user/index.xhtml?partial=0&amp;parentId=organization-chart-form:userId', 'b0ba82d0-a1df-4c6a-86b0-bdeabe2f9fa9');
+                                    // ajaxRequest('http://localhost:8080/test-master/admin/user/index.xhtml?partial=0&amp;parentId=organization-chart-form:userId', 'b0ba82d0-a1df-4c6a-86b0-bdeabe2f9fa9');
                                 });
                             </script>
                         </div>
