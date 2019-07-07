@@ -150,7 +150,7 @@ public class LookupRenderer extends RendererBase {
         UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
         UIComponent dialog = view.findComponent(dialogContainerId);
         if (dialog != null) {
-            FacesComponent.includeCompositeComponent(dialog, "composite", "dialog.xhtml", "lookupModal");
+            FacesComponent.includeCompositeComponentAndSetValueExpression(dialog, "composite", "dialog.xhtml", "lookupModal");
         }
     }
 

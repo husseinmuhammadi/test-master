@@ -1,5 +1,6 @@
 package com.javastudio.tutorial.jsf.component;
 
+import javax.el.ELContext;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
 import javax.faces.application.Resource;
@@ -11,6 +12,45 @@ import javax.faces.view.facelets.FaceletContext;
 import java.io.IOException;
 
 public class FacesComponent {
+    public static void includeCompositeComponentAndSetValueExpression(UIComponent parent, String libraryName, String resourceName, String id) {
+        // Prepare.
+        FacesContext context = FacesContext.getCurrentInstance();
+        Application application = context.getApplication();
+        FaceletContext faceletContext = (FaceletContext) context.getAttributes().get(FaceletContext.FACELET_CONTEXT_KEY);
+
+        // This basically creates <ui:component> based on <composite:interface>.
+        Resource resource = application.getResourceHandler().createResource(resourceName, libraryName);
+        UIComponent composite = application.createComponent(context, resource);
+
+        composite.setValueExpression("title", context.getApplication().getExpressionFactory().createValueExpression(context.getELContext(), "Select a user from a list", String.class));
+        // composite.setValueExpression();
+
+        composite.setId(id); // Mandatory for the case composite is part of UIForm! Otherwise JSF can't find inputs.
+
+        // This basically creates <composite:implementation>.
+        UIComponent implementation = application.createComponent(UIPanel.COMPONENT_TYPE);
+        implementation.setRendererType("javax.faces.Group");
+        composite.getFacets().put(UIComponent.COMPOSITE_FACET_NAME, implementation);
+
+        // Now include the composite component file in the given parent.
+        parent.getChildren().add(composite);
+        parent.pushComponentToEL(context, composite); // This makes #{cc} available.
+        try {
+            faceletContext.includeFacelet(implementation, resource.getURL());
+        } catch (IOException e) {
+            throw new FacesException(e);
+        } finally {
+            parent.popComponentFromEL(context);
+        }
+    }
+
+    /**
+     * https://stackoverflow.com/questions/5370184/how-to-programmatically-or-dynamically-create-a-composite-component-in-jsf-2/15884546#15884546
+     * @param parent
+     * @param libraryName
+     * @param resourceName
+     * @param id
+     */
     public static void includeCompositeComponent(UIComponent parent, String libraryName, String resourceName, String id) {
         // Prepare.
         FacesContext context = FacesContext.getCurrentInstance();
