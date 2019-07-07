@@ -133,14 +133,6 @@ public class LookupRenderer extends RendererBase {
         }
 
         ResponseWriter writer = context.getResponseWriter();
-
-        /*
-        <input id="organization-chart-form:userId" type="text" disabled="disabled" value="form-control" class="form-control"></input>
-                    <input id="organization-chart-form:userId_hdn" type="hidden" name="organization-chart-form:userId_hdn"></input>
-                    <div id="organization-chart-form:userId_btn_div" class="input-group-append">
-                        <button id="organization-chart-form:userId_btn" class="btn btn-default btn-outline-secondary" type="button" data-toggle="modal" data-target="#lookup">...</button>
-                    </div>
-                    */
     }
 
     @Override
@@ -151,14 +143,14 @@ public class LookupRenderer extends RendererBase {
         }
         ResponseWriter writer = context.getResponseWriter();
 
-        renderLookupModal("dialog");
+        renderLookupModal("dialog", "Select a user from a list");
     }
 
-    private void renderLookupModal(String dialogPanelGroupId) {
+    private void renderLookupModal(String dialogContainerId, String title) {
         UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
-        UIComponent dialog = view.findComponent(dialogPanelGroupId);
+        UIComponent dialog = view.findComponent(dialogContainerId);
         if (dialog != null) {
-            FacesComponent.includeCompositeComponent(dialog, "composite", "test.xhtml", "lookupModal");
+            FacesComponent.includeCompositeComponent(dialog, "composite", "dialog.xhtml", "lookupModal");
         }
     }
 

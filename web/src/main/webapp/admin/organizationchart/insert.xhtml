@@ -63,7 +63,13 @@
                             <h:outputLabel for="userId" styleClass="input-group-text"
                                            value="#{lbl['entity.organizationChart.user']}"/>
                         </div>
-                        <p:lookup id="userId" binding="#{organizationChartController.uiLookupUser}" inputClass="form-control" lookupPath="/admin/user/index" btnClass="btn btn-default btn-outline-secondary"/>
+                        <p:lookup id="userId" lookupPath="/admin/user/index"
+                                  binding="#{organizationChartController.uiLookupUser}"
+                                  value="#{organizationChartController.userId}"
+                                  label="#{lbl['entity.organizationChart.user']}"
+                                  inputClass="form-control" btnClass="btn btn-default btn-outline-secondary">
+                            <f:param name="status" value="ACTIVE"/>
+                        </p:lookup>
                     </div>
                 </div>
             </h:panelGroup>

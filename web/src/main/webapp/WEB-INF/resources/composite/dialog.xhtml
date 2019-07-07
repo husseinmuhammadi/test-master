@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:view>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+<f:view>
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="title" type="java.lang.String" default="Modal Title"></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
         <div class="modal" tabindex="-1" role="dialog" id="lookup">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
+                        <h5 class="modal-title">#{cc.attrs.title}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                         </button>
@@ -19,7 +29,7 @@
 
                         <script type="text/javascript">
                             $(function () {
-                                // ajaxRequest('http://localhost:8080/test-master/admin/user/index.xhtml?partial=0&amp;parentId=organization-chart-form:userId', 'b0ba82d0-a1df-4c6a-86b0-bdeabe2f9fa9');
+                                ajaxRequest('http://localhost:8080/test-master/admin/user/index.xhtml?partial=0&amp;parentId=organization-chart-form:userId', 'b0ba82d0-a1df-4c6a-86b0-bdeabe2f9fa9');
                             });
                         </script>
                     </div>
@@ -30,5 +40,6 @@
                 </div>
             </div>
         </div>
-    </f:view>
-</ui:composition>
+    </cc:implementation>
+</f:view>
+</html>
