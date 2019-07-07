@@ -1,5 +1,6 @@
 package com.javastudio.tutorial.jsf.render;
 
+import com.javastudio.tutorial.jsf.component.FacesComponent;
 import com.javastudio.tutorial.jsf.component.UILookup;
 import com.javastudio.tutorial.jsf.util.RendererUtil;
 import com.javastudio.tutorial.jsf.util.ScriptUtil;
@@ -11,6 +12,7 @@ import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.component.html.HtmlOutputText;
+import javax.faces.component.html.HtmlPanelGroup;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -147,12 +149,27 @@ public class LookupRenderer extends RendererBase {
             return;
         }
         ResponseWriter writer = context.getResponseWriter();
+
+        renderModalDialog("dialog");
+    }
+
+    private void renderModalDialog(String dialogPanelGroupId) {
         UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
-        UIComponent dialog = view.findComponent("dialog");
+        UIComponent dialog = view.findComponent(dialogPanelGroupId);
         if (dialog != null) {
-            HtmlOutputText htmlOutputText = new HtmlOutputText();
-            htmlOutputText.setValue("Hello");
-            dialog.getChildren().add(htmlOutputText);
+            FacesComponent.includeCompositeComponent(dialog, "composite", "test.xhtml", "lookupModal");
         }
+    }
+
+    private HtmlPanelGroup createHtmlDivElement() {
+        HtmlPanelGroup div = new HtmlPanelGroup();
+        div.setLayout("block");
+        return div;
+    }
+
+    void addOutputText(UIComponent parent) {
+        HtmlOutputText outputText = new HtmlOutputText();
+        outputText.setValue("Hello");
+        parent.getChildren().add(outputText);
     }
 }
