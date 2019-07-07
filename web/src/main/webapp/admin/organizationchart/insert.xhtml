@@ -68,19 +68,6 @@
                 </div>
             </h:panelGroup>
 
-            <div class="form-group">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <h:outputLabel for="userId" styleClass="input-group-text" value="#{lbl['entity.organizationChart.user']}"/>
-                    </div>
-                    <input id="organization-chart-form:userId" type="text" disabled="disabled" value="form-control" class="form-control"></input>
-                    <input id="organization-chart-form:userId_hdn" type="hidden" name="organization-chart-form:userId_hdn"></input>
-                    <div id="organization-chart-form:userId_btn_div" class="input-group-append">
-                        <button id="organization-chart-form:userId_btn" class="btn btn-default btn-outline-secondary" type="button" data-toggle="modal" data-target="#lookup">...</button>
-                    </div>
-                </div>
-            </div>
-
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <h:outputText value="#{lbl['entity.organizationChart.parent']}" for="parent"

@@ -88,8 +88,9 @@ public class LookupRenderer extends RendererBase {
         writer.writeAttribute("id", buttonSpanId, null);
         writer.writeAttribute("class", "input-group-append", null);
         writer.startElement("button", component);
+        writer.writeAttribute("type", "button", null);
         writer.writeAttribute("data-toggle", "modal", null);
-        writer.writeAttribute("data-target", "#exampleModalLong", null);
+        writer.writeAttribute("data-target", "#lookup", null);
         if (bindingLookup != null && bindingLookup.isReadOnly()) {
             writer.writeAttribute("readonly", "readonly", null);
         } else if (uiLookup.isReadOnly() == null || !uiLookup.isReadOnly()) {
@@ -111,7 +112,7 @@ public class LookupRenderer extends RendererBase {
                 parameters.append("=");
                 parameters.append(entry.getValue());
             }
-            writer.writeAttribute("onclick", ScriptUtil.returnDialogBuilder(url + parameters.toString()), null);
+            // writer.writeAttribute("onclick", ScriptUtil.returnDialogBuilder(url + parameters.toString()), null);
         } else {
             writer.writeAttribute("readonly", "readonly", null);
         }
