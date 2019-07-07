@@ -150,10 +150,10 @@ public class LookupRenderer extends RendererBase {
         }
         ResponseWriter writer = context.getResponseWriter();
 
-        renderModalDialog("dialog");
+        renderLookupModal("dialog");
     }
 
-    private void renderModalDialog(String dialogPanelGroupId) {
+    private void renderLookupModal(String dialogPanelGroupId) {
         UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
         UIComponent dialog = view.findComponent(dialogPanelGroupId);
         if (dialog != null) {
