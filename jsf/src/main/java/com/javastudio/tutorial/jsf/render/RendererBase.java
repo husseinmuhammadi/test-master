@@ -50,6 +50,5 @@ public class RendererBase extends Renderer {
                                        String componentClientId) {
 
         return (behaviorSourceId != null && behaviorSourceId.equals(componentClientId));
-
     }
 }

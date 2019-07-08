@@ -104,7 +104,7 @@ public abstract class ManagerBase<T extends DTOBase> extends Localization implem
             // String text = String.format("%s %s", insured.getFirstName(), insured.getLastName());
             RequestContext.getCurrentInstance().lookup(parentId, getLookupLabel(entity), entity.getId());
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error", null));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: parent-id is not defined", null));
         }
     }
 

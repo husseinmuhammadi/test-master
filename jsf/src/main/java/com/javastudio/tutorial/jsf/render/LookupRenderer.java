@@ -3,7 +3,6 @@ package com.javastudio.tutorial.jsf.render;
 import com.javastudio.tutorial.jsf.component.FacesComponent;
 import com.javastudio.tutorial.jsf.component.UILookup;
 import com.javastudio.tutorial.jsf.util.RendererUtil;
-import com.javastudio.tutorial.jsf.util.ScriptUtil;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIParameter;
@@ -24,7 +23,23 @@ public class LookupRenderer extends RendererBase {
 
     @Override
     public void decode(FacesContext context, UIComponent component) {
-        super.decode(context, component);
+        RendererUtil.isNull(context, component);
+        if (!component.isRendered()) {
+            return;
+        }
+
+        String clientId = component.getClientId();
+        Object value = context.getExternalContext().getRequestParameterMap().get(clientId.concat("_hdn"));
+        if (value != null && !"".equals(value.toString().trim())) {
+            ((UILookup) component).setValue(value);
+        }
+
+        Object inputText = context.getExternalContext().getRequestParameterMap().get(clientId);
+        if (inputText != null) {
+            ((UILookup) component).setInputText(inputText.toString());
+        }
+
+        decodeBehaviors(context, component);
     }
 
     @Override
@@ -93,27 +108,7 @@ public class LookupRenderer extends RendererBase {
         writer.writeAttribute("data-target", "#lookup", null);
         if (bindingLookup != null && bindingLookup.isReadOnly()) {
             writer.writeAttribute("readonly", "readonly", null);
-        } else if (uiLookup.isReadOnly() == null || !uiLookup.isReadOnly()) {
-            String url = context.getApplication().getViewHandler().getBookmarkableURL(context, uiLookup.getLookupPath(), null, false);
-            StringBuilder parameters = new StringBuilder();
-            parameters.append("?parentId=");
-            parameters.append(clientId);
-            parameters.append("&t=0");
-            Map<String, String> parameterTagValue = RendererUtil.getParameterTagValue(component);
-            List<UIParameter> params = uiLookup.getParams();
-            if (params.size() > 0) {
-                for (UIParameter param : params) {
-                    parameterTagValue.put(param.getName(), param.getValue().toString());
-                }
-            }
-            for (Map.Entry<String, String> entry : parameterTagValue.entrySet()) {
-                parameters.append("&");
-                parameters.append(entry.getKey());
-                parameters.append("=");
-                parameters.append(entry.getValue());
-            }
-            // writer.writeAttribute("onclick", ScriptUtil.returnDialogBuilder(url + parameters.toString()), null);
-        } else {
+        } else if (uiLookup.isReadOnly() != null && uiLookup.isReadOnly()) {
             writer.writeAttribute("readonly", "readonly", null);
         }
         writer.writeAttribute("id", buttonId, null);
@@ -123,6 +118,27 @@ public class LookupRenderer extends RendererBase {
         writer.write("...");
         writer.endElement("button");
         writer.endElement("div");
+
+        String url = context.getApplication().getViewHandler().getBookmarkableURL(context, uiLookup.getLookupPath(), null, false);
+        StringBuilder parameters = new StringBuilder();
+        parameters.append("?parentId=").append(clientId);
+        parameters.append("&partial=0");
+        Map<String, String> parameterTagValue = RendererUtil.getParameterTagValue(component);
+        List<UIParameter> params = uiLookup.getParams();
+        if (params.size() > 0) {
+            for (UIParameter param : params) {
+                parameterTagValue.put(param.getName(), param.getValue().toString());
+            }
+        }
+        for (Map.Entry<String, String> entry : parameterTagValue.entrySet()) {
+            parameters.append("&");
+            parameters.append(entry.getKey());
+            parameters.append("=");
+            parameters.append(entry.getValue());
+        }
+        // writer.writeAttribute("onclick", ScriptUtil.returnDialogBuilder(url + parameters.toString()), null);
+
+        renderLookupModal("dialog", "Select a user from a list", url + parameters.toString(), UUID.randomUUID().toString());
     }
 
     @Override
@@ -141,16 +157,15 @@ public class LookupRenderer extends RendererBase {
         if (!component.isRendered()) {
             return;
         }
-        ResponseWriter writer = context.getResponseWriter();
 
-        renderLookupModal("dialog", "Select a user from a list");
+        ResponseWriter writer = context.getResponseWriter();
     }
 
-    private void renderLookupModal(String dialogContainerId, String title) {
+    private void renderLookupModal(String dialogContainerId, String title, String asyncHttpRequestUrl, String asyncHttpRequestUniqueId) {
         UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
         UIComponent dialog = view.findComponent(dialogContainerId);
         if (dialog != null) {
-            FacesComponent.includeCompositeComponentAndSetValueExpression(dialog, "composite", "dialog.xhtml", "lookupModal");
+            FacesComponent.includeCompositeComponentAndSetValueExpression(dialog, "composite", "dialog.xhtml", "lookupModal", title, asyncHttpRequestUrl, asyncHttpRequestUniqueId);
         }
     }
 

@@ -1,18 +1,16 @@
 package com.javastudio.tutorial.jsf.component;
 
-import javax.el.ELContext;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
 import javax.faces.application.Resource;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIPanel;
 import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.Facelet;
 import javax.faces.view.facelets.FaceletContext;
 import java.io.IOException;
 
 public class FacesComponent {
-    public static void includeCompositeComponentAndSetValueExpression(UIComponent parent, String libraryName, String resourceName, String id) {
+    public static void includeCompositeComponentAndSetValueExpression(UIComponent parent, String libraryName, String resourceName, String id, String title, String asyncHttpRequestUrl, String asyncHttpRequestUniqueId) {
         // Prepare.
         FacesContext context = FacesContext.getCurrentInstance();
         Application application = context.getApplication();
@@ -22,8 +20,9 @@ public class FacesComponent {
         Resource resource = application.getResourceHandler().createResource(resourceName, libraryName);
         UIComponent composite = application.createComponent(context, resource);
 
-        composite.setValueExpression("title", context.getApplication().getExpressionFactory().createValueExpression(context.getELContext(), "Select a user from a list", String.class));
-        // composite.setValueExpression();
+        composite.setValueExpression("title", context.getApplication().getExpressionFactory().createValueExpression(context.getELContext(), title, String.class));
+        composite.setValueExpression("asyncHttpRequestUrl", context.getApplication().getExpressionFactory().createValueExpression(context.getELContext(), asyncHttpRequestUrl, String.class));
+        composite.setValueExpression("asyncHttpRequestUniqueId", context.getApplication().getExpressionFactory().createValueExpression(context.getELContext(), asyncHttpRequestUniqueId, String.class));
 
         composite.setId(id); // Mandatory for the case composite is part of UIForm! Otherwise JSF can't find inputs.
 
@@ -46,6 +45,7 @@ public class FacesComponent {
 
     /**
      * https://stackoverflow.com/questions/5370184/how-to-programmatically-or-dynamically-create-a-composite-component-in-jsf-2/15884546#15884546
+     *
      * @param parent
      * @param libraryName
      * @param resourceName
