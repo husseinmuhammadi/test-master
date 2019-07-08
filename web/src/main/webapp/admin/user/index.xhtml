@@ -52,7 +52,7 @@
 
                         <h:commandLink actionListener="#{userManager.select(user)}">
                             <f:ajax render=":messages entity-list" execute="none"/>
-                            <f:ajax name="parentId" value="#{param.parentId}"/>
+                            <f:param name="parentId" value="#{param.parentId}"/>
                             <h:graphicImage alt="delete" library="images" name="tick-mark.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:commandLink>

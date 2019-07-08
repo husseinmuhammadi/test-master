@@ -51,10 +51,11 @@ public class ParsRequestContext extends RequestContext {
         getCurrentInstance().getScripts().add("$(function(){$('#" + parentId + "').val('" + text + "');");
 //        getCurrentInstance().getScripts().add("$('#" + parentId + "').trigger('change');");
         getCurrentInstance().getScripts().add("$('#" + parentId + "_hdn').val('" + value + "');");
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("var buttons = $('button.myclose');");
-        stringBuilder.append("$(buttons[buttons.length - 1]).trigger('click');");
-        getCurrentInstance().getScripts().add(stringBuilder.toString());
+//        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder.append("var buttons = $('button.myclose');");
+//        stringBuilder.append("$(buttons[buttons.length - 1]).trigger('click');");
+//        getCurrentInstance().getScripts().add(stringBuilder.toString());
+        getCurrentInstance().getScripts().add("$('#lookup').modal('hide');");
         getCurrentInstance().getScripts().add("$('#" + parentId + "').change();});");
     }
 
