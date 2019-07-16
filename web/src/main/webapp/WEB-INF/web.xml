@@ -27,8 +27,8 @@
     </context-param>
 
     <!--<context-param>-->
-        <!--<param-name>javax.faces.SEPARATOR_CHAR</param-name>-->
-        <!--<param-value>-</param-value>-->
+    <!--<param-name>javax.faces.SEPARATOR_CHAR</param-name>-->
+    <!--<param-value>-</param-value>-->
     <!--</context-param>-->
 
     <!-- JSF mapping -->
@@ -64,9 +64,7 @@
     </welcome-file-list>
 
     <listener>
-        <listener-class>
-            com.javastudio.lms.tutorial.web.listener.SecurityListener
-        </listener-class>
+        <listener-class>com.javastudio.lms.tutorial.web.listener.SecurityListener</listener-class>
     </listener>
 
     <filter>

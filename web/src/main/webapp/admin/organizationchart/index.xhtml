@@ -59,6 +59,13 @@
                             <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:commandLink>
+
+                        <h:commandLink actionListener="#{organizationChartManager.select(organizationChart)}">
+                            <f:ajax render=":messages entity-list" execute="none"/>
+                            <f:param name="parentId" value="#{param.parentId}"/>
+                            <h:graphicImage alt="delete" library="images" name="tick-mark.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
                     </h:form>
                 </h:column>
             </h:dataTable>
