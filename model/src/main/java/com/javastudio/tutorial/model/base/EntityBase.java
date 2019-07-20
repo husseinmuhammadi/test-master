@@ -14,6 +14,12 @@ import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.*;
 
+/**
+ * EntityBase is the base class for all entities and all entities should inherit this class.
+ * This class is responsible to provide the primary field to which the <code>Id</code> annotation is applied.
+ * This class also is responsible for audit properties which is represented by Embedded Audit class.
+ * The audit properties will not populate unless the entity implement the auditable and apply the EntityListeners annotation.
+ */
 @MappedSuperclass
 @EntityListeners(EntityLogger.class)
 public abstract class EntityBase implements HasState {
