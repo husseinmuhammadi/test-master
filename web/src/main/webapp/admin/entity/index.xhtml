@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:param name="header" value="#{lbl['title.entity.index']}"/>
+
+    <ui:define name="mainContent">
+        <h:panelGroup layout="block" id="people">
+            <h:dataTable value="#{entityDescriptorManager.entityModelDescriptors}" var="entityDescriptor"
+                         styleClass="table table-striped table-bordered dt-responsive nowrap">
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.id']}</f:facet>
+                    <h:link value="#{entityDescriptor.id}" outcome="profile">
+                        <f:param name="id" value="#{entityDescriptor.id}"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.entityDescriptor.entityMetaValue']}</f:facet>
+                    #{entityDescriptor.entityMetaValue}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.entityDescriptor.currentState']}</f:facet>
+                    #{entityDescriptor.currentState}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.entityDescriptor.nextState']}</f:facet>
+                    #{entityDescriptor.nextState}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['entity.entityDescriptor.requiredPermission']}</f:facet>
+                    #{entityDescriptor.requiredPermission}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['label.header.options']}</f:facet>
+
+                    <h:form styleClass="form-group">
+                        <h:link outcome="insert">
+                            <f:param name="id" value="#{entityDescriptor.id}"/>
+                            <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:link>
+
+                        <h:commandLink actionListener="#{entityDescriptorManager.remove(entityDescriptor)}">
+                            <f:ajax render=":messages people"/>
+                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
+
+                        <h:commandLink actionListener="#{entityDescriptorController.remove(entityDescriptor)}"
+                                       action="#{personManager.populate}">
+                            <f:ajax render=":messages people"/>
+                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
+
+                        <h:commandLink actionListener="#{entityDescriptorController.remove}"
+                                       action="#{entityDescriptorManager.populate}">
+                            <f:param name="id" value="#{entityDescriptor.id}"/>
+                            <f:ajax render=":messages people"/>
+                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <f:ajax render=":messages people" listener="#{entityDescriptorController.facetListener}"/>
+                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                            styleClass="img-responsive"/>
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
+
+        <h:link value="#{lbl['button.add']}" outcome="insert" styleClass="btn btn-outline-primary"/>
+    </ui:define>
+</ui:composition>

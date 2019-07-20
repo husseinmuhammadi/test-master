@@ -18,7 +18,7 @@
         <class>com.javastudio.tutorial.model.to.PersonalIdentificationNumber</class>
         <class>com.javastudio.tutorial.model.to.Dashboard</class>
         <class>com.javastudio.tutorial.model.to.Task</class>
-        <class>com.javastudio.tutorial.model.to.EntityState</class>
+        <class>com.javastudio.tutorial.model.to.EntityModelDescriptor</class>
         <class>com.javastudio.tutorial.model.to.TaskDetails</class>
         <class>com.javastudio.tutorial.model.to.TaskComment</class>
         <class>com.javastudio.tutorial.model.to.Tag</class>

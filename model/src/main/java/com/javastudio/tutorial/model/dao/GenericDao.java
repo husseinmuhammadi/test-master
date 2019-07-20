@@ -1,15 +1,12 @@
 package com.javastudio.tutorial.model.dao;
 
 import com.javastudio.tutorial.model.base.EntityBase;
-import com.javastudio.tutorial.model.to.EntityState;
 import org.slf4j.Logger;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.metamodel.EntityType;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -41,11 +38,11 @@ public abstract class GenericDao<T extends EntityBase> {
         return t;
     }
 
-    public EntityState create(EntityState entityState) {
-        logger.info("GenericDao --> create");
-        entityManager.persist(entityState);
-        return entityState;
-    }
+//    public EntityState create(EntityState entityState) {
+//        logger.info("GenericDao --> create");
+//        entityManager.persist(entityState);
+//        return entityState;
+//    }
 
     public void remove(T t) {
         if (entityManager.contains(t))
@@ -69,10 +66,8 @@ public abstract class GenericDao<T extends EntityBase> {
         return entityManager.find(entityBeanType, id);
     }
 
-    // TODO: Add method body
-    public abstract List<T> findAll();/* {
-        return createNamedQuery(T.FIND_ALL).getResultList();
-    }*/
+    // TODO: Add method body https://github.com/jaxio/jpa-query-by-example/blob/master/src/main/java/com/jaxio/jpa/querybyexample/GenericRepository.java
+    public abstract List<T> findAll();
 
     public TypedQuery<T> createNamedQuery(String queryName) {
         logger.debug(MessageFormat.format("Create named query: {0}", queryName));
