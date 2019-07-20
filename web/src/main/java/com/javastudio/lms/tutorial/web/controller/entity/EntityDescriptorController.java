@@ -44,11 +44,11 @@ public class EntityDescriptorController extends ControllerBase<EntityModelDescri
 
     }
 
-    public EntityModelDescriptor getEntityModelDescriptorDTO() {
+    public EntityModelDescriptor getEntityDescriptor() {
         return entity;
     }
 
-    public void setEntityModelDescriptorDTO(EntityModelDescriptor entityModelDescriptor) {
+    public void setEntityDescriptor(EntityModelDescriptor entityModelDescriptor) {
         this.entity = entityModelDescriptor;
     }
 

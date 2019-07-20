@@ -5,7 +5,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="/WEB-INF/templates/template.xhtml">
 
-    <ui:param name="header" value="#{lbl['title.entity.index']}"/>
+    <ui:param name="header" value="#{lbl['title.entityDescriptor.index']}"/>
 
     <ui:define name="mainContent">
         <h:panelGroup layout="block" id="people">
@@ -39,6 +39,16 @@
                 </h:column>
 
                 <h:column>
+                    <f:facet name="header">#{lbl['label.entity.status']}</f:facet>
+                    #{entityDescriptor.status}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{lbl['label.entity.description']}</f:facet>
+                    #{entityDescriptor.description}
+                </h:column>
+
+                <h:column>
                     <f:facet name="header">#{lbl['label.header.options']}</f:facet>
 
                     <h:form styleClass="form-group">
@@ -50,27 +60,6 @@
 
                         <h:commandLink actionListener="#{entityDescriptorManager.remove(entityDescriptor)}">
                             <f:ajax render=":messages people"/>
-                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
-                                            styleClass="img-responsive"/>
-                        </h:commandLink>
-
-                        <h:commandLink actionListener="#{entityDescriptorController.remove(entityDescriptor)}"
-                                       action="#{personManager.populate}">
-                            <f:ajax render=":messages people"/>
-                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
-                                            styleClass="img-responsive"/>
-                        </h:commandLink>
-
-                        <h:commandLink actionListener="#{entityDescriptorController.remove}"
-                                       action="#{entityDescriptorManager.populate}">
-                            <f:param name="id" value="#{entityDescriptor.id}"/>
-                            <f:ajax render=":messages people"/>
-                            <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
-                                            styleClass="img-responsive"/>
-                        </h:commandLink>
-
-                        <h:commandLink>
-                            <f:ajax render=":messages people" listener="#{entityDescriptorController.facetListener}"/>
                             <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
                                             styleClass="img-responsive"/>
                         </h:commandLink>
