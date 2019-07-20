@@ -1,10 +1,6 @@
 package com.javastudio.tutorial.model.to;
 
 import com.javastudio.tutorial.model.base.EntityBase;
-import com.javastudio.tutorial.model.base.HasState;
-import org.hibernate.annotations.Any;
-import org.hibernate.annotations.AnyMetaDef;
-import org.hibernate.annotations.MetaValue;
 
 import javax.persistence.*;
 

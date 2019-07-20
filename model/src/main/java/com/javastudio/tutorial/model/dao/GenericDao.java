@@ -38,12 +38,6 @@ public abstract class GenericDao<T extends EntityBase> {
         return t;
     }
 
-//    public EntityState create(EntityState entityState) {
-//        logger.info("GenericDao --> create");
-//        entityManager.persist(entityState);
-//        return entityState;
-//    }
-
     public void remove(T t) {
         if (entityManager.contains(t))
             entityManager.remove(t);

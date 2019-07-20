@@ -1,7 +1,7 @@
 package com.javastudio.tutorial.model.listener;
 
-import com.javastudio.tutorial.model.base.Audit;
 import com.javastudio.tutorial.model.base.Auditable;
+import com.javastudio.tutorial.model.embeddable.Audit;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -13,7 +13,7 @@ public class AuditListener {
     public void setCreatedOn(Auditable auditable) {
         Audit audit = auditable.getAudit();
 
-        if(audit == null) {
+        if (audit == null) {
             audit = new Audit();
             auditable.setAudit(audit);
         }

@@ -1,6 +1,10 @@
 package com.javastudio.tutorial.model.to;
 
+import com.javastudio.tutorial.model.base.Auditable;
 import com.javastudio.tutorial.model.base.EntityBase;
+import com.javastudio.tutorial.model.base.StateTracker;
+import com.javastudio.tutorial.model.listener.AuditListener;
+import com.javastudio.tutorial.model.listener.StateTrackerListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +17,8 @@ import java.util.Set;
         @NamedQuery(name = OrganizationChart.FIND_ALL, query = "select o from OrganizationChart o"),
         @NamedQuery(name = OrganizationChart.FIND_BY_ORGANIZATION_DESCRIPTOR, query = "select o from OrganizationChart o where o.corporateId = :corporateId and o.title = :title and coalesce(o.user.username, 'reserved') = coalesce(:username, 'reserved')"),
 })
-public class OrganizationChart extends EntityBase {
+@EntityListeners({AuditListener.class, StateTrackerListener.class})
+public class OrganizationChart extends EntityBase implements Auditable, StateTracker {
 
     public static final String FIND_ALL = "OrganizationChart.findAll";
     public static final String FIND_BY_ORGANIZATION_DESCRIPTOR = "OrganizationChart.findByOrganizationDescriptor";

@@ -1,6 +1,5 @@
 package com.javastudio.tutorial.model.to;
 
-import com.javastudio.tutorial.model.base.Audit;
 import com.javastudio.tutorial.model.base.Auditable;
 import com.javastudio.tutorial.model.base.EntityBase;
 import com.javastudio.tutorial.model.listener.AuditListener;
@@ -23,8 +22,6 @@ public class Task extends EntityBase implements Auditable {
     @Column(name = "TASK_DESCRIPTION", length = 400)
     String taskDescription;
 
-    @Embedded
-    Audit audit;
 
     String title;
 
@@ -61,16 +58,6 @@ public class Task extends EntityBase implements Auditable {
 
     public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
-    }
-
-    @Override
-    public Audit getAudit() {
-        return audit;
-    }
-
-    @Override
-    public void setAudit(Audit audit) {
-        this.audit = audit;
     }
 
 //    @PostLoad

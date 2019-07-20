@@ -1,28 +1,19 @@
 package com.javastudio.tutorial.model.base;
 
+import com.javastudio.tutorial.model.embeddable.Audit;
 import com.javastudio.tutorial.model.listener.EntityLogger;
-import com.javastudio.tutorial.model.to.Activity;
-import org.apache.commons.lang3.ArrayUtils;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.text.MessageFormat;
-import java.util.*;
 
 /**
  * EntityBase is the base class for all entities and all entities should inherit this class.
- * This class is responsible to provide the primary field to which the <code>Id</code> annotation is applied.
+ * This class is responsible to provide the primary field to which the <code>Id</code> annotation is applied and version for optimistic lock.
  * This class also is responsible for audit properties which is represented by Embedded Audit class.
  * The audit properties will not populate unless the entity implement the auditable and apply the EntityListeners annotation.
  */
 @MappedSuperclass
 @EntityListeners(EntityLogger.class)
-public abstract class EntityBase implements HasState {
+public abstract class EntityBase {
 
     protected static final String NEW_LINE = System.getProperty("line.separator");
     public static final String STATUS = "STATUS";
@@ -39,6 +30,10 @@ public abstract class EntityBase implements HasState {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GENERATOR")
     private Long id;
 
+    @Embedded
+    private Audit audit;
+
+    /*
     @Past
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,6 +51,7 @@ public abstract class EntityBase implements HasState {
     @NotNull
     @Column(name = "UPDATE_BY", nullable = false, updatable = false, length = 100)
     private String updateBy;
+    */
 
     @Version
     @Column(nullable = false, columnDefinition = "NUMBER(19,0) default 0")
@@ -68,8 +64,9 @@ public abstract class EntityBase implements HasState {
     private String description;
 
     @Column(name = STATUS, length = 100)
-    private String status;
+    private String state;
 
+    /*
     @PrePersist
     private void prePersist() {
         createOn = new Date();
@@ -80,93 +77,7 @@ public abstract class EntityBase implements HasState {
     private void preUpdate() {
         updateOn = new Date();
     }
-
-    public void resetValues() {
-        try {
-            Field[] fields = this.getClass().getDeclaredFields();
-            Field[] supperFields = this.getClass().getSuperclass().getDeclaredFields();
-            Field[] allFields = ArrayUtils.addAll(fields, supperFields);
-            Object o = this.getClass().newInstance();
-
-            for (Field field : allFields) {
-                String name = field.getName();
-                if (java.lang.reflect.Modifier.isStatic(field.getModifiers()) || name.startsWith("_")) {
-                    continue;
-                }
-                Class<?> type = field.getType();
-
-                Method setterMethod = this.getClass().getMethod("set" + name.substring(0, 1).toUpperCase() + name.substring(1), type);
-                Method getterMethod;
-                if (!type.equals(Boolean.class)) {
-                    getterMethod = this.getClass().getMethod("get" + name.substring(0, 1).toUpperCase() + name.substring(1));
-                } else {
-                    getterMethod = this.getClass().getMethod("is" + name.substring(0, 1).toUpperCase() + name.substring(1));
-                }
-                setterMethod.invoke(this, getterMethod.invoke(o));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<String> getFieldNames() {
-        List<String> fieldNames = new ArrayList<String>();
-
-        for (Field field : this.getClass().getDeclaredFields()) {
-            Class type = field.getType();
-            String name = field.getName();
-            Annotation[] annotations = field.getDeclaredAnnotations();
-
-            if (java.lang.reflect.Modifier.isStatic(field.getModifiers()) || name.startsWith("_")) {
-                continue;
-            }
-
-            fieldNames.add(name);
-        }
-
-        return fieldNames;
-    }
-
-    public Object getFieldValue(String fieldName, ResourceBundle labelBundle) {
-        Object value = null;
-
-        System.out.println(
-                MessageFormat.format("Get {0}.{1}", this.getClass().getName(), fieldName)
-        );
-
-        try {
-            Field[] fields = this.getClass().getDeclaredFields();
-            for (Field field : fields) {
-                String name = field.getName();
-                if (!name.equals(fieldName)) {
-                    continue;
-                }
-
-                Class<?> type = field.getType();
-
-                Method setterMethod = null;
-                setterMethod = this.getClass().getMethod("set" + name.substring(0, 1).toUpperCase() + name.substring(1), type);
-                Method getterMethod;
-                if (!type.equals(Boolean.class)) {
-                    getterMethod = this.getClass().getMethod("get" + name.substring(0, 1).toUpperCase() + name.substring(1));
-                } else {
-                    getterMethod = this.getClass().getMethod("is" + name.substring(0, 1).toUpperCase() + name.substring(1));
-                }
-                value = getterMethod.invoke(this);
-            }
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return value;
-    }
-
-    public Date getCreateOn() {
-        return createOn;
-    }
-
-    public Date getUpdateOn() {
-        return updateOn;
-    }
+    */
 
     public Long getId() {
         return id;
@@ -192,14 +103,6 @@ public abstract class EntityBase implements HasState {
         this.version = version;
     }
 
-    public void setCreateOn(Date createOn) {
-        this.createOn = createOn;
-    }
-
-    public void setUpdateOn(Date updateOn) {
-        this.updateOn = updateOn;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -208,28 +111,19 @@ public abstract class EntityBase implements HasState {
         this.description = description;
     }
 
-    @Override
-    public String getStatus() {
-        return status;
+    public Audit getAudit() {
+        return audit;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAudit(Audit audit) {
+        this.audit = audit;
     }
 
-    public String getCreateBy() {
-        return createBy;
+    public String getState() {
+        return state;
     }
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
+    public void setState(String state) {
+        this.state = state;
     }
 }

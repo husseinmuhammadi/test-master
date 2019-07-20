@@ -2,7 +2,7 @@ package com.javastudio.tutorial.model.to;
 
 
 import com.javastudio.tutorial.model.base.EntityBase;
-import com.javastudio.tutorial.model.base.HasState;
+import com.javastudio.tutorial.model.base.StateTracker;
 import org.hibernate.annotations.Any;
 import org.hibernate.annotations.AnyMetaDef;
 import org.hibernate.annotations.MetaValue;
@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "DASHBOARD")
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "DASHBOARD_SEQ")
 @NamedQueries(
-        @NamedQuery(name = Dashboard.FIND_ALL,query = "select t from Dashboard t")
+        @NamedQuery(name = Dashboard.FIND_ALL, query = "select t from Dashboard t")
 )
 public class Dashboard extends EntityBase {
 
@@ -33,8 +33,15 @@ public class Dashboard extends EntityBase {
             }
     )
     @JoinColumn(name = "entity_id")
-    private HasState entity;
+    private StateTracker stateTracker;
 
-    String status;
-    
+    private String entityState;
+
+    public StateTracker getStateTracker() {
+        return stateTracker;
+    }
+
+    public void setStateTracker(StateTracker stateTracker) {
+        this.stateTracker = stateTracker;
+    }
 }

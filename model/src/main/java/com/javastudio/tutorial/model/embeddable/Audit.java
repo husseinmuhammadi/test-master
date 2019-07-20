@@ -1,11 +1,18 @@
-package com.javastudio.tutorial.model.base;
+package com.javastudio.tutorial.model.embeddable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Embeddable
 public class Audit {
+
+    // region Fields
     @Column(name = "created_on")
     private LocalDateTime createdOn;
 
@@ -17,6 +24,7 @@ public class Audit {
 
     @Column(name = "updated_by")
     private String updatedBy;
+    // region Fields
 
     // region Getters & Setters
 
