@@ -19,12 +19,12 @@ public abstract class GenericDao<T extends EntityBase> {
     @Inject
     private Logger logger;
 
+    @Inject
+    private EntityManager entityManager;
+
     protected EntityManager getEntityManager() {
         return entityManager;
     }
-
-    @Inject
-    private EntityManager entityManager;
 
     private final Class<T> entityBeanType;
 

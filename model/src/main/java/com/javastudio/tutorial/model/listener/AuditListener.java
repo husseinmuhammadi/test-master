@@ -6,6 +6,7 @@ import com.javastudio.tutorial.model.embeddable.Audit;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class AuditListener {
 
@@ -18,7 +19,8 @@ public class AuditListener {
             auditable.setAudit(audit);
         }
 
-        audit.setCreatedOn(LocalDateTime.now());
+        // audit.setCreatedOn(LocalDateTime.now());
+        audit.setCreatedOn(new Date());
         audit.setCreatedBy(/*LoggedUser.get()*/ "");
     }
 
@@ -26,7 +28,8 @@ public class AuditListener {
     public void setUpdatedOn(Auditable auditable) {
         Audit audit = auditable.getAudit();
 
-        audit.setUpdatedOn(LocalDateTime.now());
+        // audit.setUpdatedOn(LocalDateTime.now());
+        audit.setUpdatedOn(new Date());
         audit.setUpdatedBy(/*LoggedUser.get()*/ "");
     }
 }

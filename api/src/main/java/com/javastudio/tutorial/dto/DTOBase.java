@@ -29,7 +29,7 @@ public abstract class DTOBase {
 
     private String description;
 
-    private String status;
+    private String state;
 
     private String createBy;
 
@@ -83,12 +83,12 @@ public abstract class DTOBase {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
+    public String getState() {
+        return state;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getCreateBy() {
@@ -122,5 +122,15 @@ public abstract class DTOBase {
 
         return Objects.equals(getId(), dtoBase.getId()) &&
                 Objects.equals(getVersion(), dtoBase.getVersion());
+    }
+
+    Audit audit;
+
+    public Audit getAudit() {
+        return audit;
+    }
+
+    public void setAudit(Audit audit) {
+        this.audit = audit;
     }
 }

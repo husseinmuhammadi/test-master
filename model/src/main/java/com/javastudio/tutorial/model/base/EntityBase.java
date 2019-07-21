@@ -16,7 +16,7 @@ import javax.persistence.*;
 public abstract class EntityBase {
 
     protected static final String NEW_LINE = System.getProperty("line.separator");
-    public static final String STATUS = "STATUS";
+    public static final String STATE = "STATE";
 
     public EntityBase() {
 
@@ -34,7 +34,6 @@ public abstract class EntityBase {
     private Audit audit;
 
     /*
-    @Past
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CREATE_ON", nullable = false, updatable = false, columnDefinition = "Date default sysdate")
@@ -63,7 +62,7 @@ public abstract class EntityBase {
     @Column(name = "DESCRIPTION", length = 300)
     private String description;
 
-    @Column(name = STATUS, length = 100)
+    @Column(name = STATE, length = 100)
     private String state;
 
     /*

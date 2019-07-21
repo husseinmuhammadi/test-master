@@ -1,38 +1,43 @@
 package com.javastudio.tutorial.model.listener;
 
 import com.javastudio.tutorial.model.base.EntityBase;
+import org.slf4j.Logger;
 
+import javax.inject.Inject;
 import javax.persistence.*;
 
 public class EntityLogger {
 
+    @Inject
+    Logger logger;
+
     @PrePersist
     public void methodInvokedBeforePersist(EntityBase entity) {
-        System.out.println("persisting employee with id = " + entity.getId());
+        logger.info("Persisting " + entity.getClass().getSimpleName() + " with id = " + entity.getId());
     }
 
     @PostPersist
     public void methodInvokedAfterPersist(EntityBase entity) {
-        System.out.println("Persisted employee with id = " + entity.getId());
+        logger.info("Persisted " + entity.getClass().getSimpleName() + " with id = " + entity.getId());
     }
 
     @PreUpdate
     public void methodInvokedBeforeUpdate(EntityBase entity) {
-        System.out.println("Updating employee with id = " + entity.getId());
+        logger.info("Updating " + entity.getClass().getSimpleName() + " with id = " + entity.getId());
     }
 
     @PostUpdate
     public void methodInvokedAfterUpdate(EntityBase entity) {
-        System.out.println("Updated employee with id = " + entity.getId());
+        logger.info("Updated " + entity.getClass().getSimpleName() + " with id = " + entity.getId());
     }
 
     @PreRemove
     private void methodInvokedBeforeRemove(EntityBase entity) {
-        System.out.println("Removing employee with id = " + entity.getId());
+        logger.info("Removing " + entity.getClass().getSimpleName() + " with id = " + entity.getId());
     }
 
     @PostRemove
     public void methodInvokedAfterRemove(EntityBase entity) {
-        System.out.println("Removed employee with id = " + entity.getId());
+        logger.info("Removed " + entity.getClass().getSimpleName() + " with id = " + entity.getId());
     }
 }

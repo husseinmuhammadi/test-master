@@ -90,6 +90,16 @@
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
+                    <h:outputText value="#{lbl['label.entity.state']}" for="state"
+                                  styleClass="input-group-text"/>
+                </div>
+                <h:inputText value="#{organizationChartController.organizationChart.state}"
+                             id="state" label="#{lbl['label.entity.state']}" required="true"
+                             styleClass="form-control" pt:placeholder="#{lbl['label.entity.state']}"/>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
                     <h:outputText for="description" value="#{lbl['label.entity.description']}"
                                   styleClass="input-group-text"/>
                 </div>

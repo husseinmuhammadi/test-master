@@ -1,12 +1,9 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.GeneralServiceApi;
-import com.javastudio.tutorial.model.base.StateTracker;
-import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.dto.DTOBase;
 import com.javastudio.tutorial.model.base.EntityBase;
-import com.javastudio.tutorial.model.to.Dashboard;
-import com.sun.org.apache.xerces.internal.impl.validation.EntityState;
+import com.javastudio.tutorial.model.dao.GenericDao;
 import org.dozer.DozerBeanMapperSingletonWrapper;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
