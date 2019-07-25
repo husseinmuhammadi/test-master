@@ -2,14 +2,13 @@ package com.javastudio.lms.tutorial.web.controller.auth;
 
 import com.javastudio.lms.tutorial.web.security.BCryptPasswordService;
 import com.javastudio.tutorial.api.UserService;
-import com.javastudio.tutorial.dto.UserDTO;
+import com.javastudio.tutorial.dto.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.SavedRequest;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -94,7 +93,7 @@ public class LoginController implements Serializable {
     }
 
     public void signup() {
-        UserDTO user = new UserDTO();
+        User user = new User();
         user.setUsername(username);
         user.setPassword(passwordService.encryptPassword(password));
         user.setEnabled(Boolean.TRUE);

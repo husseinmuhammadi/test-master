@@ -4,11 +4,10 @@ import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.lms.tutorial.web.security.BCryptPasswordService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.PersonService;
-import com.javastudio.tutorial.dto.PersonDTO;
+import com.javastudio.tutorial.dto.Person;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +16,7 @@ import java.time.LocalDateTime;
 
 @Named
 @ViewScoped
-public class PersonController extends ControllerBase<PersonDTO> implements Serializable {
+public class PersonController extends ControllerBase<Person> implements Serializable {
 
     private static final long serialVersionUID = 3233666231649250158L;
 
@@ -31,11 +30,11 @@ public class PersonController extends ControllerBase<PersonDTO> implements Seria
     PersonService service;
 
     public PersonController() {
-        super(PersonDTO.class);
+        super(Person.class);
     }
 
     @Override
-    public GeneralServiceApi<PersonDTO> getGeneralServiceApi() {
+    public GeneralServiceApi<Person> getGeneralServiceApi() {
         return service;
     }
 
@@ -49,11 +48,11 @@ public class PersonController extends ControllerBase<PersonDTO> implements Seria
 
     }
 
-    public PersonDTO getPerson() {
+    public Person getPerson() {
         return super.entity;
     }
 
-    public void setPerson(PersonDTO person) {
+    public void setPerson(Person person) {
         super.entity = person;
     }
 

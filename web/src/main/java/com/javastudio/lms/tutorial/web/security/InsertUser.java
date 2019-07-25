@@ -1,9 +1,8 @@
 package com.javastudio.lms.tutorial.web.security;
 
-import com.javastudio.lms.tutorial.web.controller.user.UserInformation;
 import com.javastudio.tutorial.api.UserService;
-import com.javastudio.tutorial.dto.PersonDTO;
-import com.javastudio.tutorial.dto.UserDTO;
+import com.javastudio.tutorial.dto.Person;
+import com.javastudio.tutorial.dto.User;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +10,6 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import javax.persistence.metamodel.EntityType;
 
 /**
  * Created by nebrass on 25/12/2015.
@@ -32,13 +30,13 @@ public class InsertUser {
     @PostConstruct
     public void insert() {
         try {
-            UserDTO user = userService.findByUsername("admin");
+            User user = userService.findByUsername("admin");
             if (user != null) {
                 logger.info("User admin already exists.");
                 return;
             }
 
-            UserDTO admin = new UserDTO();
+            User admin = new User();
             admin.setUsername("admin");
             admin.setPassword(passwordService.encryptPassword("admin"));
             admin.setDescription("Administrator");
@@ -46,7 +44,7 @@ public class InsertUser {
             admin.setCreateBy("system");
             admin.setUpdateBy("system");
 
-            PersonDTO person = new PersonDTO("Hossein", "Mohammadi");
+            Person person = new Person("Hossein", "Mohammadi");
             person.setCreateBy("system");
             person.setUpdateBy("system");
 

@@ -1,10 +1,10 @@
 package com.javastudio.tutorial.api;
 
-import com.javastudio.tutorial.dto.UserDTO;
+import com.javastudio.tutorial.dto.User;
 
-public interface UserService extends GeneralServiceApi<UserDTO> {
+public interface UserService extends GeneralServiceApi<User> {
 
-    UserDTO findByUsername(String username);
+    User findByUsername(String username);
 
-    UserDTO findByEmail(String email);
+    User findByEmail(String email);
 }

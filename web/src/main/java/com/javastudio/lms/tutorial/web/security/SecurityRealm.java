@@ -2,7 +2,7 @@ package com.javastudio.lms.tutorial.web.security;
 
 import com.javastudio.lms.tutorial.web.controller.user.UserInformation;
 import com.javastudio.tutorial.api.UserService;
-import com.javastudio.tutorial.dto.UserDTO;
+import com.javastudio.tutorial.dto.User;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -38,7 +38,7 @@ public class SecurityRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         String username = token.getUsername();
 
-        UserDTO user = userService.findByUsername(username);
+        User user = userService.findByUsername(username);
 
         if (user == null) {
             logger.warn("No account found for user [{}]", username);

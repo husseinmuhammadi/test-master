@@ -1,11 +1,11 @@
 package com.javastudio.tutorial.dto;
 
-public class PersonDTO extends DTOBase {
+public class Person extends DTOBase {
 
-    public PersonDTO() {
+    public Person() {
     }
 
-    public PersonDTO(String firstName, String lastName) {
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

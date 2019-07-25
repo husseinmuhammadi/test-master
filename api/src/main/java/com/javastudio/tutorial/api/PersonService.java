@@ -1,10 +1,10 @@
 package com.javastudio.tutorial.api;
 
-import com.javastudio.tutorial.dto.PersonDTO;
+import com.javastudio.tutorial.dto.Person;
 
 import javax.ejb.Local;
 
 @Local
-public interface PersonService extends GeneralServiceApi<PersonDTO> {
+public interface PersonService extends GeneralServiceApi<Person> {
 
 }

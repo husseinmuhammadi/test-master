@@ -5,7 +5,7 @@ import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.OrganizationChartService;
 import com.javastudio.tutorial.api.UserService;
-import com.javastudio.tutorial.dto.OrganizationChartDTO;
+import com.javastudio.tutorial.dto.OrganizationChart;
 import com.javastudio.tutorial.jsf.component.UILookup;
 import org.slf4j.Logger;
 
@@ -22,7 +22,7 @@ import java.util.List;
 @ShiroSecured
 @Named
 @ViewScoped
-public class OrganizationChartController extends ControllerBase<OrganizationChartDTO> implements Serializable {
+public class OrganizationChartController extends ControllerBase<OrganizationChart> implements Serializable {
 
     private static final long serialVersionUID = -4360806817248079581L;
 
@@ -49,12 +49,12 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
 
     // region Constructor
     public OrganizationChartController() {
-        super(OrganizationChartDTO.class);
+        super(OrganizationChart.class);
     }
     // endregion Constructor
 
     @Override
-    public GeneralServiceApi<OrganizationChartDTO> getGeneralServiceApi() {
+    public GeneralServiceApi<OrganizationChart> getGeneralServiceApi() {
         return service;
     }
 
@@ -87,11 +87,11 @@ public class OrganizationChartController extends ControllerBase<OrganizationChar
 
     // region Getters & Setters
 
-    public OrganizationChartDTO getOrganizationChart() {
+    public OrganizationChart getOrganizationChart() {
         return super.entity;
     }
 
-    public void setOrganizationChart(OrganizationChartDTO organizationChart) {
+    public void setOrganizationChart(OrganizationChart organizationChart) {
         super.entity = organizationChart;
     }
 

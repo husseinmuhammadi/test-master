@@ -2,7 +2,7 @@ package com.javastudio.lms.tutorial.web.converter;
 
 import com.javastudio.lms.tutorial.web.controller.common.SelectItemsController;
 import com.javastudio.tutorial.api.OrganizationChartService;
-import com.javastudio.tutorial.dto.OrganizationChartDTO;
+import com.javastudio.tutorial.dto.OrganizationChart;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -41,7 +41,7 @@ public class OrganizationChartConverter implements Converter {
         if (o == null)
             return null;
 
-        OrganizationChartDTO organizationChart = (OrganizationChartDTO) o;
+        OrganizationChart organizationChart = (OrganizationChart) o;
 
         String corporateId = organizationChart.getCorporateId();
         String title = organizationChart.getTitle();

@@ -2,7 +2,7 @@ package com.javastudio.lms.tutorial.web.converter;
 
 import com.javastudio.lms.tutorial.web.controller.common.SelectItemsController;
 import com.javastudio.tutorial.api.UserService;
-import com.javastudio.tutorial.dto.UserDTO;
+import com.javastudio.tutorial.dto.User;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -35,6 +35,6 @@ public class UserConverter implements Converter {
         if (user == null)
             return null;
 
-        return ((UserDTO)user).getUsername();
+        return ((User) user).getUsername();
     }
 }

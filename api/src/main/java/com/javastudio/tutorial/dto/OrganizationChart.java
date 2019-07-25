@@ -2,17 +2,17 @@ package com.javastudio.tutorial.dto;
 
 import java.util.Set;
 
-public class OrganizationChartDTO extends DTOBase {
+public class OrganizationChart extends DTOBase {
 
     private String corporateId;
 
-    private UserDTO user;
+    private User user;
 
     private String title;
 
-    private OrganizationChartDTO parent;
+    private OrganizationChart parent;
 
-    private Set<OrganizationChartDTO> children;
+    private Set<OrganizationChart> children;
 
     public String getTitle() {
         return title;
@@ -22,19 +22,19 @@ public class OrganizationChartDTO extends DTOBase {
         this.title = title;
     }
 
-    public OrganizationChartDTO getParent() {
+    public OrganizationChart getParent() {
         return parent;
     }
 
-    public void setParent(OrganizationChartDTO parent) {
+    public void setParent(OrganizationChart parent) {
         this.parent = parent;
     }
 
-    public Set<OrganizationChartDTO> getChildren() {
+    public Set<OrganizationChart> getChildren() {
         return children;
     }
 
-    public void setChildren(Set<OrganizationChartDTO> children) {
+    public void setChildren(Set<OrganizationChart> children) {
         this.children = children;
     }
 
@@ -46,11 +46,11 @@ public class OrganizationChartDTO extends DTOBase {
         this.corporateId = corporateId;
     }
 
-    public UserDTO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

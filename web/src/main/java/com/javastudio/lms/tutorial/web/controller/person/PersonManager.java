@@ -3,7 +3,7 @@ package com.javastudio.lms.tutorial.web.controller.person;
 import com.javastudio.lms.tutorial.web.controller.base.ManagerBase;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.PersonService;
-import com.javastudio.tutorial.dto.PersonDTO;
+import com.javastudio.tutorial.dto.Person;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class PersonManager extends ManagerBase<PersonDTO> implements Serializable {
+public class PersonManager extends ManagerBase<Person> implements Serializable {
 
     private static final long serialVersionUID = -9051371651827827993L;
 
@@ -26,7 +26,7 @@ public class PersonManager extends ManagerBase<PersonDTO> implements Serializabl
     PersonService service;
 
     public PersonManager() {
-        super(PersonDTO.class);
+        super(Person.class);
     }
 
     @Override
@@ -35,16 +35,14 @@ public class PersonManager extends ManagerBase<PersonDTO> implements Serializabl
     }
 
     @Override
-    public GeneralServiceApi<PersonDTO> getGeneralServiceApi() {
+    public GeneralServiceApi<Person> getGeneralServiceApi() {
         return service;
     }
 
-    public List<PersonDTO> getPeople() {
+    public List<Person> getPeople() {
         logger.info("PersonManager --> getPeople");
         return entityList;
     }
-
-
 
 
 }

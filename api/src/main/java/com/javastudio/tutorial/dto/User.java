@@ -3,7 +3,7 @@ package com.javastudio.tutorial.dto;
 import java.util.Locale;
 import java.util.Set;
 
-public class UserDTO extends DTOBase {
+public class User extends DTOBase {
 
     private String username;
 
@@ -11,7 +11,7 @@ public class UserDTO extends DTOBase {
 
     private Boolean enabled;
 
-    PersonDTO person;
+    Person person;
 
     private Set<RoleDTO> roles;
 
@@ -49,11 +49,11 @@ public class UserDTO extends DTOBase {
         this.roles = roles;
     }
 
-    public PersonDTO getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public void setPerson(PersonDTO person) {
+    public void setPerson(Person person) {
         this.person = person;
     }
 
