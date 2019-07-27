@@ -1,9 +1,9 @@
 package com.javastudio.tutorial.service;
 
-import com.javastudio.tutorial.api.OrganizationChartService;
+import com.javastudio.tutorial.api.DashboardService;
+import com.javastudio.tutorial.model.dao.DashboardDao;
 import com.javastudio.tutorial.model.dao.GenericDao;
-import com.javastudio.tutorial.model.dao.OrganizationChartDao;
-import com.javastudio.tutorial.model.to.OrganizationChart;
+import com.javastudio.tutorial.model.to.Dashboard;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -12,26 +12,21 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-@Local(OrganizationChartService.class)
-public class DashboardServiceImpl extends GeneralServiceImpl<OrganizationChart, com.javastudio.tutorial.dto.OrganizationChart> implements OrganizationChartService {
+@Local(DashboardService.class)
+public class DashboardServiceImpl extends GeneralServiceImpl<Dashboard, com.javastudio.tutorial.dto.Dashboard> implements DashboardService {
 
     @Inject
     private Logger logger;
 
     @EJB
-    OrganizationChartDao dao;
+    DashboardDao dao;
 
     public DashboardServiceImpl() {
-        super(OrganizationChart.class, com.javastudio.tutorial.dto.OrganizationChart.class);
+        super(Dashboard.class, com.javastudio.tutorial.dto.Dashboard.class);
     }
 
     @Override
-    public GenericDao<OrganizationChart> getGenericDao() {
+    public GenericDao<Dashboard> getGenericDao() {
         return dao;
-    }
-
-    @Override
-    public com.javastudio.tutorial.dto.OrganizationChart findByOrganizationDescriptor(String corporateId, String title, String username) {
-        return dto(dao.findByOrganizationDescriptor(corporateId, title, username));
     }
 }

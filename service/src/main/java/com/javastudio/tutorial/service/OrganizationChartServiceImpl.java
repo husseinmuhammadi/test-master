@@ -1,7 +1,6 @@
 package com.javastudio.tutorial.service;
 
 import com.javastudio.tutorial.api.OrganizationChartService;
-import com.javastudio.tutorial.dto.OrganizationChartDTO;
 import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.model.dao.OrganizationChartDao;
 import com.javastudio.tutorial.model.to.OrganizationChart;
@@ -14,7 +13,7 @@ import javax.inject.Inject;
 
 @Stateless
 @Local(OrganizationChartService.class)
-public class OrganizationChartServiceImpl extends GeneralServiceImpl<OrganizationChart, OrganizationChartDTO> implements OrganizationChartService {
+public class OrganizationChartServiceImpl extends GeneralServiceImpl<OrganizationChart, com.javastudio.tutorial.dto.OrganizationChart> implements OrganizationChartService {
 
     @Inject
     private Logger logger;
@@ -23,7 +22,7 @@ public class OrganizationChartServiceImpl extends GeneralServiceImpl<Organizatio
     OrganizationChartDao dao;
 
     public OrganizationChartServiceImpl() {
-        super(OrganizationChart.class, OrganizationChartDTO.class);
+        super(OrganizationChart.class, com.javastudio.tutorial.dto.OrganizationChart.class);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class OrganizationChartServiceImpl extends GeneralServiceImpl<Organizatio
     }
 
     @Override
-    public OrganizationChartDTO findByOrganizationDescriptor(String corporateId, String title, String username) {
+    public com.javastudio.tutorial.dto.OrganizationChart findByOrganizationDescriptor(String corporateId, String title, String username) {
         return dto(dao.findByOrganizationDescriptor(corporateId, title, username));
     }
 }

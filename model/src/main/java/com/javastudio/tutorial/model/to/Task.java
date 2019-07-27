@@ -25,9 +25,7 @@ public class Task extends EntityBase implements Auditable {
 
     String title;
 
-    @OneToMany(
-            mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     List<TaskComment> comments = new ArrayList<>();
 
     @OneToOne(

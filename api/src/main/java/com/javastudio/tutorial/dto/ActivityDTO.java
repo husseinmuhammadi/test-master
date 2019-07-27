@@ -10,7 +10,7 @@ public class ActivityDTO extends DTOBase {
 
     private String nextState;
 
-    private PermissionDTO permission;
+    private Permission permission;
 
     public String getName() {
         return name;
@@ -20,11 +20,11 @@ public class ActivityDTO extends DTOBase {
         this.name = name;
     }
 
-    public PermissionDTO getPermission() {
+    public Permission getPermission() {
         return permission;
     }
 
-    public void setPermission(PermissionDTO permission) {
+    public void setPermission(Permission permission) {
         this.permission = permission;
     }
 

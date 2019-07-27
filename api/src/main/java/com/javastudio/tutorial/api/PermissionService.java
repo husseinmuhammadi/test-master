@@ -1,7 +1,7 @@
 package com.javastudio.tutorial.api;
 
-import com.javastudio.tutorial.dto.PermissionDTO;
+import com.javastudio.tutorial.dto.Permission;
 
-public interface PermissionService extends GeneralServiceApi<PermissionDTO> {
+public interface PermissionService extends GeneralServiceApi<Permission> {
 
 }
