@@ -4,7 +4,6 @@ import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +26,8 @@ public class TestPlan extends EntityBase {
     @Column(name = "plan_Date", nullable = false)
     private Date planDate;
 
-    @ManyToOne @JoinColumn(name = "issue_id")
+    @ManyToOne
+    @JoinColumn(name = "issue_id")
     Issue issue;
 
     @OneToMany(mappedBy = "testPlan")

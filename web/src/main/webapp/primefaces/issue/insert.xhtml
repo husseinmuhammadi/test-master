@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <f:metadata>
+        <f:viewParam name="id" value="#{issueController.id}"/>
+        <f:viewAction action="#{issueController.onLoad}"/>
+    </f:metadata>
+    <h:head>
+        <h:outputScript library="default" name="js/jquery.js" target="head"/>
+    </h:head>
+    <h:form>
+        <p:outputLabel value="issueNo"/>
+        <p:inputText value="#{issueController.issue.issueNo}"/>
+        <p:outputLabel value="title"/>
+        <p:inputText value="#{issueController.issue.title}"/>
+
+        <p:outputLabel value="#{lbl['entity.issue.user']}" for="user"/>
+        <p:selectOneMenu value="#{issueController.issue.user}"
+                         id="user" label="#{lbl['entity.issue.user']}"
+                         styleClass="form-control">
+            <f:selectItem value="#{selectItemsController.emptyItem}"/>
+            <f:selectItems value="#{organizationChartController.selectUsers}"/>
+            <f:converter binding="#{userConverter}"/>
+        </p:selectOneMenu>
+
+        <p:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
+                         action="#{issueController.save}" rendered="#{empty issueController.id}">
+            <p:ajax execute="@form" render=":messages"/>
+        </p:commandButton>
+
+        <p:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
+                         action="#{organizationChartController.edit}" rendered="#{not empty organizationChartController.id}">
+            <f:ajax execute="@form" render=":messages"/>
+        </p:commandButton>
+
+        <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
+                       action="index" immediate="true"/>
+
+    </h:form>
+</f:view>
+</html>

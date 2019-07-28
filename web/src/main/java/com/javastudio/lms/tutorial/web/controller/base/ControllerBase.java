@@ -36,12 +36,8 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
 
     private Long id;
 
-    public ControllerBase() {
-        localizedResource = new LocalizedResource(this);
-    }
-
     public ControllerBase(Class<T> entityBeanType) {
-        this();
+        localizedResource = new LocalizedResource(this);
         this.entityBeanType = entityBeanType;
     }
 

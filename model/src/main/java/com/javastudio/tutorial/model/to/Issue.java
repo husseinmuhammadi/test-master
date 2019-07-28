@@ -6,18 +6,25 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "issue")
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ISSUE_SEQ")
+@NamedQueries(
+        @NamedQuery(name = Issue.FIND_ALL, query = "select t from Issue t")
+)
 public class Issue extends EntityBase {
 
-    @Column(name = "no")
+    public static final String FIND_ALL = "Issue.findAll";
+
+    @Column(name = "issue_no")
     Long issueNo;
 
     @Column(name = "title")
     String title;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "user_id")
     User user;
 
+    // region Getters & Setters
     public Long getIssueNo() {
         return issueNo;
     }
@@ -41,4 +48,5 @@ public class Issue extends EntityBase {
     public void setUser(User user) {
         this.user = user;
     }
+    // endregion Getters & Setters
 }

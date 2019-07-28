@@ -9,8 +9,6 @@ import java.util.Set;
 @Table(name = "test_action")
 public class TestAction extends EntityBase {
 
-    String testResult;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "TEST_ACTION_CONDITION",
             joinColumns = {@JoinColumn(name = "TEST_ACTION_ID", referencedColumnName = "ID")},
@@ -18,21 +16,17 @@ public class TestAction extends EntityBase {
     )
     Set<TestCondition> testConditions;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "actual_result_id")
     TestResult actualResult;
+
+    @OneToOne
+    @JoinColumn(name = "expected_result_id")
+    TestResult expectedResult;
 
     @ManyToOne
     @JoinColumn(name = "test_plan_id")
     TestPlan testPlan;
-
-    public String getTestResult() {
-        return testResult;
-    }
-
-    public void setTestResult(String testResult) {
-        this.testResult = testResult;
-    }
 
     public Set<TestCondition> getTestConditions() {
         return testConditions;
@@ -56,5 +50,13 @@ public class TestAction extends EntityBase {
 
     public void setTestPlan(TestPlan testPlan) {
         this.testPlan = testPlan;
+    }
+
+    public TestResult getExpectedResult() {
+        return expectedResult;
+    }
+
+    public void setExpectedResult(TestResult expectedResult) {
+        this.expectedResult = expectedResult;
     }
 }

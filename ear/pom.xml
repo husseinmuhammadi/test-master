@@ -107,8 +107,8 @@
                 <version>1.0.2.Final</version>
 
                 <configuration>
-                    <hostname>172.20.35.178</hostname>
-                    <port>9990</port>
+                    <hostname>localhost</hostname>
+                    <port>9991</port>
                     <username>hmohammadi</username>
                     <password>148941</password>
                 </configuration>
