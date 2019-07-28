@@ -35,8 +35,8 @@
                     <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
                                     styleClass="img-responsive"/>
                 </h:link>
-                <p:commandButton icon="pi pi-search" title="View" action="#{issueManager.onSelectIssue}">
-                    <f:setPropertyActionListener value="#{issue}" target="#{issueManager.selectedIssue}"/>
+                <p:commandButton icon="pi pi-search" title="View" action="#{issueManager.onSelectItem}">
+                    <f:setPropertyActionListener value="#{issue}" target="#{issueManager.selectedItem}"/>
                 </p:commandButton>
             </p:column>
 

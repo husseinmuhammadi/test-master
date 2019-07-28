@@ -11,31 +11,38 @@
         <h:outputScript library="default" name="js/jquery.js" target="head"/>
     </h:head>
     <h:form>
-        <p:dataTable var="issue" value="#{testPlanManager.issues}">
+        <p:dataTable var="testPlan" value="#{testPlanManager.testPlans}">
             <p:column headerText="#{lbl['label.entity.id']}">
-                <h:outputText value="#{issue.id}"/>
+                <h:outputText value="#{testPlan.id}"/>
             </p:column>
 
-            <p:column headerText="#{lbl['entity.issue.issueNo']}">
-                <h:outputText value="#{issue.issueNo}"/>
+            <p:column headerText="#{lbl['entity.testPlan.issue']}">
+                <h:outputText value="#{testPlan.issue}">
+                    <f:converter binding="#{issueConverter}"/>
+                </h:outputText>
             </p:column>
 
-            <p:column headerText="#{lbl['entity.issue.title']}">
-                <h:outputText value="#{issue.title}"/>
-            </p:column>
-
-            <p:column headerText="#{lbl['entity.issue.user']}">
-                <h:outputText value="#{issue.user}">
+            <p:column headerText="#{lbl['entity.testPlan.user']}">
+                <h:outputText value="#{testPlan.user}">
                     <f:converter binding="#{userConverter}"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="#{lbl['entity.testPlan.planDate']}">
+                <h:outputText value="#{testPlan.planDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
                 </h:outputText>
             </p:column>
 
             <p:column>
                 <h:link outcome="insert">
-                    <f:param name="id" value="#{issue.id}"/>
+                    <f:param name="id" value="#{testPlan.id}"/>
                     <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
                                     styleClass="img-responsive"/>
                 </h:link>
+                <p:commandButton icon="pi pi-search" title="View" action="#{testPlanManager.onSelectItem}">
+                    <f:setPropertyActionListener value="#{testPlan}" target="#{testPlanManager.selectedItem}"/>
+                </p:commandButton>
             </p:column>
         </p:dataTable>
 

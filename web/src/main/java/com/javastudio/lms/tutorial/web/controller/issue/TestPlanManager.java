@@ -3,6 +3,7 @@ package com.javastudio.lms.tutorial.web.controller.issue;
 import com.javastudio.lms.tutorial.web.controller.base.ManagerBase;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.TestPlanService;
+import com.javastudio.tutorial.dto.Issue;
 import com.javastudio.tutorial.dto.TestPlan;
 
 import javax.ejb.EJB;
@@ -39,4 +40,5 @@ public class TestPlanManager extends ManagerBase<TestPlan> implements Serializab
     public List<TestPlan> getTestPlans() {
         return entityList;
     }
+
 }

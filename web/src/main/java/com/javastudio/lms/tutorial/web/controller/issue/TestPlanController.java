@@ -55,7 +55,6 @@ public class TestPlanController extends ControllerBase<TestPlan> implements Seri
         options.put("resizable", false);
         options.put("draggable", false);
         options.put("modal", true);
-        options.put("id", "issues");
         PrimeFaces.current().dialog().openDynamic("/primefaces/issue/index", options, null);
     }
 

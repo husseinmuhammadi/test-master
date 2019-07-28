@@ -41,6 +41,11 @@
             </div>
 
             <div>
+                <p:outputLabel value="#{lbl['entity.testPlan.planDate']}" for="planDate"/>
+                <p:datePicker id="planDate" value="#{testPlanController.testPlan.planDate}"/>
+            </div>
+
+            <div>
                 <p:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
                                  action="#{testPlanController.save}" rendered="#{empty testPlanController.id}">
                     <p:ajax execute="@form" render=":messages"/>

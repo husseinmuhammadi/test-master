@@ -5,7 +5,6 @@ import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.IssueService;
 import com.javastudio.tutorial.dto.Issue;
 import org.primefaces.PrimeFaces;
-import org.primefaces.event.SelectEvent;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -17,10 +16,9 @@ import java.util.List;
 @Named
 public class IssueManager extends ManagerBase<Issue> implements Serializable {
 
-    private static final long serialVersionUID = -8112641736316431920L;
+    private static final long serialVersionUID = 3658346337440796951L;
 
     List<Issue> issues;
-    private Issue selectedIssue;
 
     @EJB
     IssueService service;
@@ -44,15 +42,4 @@ public class IssueManager extends ManagerBase<Issue> implements Serializable {
         return entityList;
     }
 
-    public Issue getSelectedIssue() {
-        return selectedIssue;
-    }
-
-    public void setSelectedIssue(Issue selectedIssue) {
-        this.selectedIssue = selectedIssue;
-    }
-
-    public void onSelectIssue() {
-        PrimeFaces.current().dialog().closeDynamic(selectedIssue);
-    }
 }
