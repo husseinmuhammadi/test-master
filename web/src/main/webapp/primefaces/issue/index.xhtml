@@ -25,8 +25,11 @@
             </p:column>
 
             <p:column headerText="#{lbl['entity.issue.user']}">
-                <h:outputText value="#{issue.user}"/>
+                <h:outputText value="#{issue.user}">
+                    <f:converter binding="#{userConverter}"/>
+                </h:outputText>
             </p:column>
+
             <p:column>
                 <h:link outcome="insert">
                     <f:param name="id" value="#{issue.id}"/>
