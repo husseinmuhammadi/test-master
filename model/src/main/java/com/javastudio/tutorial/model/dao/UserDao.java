@@ -31,7 +31,7 @@ public class UserDao extends GenericDao<User> {
         try {
             return userTypedQuery.getSingleResult();
         } catch (NoResultException e) {
-            logger.info("UserService : No valid User was found for [" + username + "] : " + e);
+            logger.warn("UserService : No user found for [" + username + "] : " + e);
             return null;
         }
     }

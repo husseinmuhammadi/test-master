@@ -4,6 +4,8 @@ import com.javastudio.tutorial.api.IssueService;
 import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.model.dao.IssueDao;
 import com.javastudio.tutorial.model.to.Issue;
+import org.dozer.DozerBeanMapperSingletonWrapper;
+import org.dozer.Mapper;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -23,5 +25,11 @@ public class IssueServiceImpl extends GeneralServiceImpl<Issue, com.javastudio.t
     @Override
     public GenericDao<Issue> getGenericDao() {
         return dao;
+    }
+
+    public com.javastudio.tutorial.dto.Issue findByIssueNo(Long issueNo) {
+        Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
+        Issue issue = dao.findByIssueNo(issueNo);
+        return issue == null ? null : mapper.map(issue, com.javastudio.tutorial.dto.Issue.class);
     }
 }

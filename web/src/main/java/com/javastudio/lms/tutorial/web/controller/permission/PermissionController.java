@@ -19,7 +19,7 @@ import java.io.Serializable;
 @ViewScoped
 public class PermissionController extends ControllerBase<Permission> implements Serializable {
 
-    private static final long serialVersionUID = -4360806817248079581L;
+    private static final long serialVersionUID = -8420146181635472532L;
 
     @Inject
     private Logger logger;
@@ -35,7 +35,7 @@ public class PermissionController extends ControllerBase<Permission> implements 
     }
 
     @Override
-    public GeneralServiceApi<Permission> getGeneralServiceApi() {
+    protected GeneralServiceApi<Permission> getGeneralServiceApi() {
         return service;
     }
 

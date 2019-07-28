@@ -7,12 +7,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "issue")
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "ISSUE_SEQ")
-@NamedQueries(
-        @NamedQuery(name = Issue.FIND_ALL, query = "select t from Issue t")
-)
+@NamedQueries({
+        @NamedQuery(name = Issue.FIND_ALL, query = "select t from Issue t"),
+        @NamedQuery(name = Issue.FIND_BY_ISSUE_NO, query = "select t from Issue t where t.issueNo = :issueNo"),
+})
 public class Issue extends EntityBase {
 
     public static final String FIND_ALL = "Issue.findAll";
+    public static final String FIND_BY_ISSUE_NO= "Issue.findByIssueNo";
 
     @Column(name = "issue_no")
     Long issueNo;

@@ -57,7 +57,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
         this.id = id;
     }
 
-    public abstract GeneralServiceApi<T> getGeneralServiceApi();
+    protected abstract GeneralServiceApi<T> getGeneralServiceApi();
 
     @PostConstruct
     protected void init() {

@@ -24,7 +24,7 @@ import java.util.List;
 @ViewScoped
 public class OrganizationChartController extends ControllerBase<OrganizationChart> implements Serializable {
 
-    private static final long serialVersionUID = -4360806817248079581L;
+    private static final long serialVersionUID = 6309368835762788010L;
 
     @Inject
     private Logger logger;

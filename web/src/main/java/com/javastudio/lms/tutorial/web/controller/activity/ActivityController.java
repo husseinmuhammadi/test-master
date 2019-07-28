@@ -33,7 +33,7 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
     String permission;
 
     @Override
-    public GeneralServiceApi<ActivityDTO> getGeneralServiceApi() {
+    protected GeneralServiceApi<ActivityDTO> getGeneralServiceApi() {
         return service;
     }
 

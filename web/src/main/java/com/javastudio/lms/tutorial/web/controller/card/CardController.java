@@ -33,7 +33,7 @@ public class CardController extends ControllerBase<CardDTO> implements Serializa
     }
 
     @Override
-    public GeneralServiceApi<CardDTO> getGeneralServiceApi() {
+    protected GeneralServiceApi<CardDTO> getGeneralServiceApi() {
         return service;
     }
 

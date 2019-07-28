@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Named
 @ViewScoped
 public class IssueController extends ControllerBase<Issue> implements Serializable {
-    private static final long serialVersionUID = 3668828251696395837L;
+    private static final long serialVersionUID = -169703137862397134L;
 
     Issue issue;
 
@@ -25,7 +25,7 @@ public class IssueController extends ControllerBase<Issue> implements Serializab
     }
 
     @Override
-    public GeneralServiceApi getGeneralServiceApi() {
+    protected GeneralServiceApi getGeneralServiceApi() {
         return service;
     }
 
