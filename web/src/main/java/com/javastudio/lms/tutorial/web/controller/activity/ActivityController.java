@@ -5,7 +5,6 @@ import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.tutorial.api.ActivityService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.dto.ActivityDTO;
-import com.javastudio.tutorial.dto.PermissionDTO;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -34,7 +33,7 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
     String permission;
 
     @Override
-    public GeneralServiceApi<ActivityDTO> getGeneralServiceApi() {
+    protected GeneralServiceApi<ActivityDTO> getGeneralServiceApi() {
         return service;
     }
 

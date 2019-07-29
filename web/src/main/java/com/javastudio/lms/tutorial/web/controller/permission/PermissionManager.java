@@ -3,7 +3,7 @@ package com.javastudio.lms.tutorial.web.controller.permission;
 import com.javastudio.lms.tutorial.web.controller.base.ManagerBase;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.PermissionService;
-import com.javastudio.tutorial.dto.PermissionDTO;
+import com.javastudio.tutorial.dto.Permission;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class PermissionManager extends ManagerBase<PermissionDTO> implements Serializable {
+public class PermissionManager extends ManagerBase<Permission> implements Serializable {
 
     private static final long serialVersionUID = -9051371651827827993L;
 
@@ -26,7 +26,7 @@ public class PermissionManager extends ManagerBase<PermissionDTO> implements Ser
     PermissionService service;
 
     public PermissionManager() {
-        super(PermissionDTO.class);
+        super(Permission.class);
     }
 
     @Override
@@ -35,11 +35,11 @@ public class PermissionManager extends ManagerBase<PermissionDTO> implements Ser
     }
 
     @Override
-    public GeneralServiceApi<PermissionDTO> getGeneralServiceApi() {
+    public GeneralServiceApi<Permission> getGeneralServiceApi() {
         return service;
     }
 
-    public List<PermissionDTO> getPeople() {
+    public List<Permission> getPeople() {
         return entityList;
     }
 }

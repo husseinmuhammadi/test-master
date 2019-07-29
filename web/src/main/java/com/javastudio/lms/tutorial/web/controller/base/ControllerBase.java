@@ -36,12 +36,8 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
 
     private Long id;
 
-    public ControllerBase() {
-        localizedResource = new LocalizedResource(this);
-    }
-
     public ControllerBase(Class<T> entityBeanType) {
-        this();
+        localizedResource = new LocalizedResource(this);
         this.entityBeanType = entityBeanType;
     }
 
@@ -61,7 +57,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
         this.id = id;
     }
 
-    public abstract GeneralServiceApi<T> getGeneralServiceApi();
+    protected abstract GeneralServiceApi<T> getGeneralServiceApi();
 
     @PostConstruct
     protected void init() {

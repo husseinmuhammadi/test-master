@@ -3,7 +3,6 @@ package com.javastudio.tutorial.service;
 import com.javastudio.tutorial.api.PersonService;
 import com.javastudio.tutorial.model.dao.GenericDao;
 import com.javastudio.tutorial.model.dao.PersonDao;
-import com.javastudio.tutorial.dto.PersonDTO;
 import com.javastudio.tutorial.model.to.Person;
 import org.slf4j.Logger;
 
@@ -14,7 +13,7 @@ import javax.inject.Inject;
 
 @Stateless
 @Local(PersonService.class)
-public class PersonServiceImpl extends GeneralServiceImpl<Person, PersonDTO> implements PersonService {
+public class PersonServiceImpl extends GeneralServiceImpl<Person, com.javastudio.tutorial.dto.Person> implements PersonService {
 
     @Inject
     private Logger logger;
@@ -23,7 +22,7 @@ public class PersonServiceImpl extends GeneralServiceImpl<Person, PersonDTO> imp
     PersonDao dao;
 
     public PersonServiceImpl() {
-        super(Person.class, PersonDTO.class);
+        super(Person.class, com.javastudio.tutorial.dto.Person.class);
     }
 
     @Override

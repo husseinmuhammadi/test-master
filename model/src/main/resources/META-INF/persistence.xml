@@ -23,6 +23,15 @@
         <class>com.javastudio.tutorial.model.to.TaskComment</class>
         <class>com.javastudio.tutorial.model.to.Tag</class>
         <class>com.javastudio.tutorial.model.to.Product</class>
+        <class>com.javastudio.tutorial.model.to.TestScenario</class>
+        <class>com.javastudio.tutorial.model.to.TestCase</class>
+        <class>com.javastudio.tutorial.model.to.Company</class>
+        <class>com.javastudio.tutorial.model.to.ProductRelease</class>
+        <class>com.javastudio.tutorial.model.to.TestPlan</class>
+        <class>com.javastudio.tutorial.model.to.Issue</class>
+        <class>com.javastudio.tutorial.model.to.TestAction</class>
+        <class>com.javastudio.tutorial.model.to.TestResult</class>
+        <class>com.javastudio.tutorial.model.to.TestCondition</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>

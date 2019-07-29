@@ -3,7 +3,9 @@ package com.javastudio.lms.tutorial.web.controller.base;
 
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.dto.DTOBase;
+import com.javastudio.tutorial.dto.Issue;
 import com.javastudio.tutorial.jsf.application.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +27,8 @@ public abstract class ManagerBase<T extends DTOBase> extends Localization implem
     private final LocalizedResource localizedResource;
 
     protected List<T> entityList;
+    private T selectedItem;
+
 
     public ManagerBase(Class<T> entityBeanType) {
         localizedResource = new LocalizedResource(this);
@@ -110,5 +114,17 @@ public abstract class ManagerBase<T extends DTOBase> extends Localization implem
 
     protected String getLookupLabel(T selectedEntity) {
         return "Id: " + selectedEntity.getId();
+    }
+
+    public T getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(T selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+    public void onSelectItem() {
+        PrimeFaces.current().dialog().closeDynamic(selectedItem);
     }
 }

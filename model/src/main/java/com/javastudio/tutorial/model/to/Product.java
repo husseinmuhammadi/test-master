@@ -5,16 +5,18 @@ import com.javastudio.tutorial.model.base.EntityBase;
 import com.javastudio.tutorial.model.base.StateTracker;
 import com.javastudio.tutorial.model.listener.AuditListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "PRODUCT")
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "PRODUCT_SEQ")
 @EntityListeners(AuditListener.class)
 public class Product extends EntityBase implements Auditable, StateTracker {
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    Company company;
+
     private String title;
 
     public String getTitle() {
@@ -23,5 +25,13 @@ public class Product extends EntityBase implements Auditable, StateTracker {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

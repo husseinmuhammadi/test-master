@@ -1,11 +1,11 @@
 package com.javastudio.tutorial.dto;
 
-public class PermissionDTO extends DTOBase {
+public class Permission extends DTOBase {
 
-    public PermissionDTO() {
+    public Permission() {
     }
 
-    public PermissionDTO(String name) {
+    public Permission(String name) {
         this.name = name;
     }
 

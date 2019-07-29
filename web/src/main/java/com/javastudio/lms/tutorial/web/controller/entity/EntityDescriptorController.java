@@ -30,7 +30,7 @@ public class EntityDescriptorController extends ControllerBase<EntityModelDescri
     }
 
     @Override
-    public GeneralServiceApi<EntityModelDescriptor> getGeneralServiceApi() {
+    protected GeneralServiceApi<EntityModelDescriptor> getGeneralServiceApi() {
         return service;
     }
 
