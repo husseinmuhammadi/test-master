@@ -5,6 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:l="http://javastudio.com/tags"
       xmlns:p="http://primefaces.org/ui">
 <f:view>
     <f:metadata>
@@ -58,27 +59,13 @@
                 </div>
             </div>
 
-            <p:tabContainer>
-                <p:tab src="index.xhtml" text="index">
-                    <f:param name="partial" value="0"/>
+            <p:tabView>
+                <p:tab title="index">
+                    <l:page src="/primefaces/testplan/index">
+                        <f:param name="issue" value="#{issueController.id}"/>
+                    </l:page>
                 </p:tab>
-                <p:tab src="index" text="index">
-                    <f:param name="partial" value="0"/>
-                </p:tab>
-                <p:tab src="/person/index.xhtml" text="index">
-                    <f:param name="partial" value="0"/>
-                </p:tab>
-                <p:tab src="index.xhtml" text="index" active="true">
-                    <f:param name="partial" value="0"/>
-                </p:tab>
-                <p:tab src="insert" text="insert">
-                    <f:param name="partial" value="0"/>
-                    <f:param name="id" value="1"/>
-                </p:tab>
-                <p:tab src="index.xhtml" text="index">
-                    <f:param name="partial" value="0"/>
-                </p:tab>
-            </p:tabContainer>
+            </p:tabView>
 
         </h:form>
     </h:body>

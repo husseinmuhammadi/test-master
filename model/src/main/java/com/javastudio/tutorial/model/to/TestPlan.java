@@ -10,11 +10,13 @@ import java.util.Set;
 @Table(name = "TEST_PLAN")
 @SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "TEST_PLAN_SEQ")
 @NamedQueries({
-        @NamedQuery(name = TestPlan.FIND_ALL, query = "select t from TestPlan t")
+        @NamedQuery(name = TestPlan.FIND_ALL, query = "select t from TestPlan t"),
+        @NamedQuery(name = TestPlan.FIND_BY_ISSUE, query = "select t from TestPlan t where t.issue = :issue"),
 })
 public class TestPlan extends EntityBase {
 
     public static final String FIND_ALL = "TestPlan.findAll";
+    public static final String FIND_BY_ISSUE = "TestPlan.findByIssue";
 
     @ManyToOne
     @JoinColumn(name = "TEST_CASE_ID")

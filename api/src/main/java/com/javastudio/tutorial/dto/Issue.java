@@ -8,6 +8,14 @@ public class Issue extends DTOBase {
 
     User user;
 
+    public Issue() {
+
+    }
+
+    public Issue(Long id) {
+        super(id);
+    }
+
     public Long getIssueNo() {
         return issueNo;
     }

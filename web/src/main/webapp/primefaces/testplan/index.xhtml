@@ -7,6 +7,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <f:view>
+    <f:metadata>
+        <f:viewParam name="issue" value="#{testPlanManager.issueId}"/>
+        <f:viewAction action="#{testPlanManager.populate}"/>
+    </f:metadata>
     <h:head>
         <h:outputScript library="default" name="js/jquery.js" target="head"/>
     </h:head>
