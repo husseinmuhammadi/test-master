@@ -41,4 +41,32 @@ public class TestPlanManager extends ManagerBase<TestPlan> implements Serializab
         return entityList;
     }
 
+    // region Search
+
+    Long issueId;
+
+    public Long getIssueId() {
+        return issueId;
+    }
+
+    public void setIssueId(Long issueId) {
+        this.issueId = issueId;
+    }
+
+    // endregion Search
+
+    // region Overrides
+
+    @Override
+    public void populate() {
+        super.populate();
+
+        if (issueId != null) {
+            super.entityList = service.findByIssueNo(new Issue(issueId));
+        }
+    }
+
+
+    // endregion Overrides
+
 }

@@ -109,5 +109,18 @@
         </attribute>
     </tag>
 
+    <tag>
+        <tag-name>page</tag-name>
+        <component>
+            <component-type>com.javastudio.tutorial.jsf.component.Page</component-type>
+            <renderer-type>com.javastudio.tutorial.jsf.render.PageRenderer</renderer-type>
+        </component>
+        <attribute>
+            <name>src</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+
 
 </facelet-taglib>

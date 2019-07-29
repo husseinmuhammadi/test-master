@@ -3,11 +3,18 @@ package com.javastudio.tutorial.model.to;
 import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "test_action")
+@Table(name = "TEST_ACTION")
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "TEST_ACTION_SEQ")
+@NamedQueries({
+        @NamedQuery(name = TestAction.FIND_ALL, query = "select t from TestAction t")
+})
 public class TestAction extends EntityBase {
+
+    public static final String FIND_ALL = "TestAction.findAll";
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "TEST_ACTION_CONDITION",
@@ -27,6 +34,10 @@ public class TestAction extends EntityBase {
     @ManyToOne
     @JoinColumn(name = "test_plan_id")
     TestPlan testPlan;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "action_date")
+    Date actionDate;
 
     public Set<TestCondition> getTestConditions() {
         return testConditions;
@@ -58,5 +69,13 @@ public class TestAction extends EntityBase {
 
     public void setExpectedResult(TestResult expectedResult) {
         this.expectedResult = expectedResult;
+    }
+
+    public Date getActionDate() {
+        return actionDate;
+    }
+
+    public void setActionDate(Date actionDate) {
+        this.actionDate = actionDate;
     }
 }

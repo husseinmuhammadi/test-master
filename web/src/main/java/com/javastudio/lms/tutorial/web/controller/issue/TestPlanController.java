@@ -50,14 +50,6 @@ public class TestPlanController extends ControllerBase<TestPlan> implements Seri
         super.entity = testPlan;
     }
 
-    public void selectIssue(){
-        Map<String,Object> options = new HashMap<>();
-        options.put("resizable", false);
-        options.put("draggable", false);
-        options.put("modal", true);
-        PrimeFaces.current().dialog().openDynamic("/primefaces/issue/index", options, null);
-    }
-
     public void onSelectIssue(SelectEvent event) {
         Issue issue = (Issue) event.getObject();
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Issue Selected", "Id:" + issue.getId());

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+        <h:outputScript library="default" name="js/jquery.js" target="head"/>
+    </h:head>
+    <h:form>
+        <p:dataTable var="issue" value="#{issueManager.issues}">
+            <p:column headerText="#{lbl['label.entity.id']}">
+                <h:outputText value="#{issue.id}"/>
+            </p:column>
+
+            <p:column headerText="#{lbl['entity.issue.issueNo']}">
+                <h:link value="#{issue.issueNo}" outcome="profile">
+                    <f:param name="id" value="#{issue.id}"/>
+                </h:link>
+            </p:column>
+
+            <p:column headerText="#{lbl['entity.issue.title']}">
+                <h:outputText value="#{issue.title}"/>
+            </p:column>
+
+            <p:column headerText="#{lbl['entity.issue.user']}">
+                <h:outputText value="#{issue.user}">
+                    <f:converter binding="#{userConverter}"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column>
+                <h:link outcome="insert">
+                    <f:param name="id" value="#{issue.id}"/>
+                    <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
+                                    styleClass="img-responsive"/>
+                </h:link>
+                <p:commandButton icon="pi pi-search" title="View" action="#{issueManager.onSelectItem}">
+                    <f:setPropertyActionListener value="#{issue}" target="#{issueManager.selectedItem}"/>
+                </p:commandButton>
+            </p:column>
+
+        </p:dataTable>
+
+        <h:link value="#{lbl['button.add']}" outcome="insert" styleClass="btn btn-outline-primary"/>
+    </h:form>
+</f:view>
+</html>

@@ -21,6 +21,8 @@ public abstract class GeneralServiceImpl<T extends EntityBase, V extends DTOBase
     private final Class<T> entityType;
     private final Class<V> dtoType;
 
+    final Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
+
     public GeneralServiceImpl(Class<T> entityType, Class<V> dtoType) {
         this.entityType = entityType;
         this.dtoType = dtoType;
