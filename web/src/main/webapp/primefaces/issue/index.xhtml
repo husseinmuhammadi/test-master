@@ -16,7 +16,9 @@
             </p:column>
 
             <p:column headerText="#{lbl['entity.issue.issueNo']}">
-                <h:outputText value="#{issue.issueNo}"/>
+                <h:link value="#{issue.issueNo}" outcome="profile">
+                    <f:param name="id" value="#{issue.id}"/>
+                </h:link>
             </p:column>
 
             <p:column headerText="#{lbl['entity.issue.title']}">
