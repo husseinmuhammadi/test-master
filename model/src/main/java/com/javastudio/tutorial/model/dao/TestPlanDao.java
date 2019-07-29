@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-@LocalBean
 public class TestPlanDao extends GenericDao<TestPlan> {
 
     public TestPlanDao() {

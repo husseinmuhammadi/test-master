@@ -6,8 +6,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "test_action")
+@Table(name = "TEST_ACTION")
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "TEST_ACTION_SEQ")
+@NamedQueries({
+        @NamedQuery(name = TestAction.FIND_ALL, query = "select t from TestAction t")
+})
 public class TestAction extends EntityBase {
+
+    public static final String FIND_ALL = "TestAction.findAll";
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "TEST_ACTION_CONDITION",
