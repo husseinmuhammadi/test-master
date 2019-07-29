@@ -32,10 +32,11 @@
             </div>
 
             <div>
+                <p:outputLabel value="#{lbl['entity.testPlan.issue']}" for="issue"/>
                 <p:inputText id="issue" value="#{testPlanController.testPlan.issue}">
                     <f:converter binding="#{issueConverter}"/>
                 </p:inputText>
-                <p:commandButton value="Select Issue" icon="pi pi-home" action="#{testPlanController.selectIssue}">
+                <p:commandButton value="Select Issue" icon="pi pi-home" action="#{testPlanController.select('/primefaces/issue/index')}">
                     <p:ajax event="dialogReturn" listener="#{testPlanController.onSelectIssue}" update="growl issue"/>
                 </p:commandButton>
             </div>

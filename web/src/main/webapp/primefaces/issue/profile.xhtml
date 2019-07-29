@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <f:metadata>
+        <f:viewParam name="id" value="#{issueController.id}"/>
+        <f:viewAction action="#{issueController.onLoad}"/>
+    </f:metadata>
+    <h:head>
+        <h:outputScript library="default" name="js/jquery.js" target="head"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div>
+                <h:link value="index" outcome="index"/>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="issueNo" styleClass="input-group-text"
+                                       value="#{lbl['entity.issue.issueNo']}"/>
+                    </div>
+                    <h:outputText id="issueNo" styleClass="form-control"
+                                  label="#{lbl['entity.issue.issueNo']}" value="#{issueController.issue.issueNo}">
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="title" styleClass="input-group-text"
+                                       value="#{lbl['entity.issue.title']}"/>
+                    </div>
+                    <h:outputText id="title" styleClass="form-control"
+                                  label="#{lbl['entity.issue.title']}" value="#{issueController.issue.title}">
+                    </h:outputText>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <h:outputLabel for="user" value="#{lbl['entity.issue.user']}"
+                                       styleClass="input-group-text"/>
+                    </div>
+                    <h:outputText value="#{issueController.issue.user}"
+                                  id="user" label="#{lbl['entity.issue.user']}"
+                                  styleClass="form-control" required="true">
+                        <f:converter binding="#{userConverter}"/>
+                    </h:outputText>
+                </div>
+            </div>
+
+            <p:tabContainer>
+                <p:tab src="index.xhtml" text="index">
+                    <f:param name="partial" value="0"/>
+                </p:tab>
+                <p:tab src="index" text="index">
+                    <f:param name="partial" value="0"/>
+                </p:tab>
+                <p:tab src="/person/index.xhtml" text="index">
+                    <f:param name="partial" value="0"/>
+                </p:tab>
+                <p:tab src="index.xhtml" text="index" active="true">
+                    <f:param name="partial" value="0"/>
+                </p:tab>
+                <p:tab src="insert" text="insert">
+                    <f:param name="partial" value="0"/>
+                    <f:param name="id" value="1"/>
+                </p:tab>
+                <p:tab src="index.xhtml" text="index">
+                    <f:param name="partial" value="0"/>
+                </p:tab>
+            </p:tabContainer>
+
+        </h:form>
+    </h:body>
+</f:view>
+</html>

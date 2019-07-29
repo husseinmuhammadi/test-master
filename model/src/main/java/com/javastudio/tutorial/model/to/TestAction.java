@@ -3,6 +3,7 @@ package com.javastudio.tutorial.model.to;
 import com.javastudio.tutorial.model.base.EntityBase;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -34,6 +35,10 @@ public class TestAction extends EntityBase {
     @JoinColumn(name = "test_plan_id")
     TestPlan testPlan;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "action_date")
+    Date actionDate;
+
     public Set<TestCondition> getTestConditions() {
         return testConditions;
     }
@@ -64,5 +69,13 @@ public class TestAction extends EntityBase {
 
     public void setExpectedResult(TestResult expectedResult) {
         this.expectedResult = expectedResult;
+    }
+
+    public Date getActionDate() {
+        return actionDate;
+    }
+
+    public void setActionDate(Date actionDate) {
+        this.actionDate = actionDate;
     }
 }

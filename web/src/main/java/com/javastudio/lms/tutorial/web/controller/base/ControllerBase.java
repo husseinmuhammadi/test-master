@@ -5,6 +5,7 @@ import com.javastudio.lms.tutorial.web.controller.user.UserInformation;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.dto.ActivityDTO;
 import com.javastudio.tutorial.dto.DTOBase;
+import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -245,5 +247,13 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
 
     public void facetListener(javax.faces.event.AjaxBehaviorEvent event) throws javax.faces.event.AbortProcessingException {
         logger.info("ControllerBase --> facetListener");
+    }
+
+    public void select(String outcome) {
+        Map<String, Object> options = new HashMap<>();
+        options.put("resizable", false);
+        options.put("draggable", false);
+        options.put("modal", true);
+        PrimeFaces.current().dialog().openDynamic(outcome, options, null);
     }
 }

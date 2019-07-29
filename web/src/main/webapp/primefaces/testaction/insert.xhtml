@@ -23,16 +23,16 @@
             <div>
                 <p:outputLabel value="#{lbl['entity.testAction.testPlan']}" for="testPlan"/>
                 <p:inputText id="testPlan" value="#{testActionController.testAction.testPlan}">
-                    <f:converter binding="#{issueConverter}"/>
+                    <f:converter binding="#{testPlanConverter}"/>
                 </p:inputText>
-                <p:commandButton value="Select Issue" icon="pi pi-home" action="#{testActionController.selectIssue}">
-                    <p:ajax event="dialogReturn" listener="#{testActionController.onSelectIssue}" update="growl issue"/>
+                <p:commandButton value="Select Test Plan" icon="pi pi-home" action="#{testActionController.select('/primefaces/testplan/index')}">
+                    <p:ajax event="dialogReturn" listener="#{testActionController.onSelectTestPlan}" update="growl testPlan"/>
                 </p:commandButton>
             </div>
 
             <div>
-                <p:outputLabel value="#{lbl['entity.testPlan.planDate']}" for="planDate"/>
-                <p:datePicker id="planDate" value="#{testActionController.testPlan.planDate}"/>
+                <p:outputLabel value="#{lbl['entity.testAction.actionDate']}" for="planDate"/>
+                <p:datePicker id="planDate" value="#{testActionController.testAction.actionDate}"/>
             </div>
 
             <div>

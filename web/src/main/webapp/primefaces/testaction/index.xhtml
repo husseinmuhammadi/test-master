@@ -11,37 +11,31 @@
         <h:outputScript library="default" name="js/jquery.js" target="head"/>
     </h:head>
     <h:form>
-        <p:dataTable var="testPlan" value="#{testActionManager.testActions}">
+        <p:dataTable var="testAction" value="#{testActionManager.testActions}">
             <p:column headerText="#{lbl['label.entity.id']}">
-                <h:outputText value="#{testPlan.id}"/>
+                <h:outputText value="#{testAction.id}"/>
             </p:column>
 
-            <p:column headerText="#{lbl['entity.testPlan.issue']}">
-                <h:outputText value="#{testPlan.issue}">
-                    <f:converter binding="#{issueConverter}"/>
+            <p:column headerText="#{lbl['entity.testAction.testPlan']}">
+                <h:outputText value="#{testAction.testPlan}">
+                    <f:converter binding="#{testPlanConverter}"/>
                 </h:outputText>
             </p:column>
 
-            <p:column headerText="#{lbl['entity.testPlan.user']}">
-                <h:outputText value="#{testPlan.user}">
-                    <f:converter binding="#{userConverter}"/>
-                </h:outputText>
-            </p:column>
-
-            <p:column headerText="#{lbl['entity.testPlan.planDate']}">
-                <h:outputText value="#{testPlan.planDate}">
+            <p:column headerText="#{lbl['entity.testAction.actionDate']}">
+                <h:outputText value="#{testAction.actionDate}">
                     <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
                 </h:outputText>
             </p:column>
 
             <p:column>
                 <h:link outcome="insert">
-                    <f:param name="id" value="#{testPlan.id}"/>
+                    <f:param name="id" value="#{testAction.id}"/>
                     <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
                                     styleClass="img-responsive"/>
                 </h:link>
                 <p:commandButton icon="pi pi-search" title="View" action="#{testPlanManager.onSelectItem}">
-                    <f:setPropertyActionListener value="#{testPlan}" target="#{testPlanManager.selectedItem}"/>
+                    <f:setPropertyActionListener value="#{testAction}" target="#{testPlanManager.selectedItem}"/>
                 </p:commandButton>
             </p:column>
         </p:dataTable>
