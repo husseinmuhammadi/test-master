@@ -36,13 +36,29 @@
             </div>
 
             <div>
+                <p:outputLabel value="#{lbl['entity.testAction.testCase']}" for="testCase"/>
+
+                <p:inputText id="testCase" value="#{testActionController.testAction.testCase}">
+                    <f:converter binding="#{testCaseConverter}"/>
+                </p:inputText>
+                <h:panelGroup id="testCaseDescriptor">
+                    <h:panelGroup rendered="#{not empty testActionController.testAction.testCase}">
+                        <p:inputText value="#{testActionController.testAction.testCase.title}"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <p:commandButton value="Select Test Case" icon="pi pi-home" action="#{testActionController.select('/primefaces/testcase/index')}">
+                    <p:ajax event="dialogReturn" listener="#{testActionController.onSelectTestCase}" update="testCase testCaseDescriptor"/>
+                </p:commandButton>
+            </div>
+
+            <div>
                 <p:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
                                  action="#{testActionController.save}" rendered="#{empty testActionController.id}">
                     <p:ajax execute="@form" render=":messages"/>
                 </p:commandButton>
 
                 <p:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
-                                 action="#{organizationChartController.edit}" rendered="#{not empty testActionController.id}">
+                                 action="#{testActionController.edit}" rendered="#{not empty testActionController.id}">
                     <f:ajax execute="@form" render=":messages"/>
                 </p:commandButton>
 

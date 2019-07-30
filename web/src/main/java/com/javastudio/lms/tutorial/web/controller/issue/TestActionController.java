@@ -4,6 +4,7 @@ import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.tutorial.api.GeneralServiceApi;
 import com.javastudio.tutorial.api.TestActionService;
 import com.javastudio.tutorial.dto.TestAction;
+import com.javastudio.tutorial.dto.TestCase;
 import com.javastudio.tutorial.dto.TestPlan;
 import org.primefaces.event.SelectEvent;
 
@@ -47,5 +48,9 @@ public class TestActionController extends ControllerBase<TestAction> implements 
 
     public void onSelectTestPlan(SelectEvent event) {
         getTestAction().setTestPlan((TestPlan) event.getObject());
+    }
+
+    public void onSelectTestCase(SelectEvent event) {
+        getTestAction().setTestCase((TestCase) event.getObject());
     }
 }

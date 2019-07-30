@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:l="http://javastudio.com/tags"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <f:metadata>
+        <f:viewParam name="id" value="#{testActionController.id}"/>
+        <f:viewAction action="#{testActionController.onLoad}"/>
+    </f:metadata>
+    <h:head>
+        <h:outputScript library="default" name="js/jquery.js" target="head"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div>
+                <h:link value="index" outcome="index"/>
+            </div>
+
+            <div>
+                <p:outputLabel for="testCase" value="#{lbl['entity.testAction.testCase']}"/>
+                <p:outputLabel id="testCase" label="#{lbl['entity.testAction.testCase']}"
+                               value="#{testActionController.testAction.testCase}">
+                    <f:converter binding="#{testCaseConverter}"/>
+                </p:outputLabel>
+            </div>
+
+            <p:tabView>
+                <p:tab title="#{lbl['title.testAction.index']}">
+                    <l:page src="/primefaces/testaction/index">
+                        <f:param name="testAction" value="#{testActionController.id}"/>
+                    </l:page>
+                </p:tab>
+            </p:tabView>
+
+        </h:form>
+    </h:body>
+</f:view>
+</html>

@@ -11,9 +11,11 @@
         <h:outputScript library="default" name="js/jquery.js" target="head"/>
     </h:head>
     <h:form>
-        <p:dataTable var="testAction" value="#{testActionManager.testActions}">
+        <p:dataTable id="testActions" var="testAction" value="#{testActionManager.testActions}">
             <p:column headerText="#{lbl['label.entity.id']}">
-                <h:outputText value="#{testAction.id}"/>
+                <h:link outcome="profile" value="#{testAction.id}">
+                    <f:param name="id" value="#{testAction.id}"/>
+                </h:link>
             </p:column>
 
             <p:column headerText="#{lbl['entity.testAction.testPlan']}">
@@ -28,12 +30,29 @@
                 </h:outputText>
             </p:column>
 
+            <p:column headerText="#{lbl['entity.testAction.testCase']}">
+                <h:panelGroup rendered="#{not empty testAction.testCase}">
+                    <h:link outcome="/primefaces/testcase/profile">
+                        <h:outputText value="#{testAction.testCase}">
+                            <f:converter binding="#{testCaseConverter}"/>
+                        </h:outputText>
+                        <f:param name="id" value="#{testAction.testCase.id}"/>
+                    </h:link>
+                    <h:outputText value="&nbsp;#{testAction.testCase.title}"/>
+                </h:panelGroup>
+            </p:column>
+
             <p:column>
                 <h:link outcome="insert">
                     <f:param name="id" value="#{testAction.id}"/>
                     <h:graphicImage alt="edit" library="images" name="edit.png" width="20"
                                     styleClass="img-responsive"/>
                 </h:link>
+                <h:commandLink actionListener="#{testActionManager.remove(testAction)}">
+                    <f:ajax render=":messages testActions"/>
+                    <h:graphicImage alt="delete" library="images" name="delete.png" width="20"
+                                    styleClass="img-responsive"/>
+                </h:commandLink>
                 <p:commandButton icon="pi pi-search" title="View" action="#{testPlanManager.onSelectItem}">
                     <f:setPropertyActionListener value="#{testAction}" target="#{testPlanManager.selectedItem}"/>
                 </p:commandButton>
