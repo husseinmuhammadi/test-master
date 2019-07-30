@@ -12,7 +12,9 @@
     <h:form>
         <p:dataTable var="issue" value="#{issueManager.issues}">
             <p:column headerText="#{lbl['label.entity.id']}">
-                <h:outputText value="#{issue.id}"/>
+                <h:link value="#{issue.id}" outcome="profile">
+                    <f:param name="id" value="#{issue.id}"/>
+                </h:link>
             </p:column>
 
             <p:column headerText="#{lbl['entity.issue.issueNo']}">

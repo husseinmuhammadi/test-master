@@ -17,13 +17,18 @@
     <h:form>
         <p:dataTable var="testPlan" value="#{testPlanManager.testPlans}">
             <p:column headerText="#{lbl['label.entity.id']}">
-                <h:outputText value="#{testPlan.id}"/>
+                <h:link outcome="profile" value="#{testPlan.id}">
+                    <f:param name="id" value="#{testPlan.id}"/>
+                </h:link>
             </p:column>
 
             <p:column headerText="#{lbl['entity.testPlan.issue']}">
-                <h:outputText value="#{testPlan.issue}">
-                    <f:converter binding="#{issueConverter}"/>
-                </h:outputText>
+                <h:link outcome="/primefaces/issue/profile">
+                    <h:outputText value="#{testPlan.issue}">
+                        <f:converter binding="#{issueConverter}"/>
+                    </h:outputText>
+                    <f:param name="id" value="#{testPlan.issue.id}"/>
+                </h:link>
             </p:column>
 
             <p:column headerText="#{lbl['entity.testPlan.user']}">
