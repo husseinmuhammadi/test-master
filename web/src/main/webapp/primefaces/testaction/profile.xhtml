@@ -23,10 +23,18 @@
 
             <div>
                 <p:outputLabel for="testCase" value="#{lbl['entity.testAction.testCase']}"/>
-                <p:outputLabel id="testCase" label="#{lbl['entity.testAction.testCase']}"
-                               value="#{testActionController.testAction.testCase}">
+                <h:outputText id="testCase" label="#{lbl['entity.testAction.testCase']}"
+                              value="#{testActionController.testAction.testCase}">
                     <f:converter binding="#{testCaseConverter}"/>
-                </p:outputLabel>
+                </h:outputText>
+            </div>
+
+            <div>
+                <p:outputLabel value="#{lbl['entity.testAction.actionDate']}" for="actionDate"/>
+                <h:outputText id="actionDate" value="#{testActionController.testAction.actionDate}"
+                              label="#{lbl['entity.testAction.actionDate']}">
+                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                </h:outputText>
             </div>
 
             <p:tabView>

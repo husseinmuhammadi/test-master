@@ -19,9 +19,15 @@
             </p:column>
 
             <p:column headerText="#{lbl['entity.testAction.testPlan']}">
-                <h:outputText value="#{testAction.testPlan}">
-                    <f:converter binding="#{testPlanConverter}"/>
-                </h:outputText>
+                <h:panelGroup rendered="#{not empty testAction.testPlan}">
+                    <h:link outcome="/primefaces/testplan/profile">
+                        <h:outputText value="#{testAction.testPlan}">
+                            <f:converter binding="#{testPlanConverter}"/>
+                        </h:outputText>
+                        <f:param name="id" value="#{testAction.testPlan.id}"/>
+                    </h:link>
+                    <h:outputText value="&nbsp;Test issue #{testAction.testPlan.issue.issueNo} by #{testAction.testPlan.user.username}"/>
+                </h:panelGroup>
             </p:column>
 
             <p:column headerText="#{lbl['entity.testAction.actionDate']}">
