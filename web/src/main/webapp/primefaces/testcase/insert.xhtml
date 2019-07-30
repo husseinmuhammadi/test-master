@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <f:metadata>
+        <f:viewParam name="id" value="#{testCaseController.id}"/>
+        <f:viewAction action="#{testCaseController.onLoad}"/>
+    </f:metadata>
+    <h:head>
+        <h:outputScript library="default" name="js/jquery.js" target="head"/>
+    </h:head>
+    <h:body>
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate/>
+        </p:messages>
+
+        <h:form>
+            <div>
+                <p:outputLabel value="#{lbl['entity.testCase.title']}" for="title"/>
+                <p:inputText value="#{testCaseController.testCase.title}" id="title" label="#{lbl['entity.testCase.title']}"/>
+            </div>
+
+            <div>
+                <p:commandButton value="#{lbl['button.save']}" styleClass="btn btn-outline-primary"
+                                 action="#{testCaseController.save}" rendered="#{empty testCaseController.id}">
+                    <p:ajax execute="@form" render=":messages"/>
+                </p:commandButton>
+
+                <p:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
+                                 action="#{organizationChartController.edit}" rendered="#{not empty testCaseController.id}">
+                    <f:ajax execute="@form" render=":messages"/>
+                </p:commandButton>
+
+                <h:commandLink value="#{lbl['button.cancel']}" styleClass="btn btn-outline-primary"
+                               action="index" immediate="true"/>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

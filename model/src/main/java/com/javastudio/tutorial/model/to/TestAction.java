@@ -39,6 +39,18 @@ public class TestAction extends EntityBase {
     @Column(name = "action_date")
     Date actionDate;
 
+    @ManyToOne
+    @JoinColumn(name = "TEST_CASE_ID")
+    TestCase testCase;
+
+    public TestCase getTestCase() {
+        return testCase;
+    }
+
+    public void setTestCase(TestCase testCase) {
+        this.testCase = testCase;
+    }
+
     public Set<TestCondition> getTestConditions() {
         return testConditions;
     }

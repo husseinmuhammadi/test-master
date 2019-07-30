@@ -8,6 +8,8 @@ public class TestAction extends DTOBase {
 
     Date actionDate;
 
+    TestCase testCase;
+
     public TestPlan getTestPlan() {
         return testPlan;
     }
@@ -22,5 +24,13 @@ public class TestAction extends DTOBase {
 
     public void setActionDate(Date actionDate) {
         this.actionDate = actionDate;
+    }
+
+    public TestCase getTestCase() {
+        return testCase;
+    }
+
+    public void setTestCase(TestCase testCase) {
+        this.testCase = testCase;
     }
 }
