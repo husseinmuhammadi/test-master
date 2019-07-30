@@ -23,10 +23,13 @@
 
             <div>
                 <p:outputLabel for="issue" value="#{lbl['entity.testPlan.issue']}"/>
-                <p:outputLabel id="issue" label="#{lbl['entity.testPlan.issue']}"
-                              value="#{testPlanController.testPlan.issue}">
-                    <f:converter binding="#{issueConverter}"/>
-                </p:outputLabel>
+                <h:link outcome="/primefaces/issue/profile">
+                    <p:outputLabel id="issue" label="#{lbl['entity.testPlan.issue']}"
+                                   value="#{testPlanController.testPlan.issue}">
+                        <f:converter binding="#{issueConverter}"/>
+                    </p:outputLabel>
+                    <f:param name="id" value="#{testPlanController.testPlan.issue.id}"/>
+                </h:link>
             </div>
 
             <p:tabView>
