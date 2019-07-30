@@ -33,24 +33,12 @@ public class PageRenderer extends Renderer {
         Map<String, String> parameters = RendererUtil.getParameterTagValue(component);
         AsyncHttpRequest asyncHttpRequest = new AsyncHttpRequest(uiTab.getSrc(), parameters);
 
-        writer.startElement("a", uiTab);
-        writer.writeAttribute("id", uuid.toString(), null);
-        writer.writeAttribute("href", "#" + uuid.toString(), null);
-        writer.endElement("a");
-
         StringBuilder scripts = new StringBuilder();
+        String absoluteUrl = getAbsoluteUrl(context, asyncHttpRequest);
         scripts.append("<script type='text/javascript'>$(function() {");
-
-        try {
-            String absoluteUrl = getAbsoluteUrl(context, asyncHttpRequest);
-            scripts.append("ajaxRequest('").append(absoluteUrl).append("','").append(uuid.toString()).append("');");
-            writer.startElement("div", component);
-            writer.writeAttribute("id", uuid.toString(), null);
-            writer.endElement("div");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        scripts.append("ajaxRequest('").append(absoluteUrl).append("','").append(uuid.toString()).append("');");
+        writer.startElement("div", component);
+        writer.writeAttribute("id", uuid.toString(), null);
         writer.endElement("div");
         scripts.append("});</script>");
         writer.append(scripts);
