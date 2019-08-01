@@ -2,6 +2,7 @@ package com.javastudio.lms.tutorial.web.controller.issue;
 
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.tutorial.api.GeneralServiceApi;
+import com.javastudio.tutorial.api.IssueService;
 import com.javastudio.tutorial.api.TestPlanService;
 import com.javastudio.tutorial.dto.Issue;
 import com.javastudio.tutorial.dto.TestPlan;
@@ -25,8 +26,13 @@ public class TestPlanController extends ControllerBase<TestPlan> implements Seri
 
     TestPlan testPlan;
 
+    Long issueId;
+
     @EJB
     TestPlanService service;
+
+    @EJB
+    IssueService issueService;
 
     public TestPlanController() {
         super(TestPlan.class);
@@ -39,7 +45,9 @@ public class TestPlanController extends ControllerBase<TestPlan> implements Seri
 
     @Override
     protected void afterLoad() {
-
+        if (issueId != null) {
+            getTestPlan().setIssue(issueService.find(issueId));
+        }
     }
 
     public TestPlan getTestPlan() {
@@ -51,11 +59,14 @@ public class TestPlanController extends ControllerBase<TestPlan> implements Seri
     }
 
     public void onSelectIssue(SelectEvent event) {
-        Issue issue = (Issue) event.getObject();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Issue Selected", "Id:" + issue.getId());
+        getTestPlan().setIssue((Issue) event.getObject());
+    }
 
-        FacesContext.getCurrentInstance().addMessage(null, message);
+    public Long getIssueId() {
+        return issueId;
+    }
 
-        getTestPlan().setIssue(issue);
+    public void setIssueId(Long issueId) {
+        this.issueId = issueId;
     }
 }

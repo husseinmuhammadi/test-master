@@ -55,7 +55,9 @@
             </p:column>
         </p:dataTable>
 
-        <h:link value="#{lbl['button.add']}" outcome="insert" styleClass="btn btn-outline-primary"/>
+        <h:link value="#{lbl['button.add']}" outcome="insert" styleClass="btn btn-outline-primary">
+            <f:param name="issueId" value="#{testPlanManager.issueId}" disable="#{empty testPlanManager.issueId}"/>
+        </h:link>
     </h:form>
 </f:view>
 </html>
