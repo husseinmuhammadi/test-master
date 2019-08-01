@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "PRODUCT_RELEASE")
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "PRODUCT_RELEASE_SEQ")
 public class ProductRelease extends EntityBase {
 
     @ManyToOne

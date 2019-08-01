@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Test_Result")
-@SequenceGenerator(name = "seq_generator", sequenceName = "Test_Result_seq")
+@SequenceGenerator(name = "SEQ_GENERATOR", sequenceName = "Test_Result_seq")
 public class TestResult extends EntityBase {
 
     String result;
