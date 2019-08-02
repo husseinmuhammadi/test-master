@@ -48,7 +48,7 @@
                 </p:commandButton>
 
                 <p:commandButton value="#{lbl['button.update']}" styleClass="btn btn-outline-primary"
-                                 action="#{organizationChartController.edit}" rendered="#{not empty issueController.id}">
+                                 action="#{issueController.edit}" rendered="#{not empty issueController.id}">
                     <f:ajax execute="@form" render=":messages"/>
                 </p:commandButton>
 
