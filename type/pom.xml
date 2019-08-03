@@ -80,4 +80,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${utility.artifactId}</artifactId>
+            <version>${utility.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

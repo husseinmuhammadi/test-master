@@ -1,4 +1,4 @@
-package com.javastudio.tutorial.annotation;
+package com.javastudio.tutorial.security.crypto.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
