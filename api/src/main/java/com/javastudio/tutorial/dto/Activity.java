@@ -1,6 +1,6 @@
 package com.javastudio.tutorial.dto;
 
-public class ActivityDTO extends DTOBase {
+public class Activity extends DTOBase {
 
     private String entity;
 

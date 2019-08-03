@@ -4,7 +4,7 @@ import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.lms.tutorial.web.controller.base.ControllerBase;
 import com.javastudio.tutorial.api.ActivityService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
-import com.javastudio.tutorial.dto.ActivityDTO;
+import com.javastudio.tutorial.dto.Activity;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @ShiroSecured
 @Named
 @ViewScoped
-public class ActivityController extends ControllerBase<ActivityDTO> implements Serializable {
+public class ActivityController extends ControllerBase<Activity> implements Serializable {
 
     private static final long serialVersionUID = -4360806817248079581L;
 
@@ -27,13 +27,13 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
     ActivityService service;
 
     public ActivityController() {
-        super(ActivityDTO.class);
+        super(Activity.class);
     }
 
     String permission;
 
     @Override
-    protected GeneralServiceApi<ActivityDTO> getGeneralServiceApi() {
+    protected GeneralServiceApi<Activity> getGeneralServiceApi() {
         return service;
     }
 
@@ -49,11 +49,11 @@ public class ActivityController extends ControllerBase<ActivityDTO> implements S
 
     }
 
-    public ActivityDTO getActivity() {
+    public Activity getActivity() {
         return super.entity;
     }
 
-    public void setActivity(ActivityDTO activity) {
+    public void setActivity(Activity activity) {
         super.entity = activity;
     }
 

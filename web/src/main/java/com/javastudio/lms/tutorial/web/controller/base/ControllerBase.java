@@ -3,7 +3,7 @@ package com.javastudio.lms.tutorial.web.controller.base;
 import com.javastudio.lms.tutorial.web.annotation.ShiroSecured;
 import com.javastudio.lms.tutorial.web.controller.user.UserInformation;
 import com.javastudio.tutorial.api.GeneralServiceApi;
-import com.javastudio.tutorial.dto.ActivityDTO;
+import com.javastudio.tutorial.dto.Activity;
 import com.javastudio.tutorial.dto.DTOBase;
 import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public abstract class ControllerBase<T extends DTOBase> extends Localization imp
     Class<T> entityBeanType;
 
 
-    private Set<ActivityDTO> activities;
+    private Set<Activity> activities;
 
     private Long id;
 

@@ -3,7 +3,7 @@ package com.javastudio.lms.tutorial.web.controller.activity;
 import com.javastudio.lms.tutorial.web.controller.base.ManagerBase;
 import com.javastudio.tutorial.api.ActivityService;
 import com.javastudio.tutorial.api.GeneralServiceApi;
-import com.javastudio.tutorial.dto.ActivityDTO;
+import com.javastudio.tutorial.dto.Activity;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class ActivityManager extends ManagerBase<ActivityDTO> implements Serializable {
+public class ActivityManager extends ManagerBase<Activity> implements Serializable {
 
     private static final long serialVersionUID = -9051371651827827993L;
 
@@ -26,7 +26,7 @@ public class ActivityManager extends ManagerBase<ActivityDTO> implements Seriali
     ActivityService service;
 
     public ActivityManager() {
-        super(ActivityDTO.class);
+        super(Activity.class);
     }
 
     @Override
@@ -35,11 +35,11 @@ public class ActivityManager extends ManagerBase<ActivityDTO> implements Seriali
     }
 
     @Override
-    public GeneralServiceApi<ActivityDTO> getGeneralServiceApi() {
+    public GeneralServiceApi<Activity> getGeneralServiceApi() {
         return service;
     }
 
-    public List<ActivityDTO> getActivities() {
+    public List<Activity> getActivities() {
         return entityList;
     }
 }

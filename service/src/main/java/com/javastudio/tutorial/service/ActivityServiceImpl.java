@@ -3,7 +3,6 @@ package com.javastudio.tutorial.service;
 import com.javastudio.tutorial.api.ActivityService;
 import com.javastudio.tutorial.model.dao.ActivityDao;
 import com.javastudio.tutorial.model.dao.GenericDao;
-import com.javastudio.tutorial.dto.ActivityDTO;
 import com.javastudio.tutorial.model.to.Activity;
 import org.slf4j.Logger;
 
@@ -14,7 +13,7 @@ import javax.inject.Inject;
 
 @Stateless
 @Local(ActivityService.class)
-public class ActivityServiceImpl extends GeneralServiceImpl<Activity, ActivityDTO> implements ActivityService {
+public class ActivityServiceImpl extends GeneralServiceImpl<Activity, com.javastudio.tutorial.dto.Activity> implements ActivityService {
 
     @Inject
     private Logger logger;
@@ -23,7 +22,7 @@ public class ActivityServiceImpl extends GeneralServiceImpl<Activity, ActivityDT
     ActivityDao dao;
 
     public ActivityServiceImpl() {
-        super(Activity.class, ActivityDTO.class);
+        super(Activity.class, com.javastudio.tutorial.dto.Activity.class);
     }
 
     @Override
