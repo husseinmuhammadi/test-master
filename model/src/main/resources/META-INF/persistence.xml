@@ -32,6 +32,7 @@
         <class>com.javastudio.tutorial.model.to.TestAction</class>
         <class>com.javastudio.tutorial.model.to.TestResult</class>
         <class>com.javastudio.tutorial.model.to.TestCondition</class>
+        <class>com.javastudio.tutorial.model.to.Release</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>
