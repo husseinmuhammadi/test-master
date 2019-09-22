@@ -6,6 +6,8 @@ public class TestCase extends DTOBase {
 
     boolean generalTestCase;
 
+
+
     public String getTitle() {
         return title;
     }
@@ -21,4 +23,6 @@ public class TestCase extends DTOBase {
     public void setGeneralTestCase(boolean generalTestCase) {
         this.generalTestCase = generalTestCase;
     }
+
+
 }

@@ -1,7 +1,7 @@
 package com.javastudio.tutorial.model.to;
 
-import com.javastudio.tutorial.annotation.Decrypted;
 import com.javastudio.tutorial.model.base.EntityBase;
+import com.javastudio.tutorial.security.crypto.annotation.Decrypted;
 
 import javax.persistence.*;
 
